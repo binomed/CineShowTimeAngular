@@ -1,0 +1,28 @@
+{
+    "version": "4.0.0",
+    "name": "CineShowTime",
+    "description": "Movie Showtime Application",
+    "launch_path": "/html/index.html",
+    "icons": {
+        "16": "/assets/images/icon_ldpi.png",
+        "48": "/assets/images/icon_mdpi.png",
+        "128": "/assets/images/icon_xhdpi.png"
+    },
+    "developer": {
+        "name": "jefBinomed",
+        "url": "http://blog.binomed.fr"
+    },
+    "installs_allowed_from": ["*"],
+    "locales": {
+        "fr": {
+            "description": "Une Application pour connaitre les séances de cinéma",
+            "developer": {
+                "url": "http://blog.binomed.fr"
+            }
+        }
+    },
+    "default_locale": "en",
+    "permissions": {
+        "systemXHR": {}
+    }
+}
