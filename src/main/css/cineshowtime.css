@@ -1,0 +1,66 @@
+/*Colors android*/
+/* line 6, ../scss/cineshowtime.scss */
+html {
+  height: 100%;
+}
+
+/* line 10, ../scss/cineshowtime.scss */
+body {
+  padding: 0;
+  height: 100%;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* line 17, ../scss/cineshowtime.scss */
+body.light {
+  background-color: white;
+  color: #444444;
+}
+
+/* line 22, ../scss/cineshowtime.scss */
+body.dark {
+  background-color: #444444;
+  color: #cccccc;
+}
+
+/* line 27, ../scss/cineshowtime.scss */
+nav.navbar {
+  background-color: #cc0000;
+  height: 50px;
+  line-height: 50px;
+  /* unvisited link */
+  /* visited link */
+  /* mouse over link */
+}
+/* line 32, ../scss/cineshowtime.scss */
+nav.navbar img {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+}
+/* line 41, ../scss/cineshowtime.scss */
+nav.navbar a {
+  position: absolute;
+  left: 50px;
+  top: 0;
+}
+/* line 47, ../scss/cineshowtime.scss */
+nav.navbar a:link {
+  color: #cccccc;
+}
+/* line 48, ../scss/cineshowtime.scss */
+nav.navbar a:visited {
+  color: #cccccc;
+}
+/* line 49, ../scss/cineshowtime.scss */
+nav.navbar a:hover {
+  color: #cccccc;
+}
+/* line 50, ../scss/cineshowtime.scss */
+nav.navbar a:active {
+  color: #cccccc;
+}

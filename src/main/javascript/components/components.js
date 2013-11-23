@@ -1,2 +1,2 @@
-﻿var components = angular.module('Cst.components',[])
+﻿var components = angular.module('cst.components',[])
 ;

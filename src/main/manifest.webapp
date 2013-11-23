@@ -1,5 +1,6 @@
 {
     "version": "4.0.0",
+    "type": "privileged",
     "name": "CineShowTime",
     "description": "Movie Showtime Application",
     "launch_path": "/html/index.html",
@@ -23,6 +24,8 @@
     },
     "default_locale": "en",
     "permissions": {
-        "systemXHR": {}
+        "systemXHR": {
+            "description": "Need for consulting showtimes"
+        }
     }
 }

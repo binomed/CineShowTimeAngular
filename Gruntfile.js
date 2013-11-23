@@ -60,7 +60,8 @@ module.exports = function (grunt) {
           cssDir: '<%= src.css.dir %>'
           //,environment: 'production'
         }
-      },
+      }
+    },
 
     /* Config auto des taches concat, uglify et cssmin */
     useminPrepare: {

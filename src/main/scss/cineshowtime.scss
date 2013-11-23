@@ -14,3 +14,39 @@ body{
 	font-size: 14px;
 }
 
+body.light{
+	background-color: $light-bg-color; 
+	color : $light-color-text;
+}
+
+body.dark{
+	background-color: $dark-bg-color;
+	color : $dark-color-text;
+}
+
+nav.navbar{
+	background-color: $action-bar;
+	height: 50px;
+	line-height: 50px;
+
+	img{
+		position: absolute;
+		left: 5px;
+		top: 50%;
+		width: 40px;
+		height: 40px;
+		margin-top: -20px;
+	}
+
+	a{
+		position: absolute;
+		left: 50px;
+		top: 0;
+	}
+
+	a:link{color:$dark-color-text;}      /* unvisited link */
+	a:visited {color:$dark-color-text;}  /* visited link */
+	a:hover {color:$dark-color-text;}  /* mouse over link */
+	a:active {color:$dark-color-text;}
+	
+}
