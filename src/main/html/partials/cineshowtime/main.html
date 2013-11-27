@@ -1,3 +1,22 @@
-<div>
-	Main content
+<div id="main">
+	<div class="jumbotron">
+	  <h1>Recherche</h1>
+	  <p>Vous pouvez recherche un film ou via une localisation</p>
+	</div>
+	<div class='input-group search-field'>
+		<input placeholder='Ville...' type='text' id='city' class="form-control"/>
+		<div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+	</div>
+	<input placeholder='Film...' type='text' id='movie' class="form-control search-field"/>
+	<!-- Single button -->
+	<select class="form-control search-field" id="day-picker">
+	  <option>Aujourd'hui</option>
+	  <option>Demain</option>
+	  <option>Mardi</option>
+	  <option>Mercredi</option>
+	  <option>Jeudi</option>
+	</select>
+
+	<button type="button" id="search-btn" class="btn btn-primary btn-lg search-field">Rechercher</button>
+	
 </div>

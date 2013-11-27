@@ -2,6 +2,7 @@
 @import "compass";
 @import "color";
 @import "vars";
+@import "search";
 
 html{
 	height : 100%;	
@@ -24,10 +25,12 @@ body.dark{
 	color : $dark-color-text;
 }
 
+
+
 nav.navbar{
 	background-color: $action-bar;
-	height: 50px;
-	line-height: 50px;
+	height: $action-bar-height;
+	line-height: $action-bar-height;
 
 	img{
 		position: absolute;
@@ -40,7 +43,7 @@ nav.navbar{
 
 	a{
 		position: absolute;
-		left: 50px;
+		left: $action-bar-height;
 		top: 0;
 	}
 
@@ -48,5 +51,24 @@ nav.navbar{
 	a:visited {color:$dark-color-text;}  /* visited link */
 	a:hover {color:$dark-color-text;}  /* mouse over link */
 	a:active {color:$dark-color-text;}
-	
+
+	#menu, #favBtn, #searchBtn{
+		width: $action-bar-height;
+		height: $action-bar-height;
+		line-height: $action-bar-height;
+		text-align: center;
+		color:$dark-color-text;
+		}
+
+	#menu{
+		border-left-width: 1px;
+		border-left-color: $dark-color-text;
+		border-left-style: solid;
+	}
+
+	#favBtn, #searchBtn{
+		position: absolute;
+		right: $action-bar-height;
+	}
+
 }

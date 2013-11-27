@@ -4,4 +4,7 @@ cst.controller('CstCtrl',
 
 		console.log('Hello Main App ?')
 
+		$scope.fav = true;
+		$scope.search = false;
+
 }]);

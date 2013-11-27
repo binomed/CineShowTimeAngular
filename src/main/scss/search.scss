@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@import "compass";
+@import "color";
+@import "vars";
+
+#main{
+	position: absolute;
+	width: 100%;
+	top: $action-bar-height;
+	bottom: 0;
+}
+
+.search-field{
+	margin : 10px 0 ;
+}
+
+#day-picker{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+	display: block;
+
+	.btn{
+		width: 100%;
+	}
+}
+
+#search-btn{
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}

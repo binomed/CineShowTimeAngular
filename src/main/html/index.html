@@ -24,12 +24,15 @@
 			<div class="navbar-header">				
 				<img src="../assets/images/icon_hdpi.png">
 				<a class="navbar-brand" href="#/main">CineShowTime</a>
-				<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			      <span class="sr-only">Toggle navigation</span>
-			      <span class="icon-bar"></span>
-			      <span class="icon-bar"></span>
-			      <span class="icon-bar"></span>
-			    </button>-->
+				<div id='favBtn' ng-show='fav'>
+			      	<i class='fa fa-star fa-2x'></i>			      
+			    </div>
+			    <div id='searchBtn' ng-show='search'>
+			      	<i class='fa fa-search fa-2x'></i>			      
+			    </div>
+				<div id='menu' class="pull-right" >
+			      	<i class='fa fa-bars fa-2x'></i>			      
+			    </div>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->

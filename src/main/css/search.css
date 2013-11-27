@@ -1,0 +1,33 @@
+/*Colors android*/
+/* line 6, ../scss/search.scss */
+#main {
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  bottom: 0;
+}
+
+/* line 13, ../scss/search.scss */
+.search-field {
+  margin: 10px 0;
+}
+
+/* line 17, ../scss/search.scss */
+#day-picker {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  display: block;
+}
+/* line 24, ../scss/search.scss */
+#day-picker .btn {
+  width: 100%;
+}
+
+/* line 29, ../scss/search.scss */
+#search-btn {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
