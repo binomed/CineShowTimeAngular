@@ -20,6 +20,9 @@
     "grunt-karma": "~0.4.4",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-compass" : "0.3.0",
+    "node-static" : "~0.7.2",
+    "connect" : "~2.8.4",
+    "grunt-contrib-compass" : "0.3.0",
     "http-proxy": "https://github.com/jayv/node-http-proxy/tarball/master"
   }
 }

@@ -1,20 +1,25 @@
 <div id='result'>
-	<div ng-show='{{results.length > 0}}' class='panel-group' id='accordion'>
+	<div ng-hide='showNoResults' class='panel-group' id='accordion'>
 		<div ng-repeat='master in results' class='panel panel-default'>
 			<div class='panel-heading'>
 				<h4 class='panel-title' data-toggle='collapse' data-parent='#accordion' href='#collapse{{master.id}}'>
-					{{master.title}}
+					{{master.theaterName}}
 				</h4>
 			</div>
 			<div id='collapse{{master.id}}' class='panel-collapse collapse'>
 				<div ng-repeat='showtime in master.showtimes' class='panel-body'>					
-					{{showtime.title}}					
+					{{showtime.name}}					
 				</div>
 			</div>
 		</div>		
 	</div>
-	<div ng-hide='{{results.length > 0}}' class='panel-group' id='accordion'>
-		No Results
-		
+	<div ng-show='showNoResults' class='panel-group'>
+		No Results		
+	</div>
+	<div ng-show='showLoad' class='panel-group'>
+		Load in progress		
+	</div>
+	<div ng-show='showError' class='panel-group'>
+		Error	
 	</div>
 </div>

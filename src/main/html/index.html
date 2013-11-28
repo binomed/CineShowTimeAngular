@@ -19,37 +19,7 @@
 </head>
 <body ng-controller="CstCtrl" class='light'>
 	<div id="main-content">			
-		<nav class="navbar" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">				
-				<img src="../assets/images/icon_hdpi.png">
-				<a class="navbar-brand" href="#/main">CineShowTime</a>
-				<div id='favBtn' ng-show='fav'>
-			      	<i class='fa fa-star fa-2x'></i>			      
-			    </div>
-			    <div id='searchBtn' ng-show='search'>
-			      	<i class='fa fa-search fa-2x'></i>			      
-			    </div>
-				<div id='menu' class="pull-right" >
-			      	<i class='fa fa-bars fa-2x'></i>			      
-			    </div>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<!--
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-				  <li><a href="#/orientation">Orientation</a></li>
-				  <li><a href="#/devicemotion">Device Motion</a></li>
-				  <li><a href="#/proximity">Proximity</a></li>
-				  <li><a href="#/light">Light</a></li>
-				  <li><a href="#/usermedia">User Media</a></li>
-				  <li><a href="#/vibration">Vibration</a></li>
-				  <li><a href="#/webspeech">Web Speech</a></li>
-				  
-				</ul>				
-			</div><!-- /.navbar-collapse -->
-		</nav>
+		<action-bar></action-bar>
 		<div id="content" ng-view>
 		</div>	
     </div>
@@ -73,6 +43,7 @@
 	<script src="../javascript/cineshowtime/controlers/result.js"></script>	
 	<!-- Directives -->
     <script src="../javascript/components/components.js"></script>
+    <script src="../javascript/components/actionbar.js"></script>
     
 	<!-- endbuild -->
 </body>

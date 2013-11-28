@@ -3,20 +3,20 @@
 	  <h1>Recherche</h1>
 	  <p>Vous pouvez recherche un film ou via une localisation</p>
 	</div>
-	<div class='input-group search-field'>
-		<input placeholder='Ville...' type='text' id='city' class="form-control"/>
-		<div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+	<div class='input-group search-field {{validCityClass}}'>
+		<input placeholder='Ville...' type='text' id='city' ng-model='cityName' class="form-control"/>
+		<div ng-click='gpsSearch()' class="input-group-addon"><i class="fa fa-map-marker"></i></div>
 	</div>
-	<input placeholder='Film...' type='text' id='movie' class="form-control search-field"/>
+	<div class='input-group search-field {{validMovieClass}}'>
+		<input placeholder='Film...' type='text' id='movie' ng-model='movieName' class="form-control"/>
+	</div>
 	<!-- Single button -->
-	<select class="form-control search-field" id="day-picker">
-	  <option>Aujourd'hui</option>
-	  <option>Demain</option>
-	  <option>Mardi</option>
-	  <option>Mercredi</option>
-	  <option>Jeudi</option>
+	<select class="form-control search-field" id="day-picker" ng-model='dayPicker'>
+		<option ng-repeat="day in days" value="{{day.value}}" >{{day.day}}</option>	  
 	</select>
 
 	<button type="button" ng-click='search()' id="search-btn" class="btn btn-primary btn-lg search-field">Rechercher</button>
+
+	<div ng-show="showError" class="alert alert-danger search-field">{{errorText}}</div>
 	
 </div>
