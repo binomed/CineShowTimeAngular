@@ -7,6 +7,7 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/main',       { controller: 'CstCtrl',    templateUrl: 'partials/cineshowtime/main.html' })
     .when('/search',       { controller: 'SearchCtrl',    templateUrl: 'partials/cineshowtime/search.html' })
+    .when('/result',       { controller: 'ResultCtrl',    templateUrl: 'partials/cineshowtime/result.html' })
     .otherwise({ redirectTo:  '/main' })
     ;
 }]);
