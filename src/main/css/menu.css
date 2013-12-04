@@ -1,0 +1,44 @@
+/*Colors android*/
+/* line 8, ../scss/menu.scss */
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 25px;
+  z-index: 20;
+  -webkit-transition: all 1s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  transition: all 1s ease 0s;
+}
+/* line 20, ../scss/menu.scss */
+.menu .menu-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80%;
+  background-color: #666666;
+}
+/* line 29, ../scss/menu.scss */
+.menu .menu-bg .item-menu {
+  height: 40px;
+  line-height: 40px;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+  border-bottom-width: 1px;
+}
+/* line 36, ../scss/menu.scss */
+.menu .menu-bg .item-menu i.fa {
+  margin: 0 10px;
+}
+
+/* line 43, ../scss/menu.scss */
+.menu.away {
+  left: -100%;
+}

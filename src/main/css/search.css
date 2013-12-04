@@ -9,10 +9,11 @@
 
 /* line 13, ../scss/search.scss */
 .search-field {
-  margin: 10px 0;
+  margin: 10px auto;
+  width: 90%;
 }
 
-/* line 17, ../scss/search.scss */
+/* line 18, ../scss/search.scss */
 #day-picker {
   position: relative;
   margin-left: auto;
@@ -20,14 +21,32 @@
   width: 40%;
   display: block;
 }
-/* line 24, ../scss/search.scss */
+/* line 25, ../scss/search.scss */
 #day-picker .btn {
   width: 100%;
 }
 
-/* line 29, ../scss/search.scss */
+/* line 30, ../scss/search.scss */
 #search-btn {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+/* line 36, ../scss/search.scss */
+#map-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+}
+
+/* line 44, ../scss/search.scss */
+#results {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
 }

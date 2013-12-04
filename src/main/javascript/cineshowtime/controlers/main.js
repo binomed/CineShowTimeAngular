@@ -49,4 +49,12 @@ cst.controller('CstCtrl',
 
 		}
 
+
+		$scope.map = { center: {lat: 47.211, lng: -1.566}, zoom: 12 };
+
+		$scope.movies = [{
+			title: "test",
+			imgSrc:'../assets/images/loading_preview.png'
+		}];
+
 }]);

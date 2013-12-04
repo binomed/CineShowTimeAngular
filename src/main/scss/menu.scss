@@ -1,0 +1,45 @@
+@charset "UTF-8";
+@import "compass";
+@import "compass/css3/transition";
+@import "color";
+@import "vars";
+
+
+.menu{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;	
+	width: 100%;
+	background-color: rgba(0,0,0,0.75);
+	color: white;
+	font-size: 25px;
+	z-index: 20;
+	@include single-transition(all, 1s, ease, 0s);
+
+	.menu-bg{
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;	
+		width: 80%;
+		background-color: #666666;
+
+		.item-menu{
+			height: 40px;
+			line-height: 40px;
+			border-bottom-style: solid;
+			border-bottom-color: white;
+			border-bottom-width: 1px;
+
+			i.fa{
+				margin: 0 10px;
+			}		
+		}
+	}
+}
+
+.menu.away{
+	left: -100%;
+}

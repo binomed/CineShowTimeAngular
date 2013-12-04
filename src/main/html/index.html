@@ -17,10 +17,15 @@
   	<!-- fontello -->
   	<link rel="stylesheet" type="text/css" href="../components/fontello/css/fontello.css" />  	
 	<!-- endbuild -->	
+
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDyIPjOPfFqVH4V5bkdBatTOiJLxnxvGuI&sensor=true"></script>
+
 </head>
 <body ng-controller="CstCtrl" class='light'>
 	<div id="main-content">			
 		<action-bar></action-bar>
+		<sliding-menu></sliding-menu>
 		<div id="content" ng-view>
 		</div>	
     </div>
@@ -46,6 +51,9 @@
 	<!-- Directives -->
     <script src="../javascript/components/components.js"></script>
     <script src="../javascript/components/actionbar.js"></script>
+    <script src="../javascript/components/sliding-menu.js"></script>
+    <script src="../javascript/components/map.js"></script>
+    <script src="../javascript/components/movie-result.js"></script>
     
 	<!-- endbuild -->
 </body>

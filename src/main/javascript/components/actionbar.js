@@ -12,7 +12,7 @@ components.directive('actionBar', ['ModelFactory', '$rootScope','$location'
       $scope.fav = true;
 
       $scope.goToHome = function(){
-        $location.path('/main');
+        $rootScope.$broadcast('openMenuEvt');
       }
 
       $scope.goToSearch = function(){
