@@ -10,20 +10,20 @@ var options = {
   host: "localhost",
   port: 3128,
   method: 'GET',
-  path: "http://10.binomed-andshowtime-project-1.appspot.com/showtime/near?place=nantes&day=0&lang=fr&curenttime="+(new Date().getTime())+"&timezone=GMT+1&oe=UTF-8&ie=UTF-8&countryCode=FR&output=json",
+  path: "http://11.binomed-andshowtime-project-1.appspot.com/showtime/near?place=nantes&day=0&lang=fr&curenttime="+(new Date().getTime())+"&timezone=GMT+1&oe=UTF-8&ie=UTF-8&countryCode=FR&output=json",
   headers: {
     Host: "computeengineondemand.appspot.com"
   }
 };
 
-"http://10.binomed-andshowtime-project-1.appspot.com/"
+"http://11.binomed-andshowtime-project-1.appspot.com/"
         +"/showtime/near?place=nantes&day=0&lang=fr"
         +"&curenttime="+(new Date().getTime())
         +"&timezone=GMT+1"
         +"&oe=UTF-8&ie=UTF-8&countryCode=FR&output=json";
 
 options = { 
-  hostname: '10.binomed-andshowtime-project-1.appspot.com', 
+  hostname: '11.binomed-andshowtime-project-1.appspot.com', 
   port: 80, 
   path: "/showtime/near?place=nantes&day=0&lang=fr&curenttime="+(new Date().getTime())+"&timezone=GMT+1&oe=UTF-8&ie=UTF-8&countryCode=FR&output=json", 
   method: 'GET' 

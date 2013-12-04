@@ -13,11 +13,16 @@ cst.controller('ResultCtrl',
 		if (model.requestAsk){			
 			$scope.showLoad = true;
 			$scope.showNoResults = false;
+
+			console.log('Call to url : '+url);
+
+			console.log('Call with Angular.');
 			$http({
 			    url: url,
 			    method: "GET"
 			}).success(function(data, status, headers, config) {
 				$scope.showLoad = false;
+				console.log('Sucess with Angular : '+data);
 				if (data){
 					console.log(data);
 					$scope.results = [];
@@ -39,11 +44,45 @@ cst.controller('ResultCtrl',
 				}
 				$scope.showNoResults = $scope.results.length === 0;
 			}).error(function(data, status, headers, config) {
+				console.log('Error with Angular : '+data);
 				$scope.showLoad = false;
 				$scope.showError = true;
 				$scope.showNoResults = false;
-			    console.log(data);
 			});
+
+
+			console.log('Call with getJSON.');
+			$.getJSON(url,
+				function(data, status, headers, config) {
+				$scope.showLoad = false;
+				console.log('Sucess with getJSON : '+data);
+			}).fail(function(jqXHR, textStatus, error) {
+				$scope.showLoad = false;
+				$scope.showError = true;
+				$scope.showNoResults = false;
+				console.log('Error with getJSON : '+error);
+			    console.log(error);
+			});
+
+			
+			console.log('Simple getJSON.');
+			$.getJSON('http://echo.jsontest.com/test/value', 
+				function(data, textStatus, jqXHR){
+				console.log('Sucess : '+data);
+			}).fail(function(jqXHR, textStatus, error){
+				console.log('Error : '+error);
+			});
+
+			console.log('Simple angularGet.');
+			$http({
+			    url: 'http://echo.jsontest.com/test/value',
+			    method: "GET"
+			}).success(function(data, status, headers, config) {
+				console.log('Sucess with SimpleAngular : '+data);				
+			}).error(function(data, status, headers, config) {
+				console.log('Error with SimpleAngular : '+data);				
+			});
+
 		}
 
 }]);

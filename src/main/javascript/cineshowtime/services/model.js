@@ -10,8 +10,8 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 	/*
 	* Constants
 	*/
-	var localMode = true;
-	var HOST = "10.binomed-andshowtime-project-1.appspot.com";
+	var localMode = false;
+	var HOST = "11.binomed-andshowtime-project-1.appspot.com";
 	var PROTOCOL = "http://";
 	var PORT = ":80";
 	var PATH_NEAR = "/showtime/near?";

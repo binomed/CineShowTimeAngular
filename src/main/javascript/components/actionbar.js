@@ -16,11 +16,19 @@ components.directive('actionBar', ['ModelFactory', '$rootScope','$location'
       }
 
       $scope.goToSearch = function(){
-
+        $location.path('/main');
+        $scope.search = false;
+        $scope.fav = true;
       }
 
       $scope.goToFav = function(){
-        
+        $location.path('/fav');
+        $scope.search = true;
+        $scope.fav = false;
+      }
+
+      $scope.openMenu = function(){
+        console.log('openMenu');
       }
     }
   };
