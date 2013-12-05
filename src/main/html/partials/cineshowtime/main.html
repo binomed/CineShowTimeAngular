@@ -10,7 +10,7 @@
 		<div ng-click='dayChoice()' class="input-group-addon"><i class="fa fa-calendar"></i></div>
 	</div>
 	<div id="results" ng-controller="ResultCtrl" >
-		<movie-result ng-hide='showNoResults' ng-repeat='movie in showtimeList' movie="movie"></movie-result>
+		<movie-list ng-hide='showNoResults' movieList="showtimeList"></movie-list>
 		<div ng-show='showNoResults' class='panel-group'>
 			No Results		
 		</div>

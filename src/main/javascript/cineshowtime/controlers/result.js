@@ -30,6 +30,7 @@ cst.controller('ResultCtrl',
 			if ($scope.results.length > 0){
 				var theater = $scope.results[0];
 				$scope.showtimeList = theater.showtimes;
+				$rootScope.$broadcast('showtimeListEvt', theater.showtimes);
 
 			}
 		});

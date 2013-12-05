@@ -18,54 +18,70 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
       }, function(position) {
           alert("Failed to get your current location");
       });
+        */
 
-      function plotMap(){*/
-        console.log("enterPlotMap");
+        // Solution possible : https://groups.google.com/forum/#!searchin/mozilla.dev.b2g/google$20maps/mozilla.dev.b2g/56RBo2pBbL4/P1sl-IxnR0MJ
+      
+        function initMap(){
 
-       var mapOptions = {
-            center: new google.maps.LatLng($scope.center.lat, $scope.center.lng),
-            zoom: $scope.zoom,
-            mapTypeControl : false,
-            panControl : false,
-            streetViewControl : false,
-            scaleControl : false,
-            zoomControlOptions : { position : google.maps.ControlPosition.LEFT_BOTTOM},
-            overviewMapControl : false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+           var mapOptions = {
+                center: new google.maps.LatLng($scope.center.lat, $scope.center.lng),
+                zoom: $scope.zoom,
+                mapTypeControl : false,
+                panControl : false,
+                streetViewControl : false,
+                scaleControl : false,
+                zoomControlOptions : { position : google.maps.ControlPosition.LEFT_BOTTOM},
+                overviewMapControl : false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
 
-        var map = new google.maps.Map(mapDivElt, mapOptions);
-        console.log("mapInit");
-          
-        $scope.$watch('zoom', function (newValue) {
-            map.setZoom(parseInt(newValue));
-        });
-
-        $scope.$watch('center', function (newValue) {
-            map.setCenter(new google.maps.LatLng(
-                parseFloat(newValue.lat),
-                parseFloat(newValue.lng))
-            );
-        }, true);
-
-
-        google.maps.event.addListener(map, 'zoom_changed', function () {
-            $timeout(function () {
-                $scope.zoom = map.getZoom();
+            var map = new google.maps.Map(mapDivElt, mapOptions);
+            console.log("mapInit");
+              
+            $scope.$watch('zoom', function (newValue) {
+                map.setZoom(parseInt(newValue));
             });
-        });
 
-        google.maps.event.addListener(map, 'center_changed', function () {
-            $timeout(function () {
-                $scope.center = {
-                    lat: map.getCenter().lat(),
-                    lng: map.getCenter().lng()
-                };
+            $scope.$watch('center', function (newValue) {
+                map.setCenter(new google.maps.LatLng(
+                    parseFloat(newValue.lat),
+                    parseFloat(newValue.lng))
+                );
+            }, true);
+            google.maps.event.addListener(map, 'zoom_changed', function () {
+                $timeout(function () {
+                    $scope.zoom = map.getZoom();
+                });
             });
-        });
 
-        console.log("endPlotMap");
-      //}
+            google.maps.event.addListener(map, 'center_changed', function () {
+                $timeout(function () {
+                    $scope.center = {
+                        lat: map.getCenter().lat(),
+                        lng: map.getCenter().lng()
+                    };
+                });
+            });
+
+            console.log("endPlotMap");
+        }
+
+        initMap();
+        /*
+        if (CST.initMaps){
+            initMap();
+        }else{
+            CST.registerInit(function(init){
+                if (!init){
+                    console.log('CallBack but not init ! ');
+                }else{
+                    initMap();
+                }
+            });
+            console.log('Maps Not Init');
+        }
+        */
 
         //$scope.snapshots = snapshots;
         $scope.addMarker = function () {

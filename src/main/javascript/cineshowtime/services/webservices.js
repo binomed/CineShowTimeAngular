@@ -24,7 +24,7 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 						var showtime = theater.movieMap[movieId];
 						var movie = data.mapMovies[movieId];
 						showtime.id = movieId;
-						showtime.name = movie.movieName;
+						showtime.name = decodeURIComponent(movie.movieName).split('+').join(' ');
 						showtime.imgSrc = '../assets/images/loading_preview.png';
 						theater.showtimes.push(showtime);
 					}

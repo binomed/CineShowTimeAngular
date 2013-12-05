@@ -98,11 +98,25 @@
 }
 
 /*Colors android*/
-/* line 6, ../scss/movie-result.scss */
-.movie-result {
-  width: 30%;
-  margin: 10px;
+/* line 7, ../scss/movie-result.scss */
+.movie-list {
   height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+/* line 13, ../scss/movie-result.scss */
+.parent-movie-list {
+  height: 100%;
+}
+
+/* line 17, ../scss/movie-result.scss */
+.movie-result {
+  /*width: calc(30% - 30px);
+  width: -webkit-calc(30% - 30px);*/
+  width: 120px;
+  margin: 10px;
+  height: -webkit-calc(100% - 20px);
   float: left;
   margin-right: 20px;
   border-style: solid;
