@@ -25,6 +25,12 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
        var mapOptions = {
             center: new google.maps.LatLng($scope.center.lat, $scope.center.lng),
             zoom: $scope.zoom,
+            mapTypeControl : false,
+            panControl : false,
+            streetViewControl : false,
+            scaleControl : false,
+            zoomControlOptions : { position : google.maps.ControlPosition.LEFT_BOTTOM},
+            overviewMapControl : false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 

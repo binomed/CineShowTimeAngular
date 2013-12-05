@@ -1,15 +1,25 @@
 <div id="main">
 	<map center="map.center" zoom="map.zoom"></map>
 	<div class='input-group search-field {{validCityClass}}'>
-		<input placeholder='Ville...' type='text' id='city' ng-model='cityName' class="form-control"/>
+		<i ng-click='search()' class="fa fa-search search-icon input-group-addon"></i>
+		<input ng-keyup='keyUp($event)' placeholder='Ville...' type='text' id='city' ng-model='cityName' class="form-control"/>
 		<div ng-click='gpsSearch()' class="input-group-addon"><i class="fa fa-map-marker"></i></div>
 	</div>
 	<div class='input-group search-field {{validMovieClass}}'>
 		<input placeholder='Film...' type='text' id='movie' ng-model='movieName' class="form-control"/>
 		<div ng-click='dayChoice()' class="input-group-addon"><i class="fa fa-calendar"></i></div>
 	</div>
-	<div id="results">
-		<movie-result ng-repeat='movie in movies' movie="movie"></movie-result>
+	<div id="results" ng-controller="ResultCtrl" >
+		<movie-result ng-hide='showNoResults' ng-repeat='movie in showtimeList' movie="movie"></movie-result>
+		<div ng-show='showNoResults' class='panel-group'>
+			No Results		
+		</div>
+		<div ng-show='showLoad' class='panel-group'>
+			Load in progress		
+		</div>
+		<div ng-show='showError' class='panel-group'>
+			Error	
+		</div>
 	</div>
 	<!-- Single button -->
 	<!--

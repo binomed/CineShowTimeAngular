@@ -3,14 +3,12 @@
 	<div class="navbar-header">				
 		<img src="../assets/images/icon_hdpi.png" ng-click='goToHome()'></img>
 		<a class="navbar-brand" href="#/main">CineShowTime</a>
-		<div id='favBtn' ng-show='fav' ng-click='goToFav()'>
+		<div id='favBtn' ng-click='goToFav()'>
 	      	<i class='fa fa-star fa-2x'></i>			      
 	    </div>
-	    <div id='searchBtn' ng-show='search' ng-click='goToSearch()'>
+	    
+		<div id='menu' class="pull-right" ng-click='goToSearch()' >
 	      	<i class='fa fa-search fa-2x'></i>			      
-	    </div>
-		<div id='menu' class="pull-right" ng-click='openMenu()' >
-	      	<i class='fa fa-bars fa-2x'></i>			      
 	    </div>
 	</div>
 	

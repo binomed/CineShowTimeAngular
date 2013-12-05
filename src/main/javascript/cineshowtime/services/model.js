@@ -21,6 +21,7 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 	*/
 	var request = {};
 	var requestAsk = false;
+	var results = {};
 
 	var setRequest = function(requestToSet){
 		request = requestToSet;
@@ -28,6 +29,14 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 
 	var getRequest = function(){
 		return request;
+	}
+
+	var setResults = function(resultsToSet){
+		results = resultsToSet;
+	}
+
+	var getResults = function(){
+		return results;
 	}
 
 	/*
@@ -78,6 +87,8 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 		setRequest : setRequest,
 		getRequest : getRequest,
 		requestAsk : requestAsk,
+		setResults : setResults,
+		getResults : getResults,
 		// Apis 
 		getUrlNear : getUrlNear,
 		getDays : getDays

@@ -1,6 +1,6 @@
 cst.controller('CstCtrl',	
-	['$rootScope', '$scope', '$http', '$location' , 'ModelFactory',
-	function($rootScope, $scope, $http, $location, model) {
+	['$rootScope', '$scope', '$http', '$location' , 'ModelFactory', 'ServicesFactory',
+	function($rootScope, $scope, $http, $location, model, services) {
 
 		$scope.cityName = '';
 		$scope.movieName = '';
@@ -42,19 +42,26 @@ cst.controller('CstCtrl',
 				day : $scope.dayPicker
 			});
 			model.requestAsk = true;
-			$location.path('/result');
+			$rootScope.$broadcast('proceedRequestEvt');			
 		}
 
 		$scope.gpsSearch = function(){
-
+			navigator.geolocation.getCurrentPosition(function(position) {
+	          console.log(position.coords.latitude + " " + position.coords.longitude);
+	          
+	          //document.getElementById('info').innerHTML = "";
+	      }, function(position) {
+	          alert("Failed to get your current location");
+	      });
 		}
 
+		$scope.keyUp = function(event){
+			if (event.keyCode === 13){
+				$scope.search();
+			}
+		}
 
 		$scope.map = { center: {lat: 47.211, lng: -1.566}, zoom: 12 };
 
-		$scope.movies = [{
-			title: "test",
-			imgSrc:'../assets/images/loading_preview.png'
-		}];
-
+		
 }]);
