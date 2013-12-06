@@ -21,6 +21,11 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
         */
 
         // Solution possible : https://groups.google.com/forum/#!searchin/mozilla.dev.b2g/google$20maps/mozilla.dev.b2g/56RBo2pBbL4/P1sl-IxnR0MJ
+
+        // http://leafletjs.com/download.html
+        //https://github.com/smeijer/L.GeoSearch/wiki
+        // http://open.mapquestapi.com/nominatim/
+        //http://stackoverflow.com/questions/17726177/can-i-use-openstreetmap-nominatim-reverse-geolocation-api-in-a-commercial-app
       
         function initMap(){
 

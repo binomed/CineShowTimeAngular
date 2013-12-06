@@ -5,7 +5,7 @@
 		<input ng-keyup='keyUp($event)' placeholder='Ville...' type='text' id='city' ng-model='cityName' class="form-control"/>
 		<div ng-click='gpsSearch()' class="input-group-addon"><i class="fa fa-map-marker"></i></div>
 	</div>
-	<div class='input-group search-field {{validMovieClass}}'>
+	<div class='input-group search-field movie-search-field {{validMovieClass}} {{visibilityMovie}}'>
 		<input placeholder='Film...' type='text' id='movie' ng-model='movieName' class="form-control"/>
 		<div ng-click='dayChoice()' class="input-group-addon"><i class="fa fa-calendar"></i></div>
 	</div>

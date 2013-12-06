@@ -9,6 +9,9 @@ components.directive('movieResult', ['ModelFactory', '$rootScope','$location'
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
+      $scope.openMovie = function(){
+        $location.path('movie');
+      }
       
     }
   };

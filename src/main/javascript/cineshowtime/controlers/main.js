@@ -6,6 +6,7 @@ cst.controller('CstCtrl',
 		$scope.movieName = '';
 		$scope.days = model.getDays();
 		$scope.dayPicker = 0;
+		$scope.visibilityMovie = '';
 		$scope.validCityClass = '';
 		$scope.validMovieClass =  '';
 		$scope.errorText = '';
@@ -87,6 +88,15 @@ cst.controller('CstCtrl',
 		}
 
 		$scope.map = { center: {lat: 47.211, lng: -1.566}, zoom: 12 };
+
+
+		/*
+		Listeners
+		*/
+
+		$scope.$watch('cityName', function(){
+			$scope.visibilityMovie = ($scope.cityName != null && $scope.cityName.length > 0) ? 'show-movie-name' : '';
+		});
 
 		
 }]);

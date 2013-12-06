@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import "compass";
+@import "compass/css3/transition";
 @import "color";
 @import "vars";
 
@@ -49,4 +50,13 @@
 	left: 0;
 	width: 100%;
 	height: 50%;
+}
+
+.movie-search-field{
+	@include single-transition(all, 1s, ease, 0s);
+	opacity: 0;	
+}
+
+.movie-search-field.show-movie-name{
+	opacity: 1;	
 }
