@@ -23,3 +23,19 @@
   border-style: solid;
   border-width: 1px;
 }
+/* line 28, ../scss/movie-result.scss */
+.movie-result .movie-title + .movie-showtime {
+  font-weight: 800;
+}
+
+/* line 33, ../scss/movie-result.scss */
+.no-results {
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
+  text-align: center;
+  top: 50px;
+  font-size: 30px;
+  font-weight: 400;
+}

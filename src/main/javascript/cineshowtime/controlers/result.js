@@ -5,14 +5,10 @@ cst.controller('ResultCtrl',
 		$scope.results = [];
 		$scope.showtimeList = [];
 
-
 		$scope.showLoad = false;
 		$scope.showError = false;
 		$scope.showNoResults = true;
-
-
-
-
+		$scope.showResults = true;
 
 		$rootScope.$on('proceedRequestEvt', function(){
 			if (model.requestAsk){			
@@ -20,6 +16,7 @@ cst.controller('ResultCtrl',
 
 				$scope.showLoad = true;
 				$scope.showNoResults = false;
+				$scope.showResults = false;
 			}
 		});
 
@@ -27,6 +24,7 @@ cst.controller('ResultCtrl',
 			$scope.results = results;
 			$scope.showLoad = false;
 			$scope.showNoResults = $scope.results.length === 0;
+			$scope.showResults = !$scope.showNoResults;
 			if ($scope.results.length > 0){
 				var theater = $scope.results[0];
 				$scope.showtimeList = theater.showtimes;
@@ -39,6 +37,7 @@ cst.controller('ResultCtrl',
 			$scope.showLoad = false;
 			$scope.showError = true;
 			$scope.showNoResults = false;
+			$scope.showResults = false;
 		});
 
 

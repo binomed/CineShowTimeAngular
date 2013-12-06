@@ -9,27 +9,17 @@
 		<input placeholder='Film...' type='text' id='movie' ng-model='movieName' class="form-control"/>
 		<div ng-click='dayChoice()' class="input-group-addon"><i class="fa fa-calendar"></i></div>
 	</div>
+	<div ng-show="showError" class="alert alert-danger search-field">{{errorText}}</div>
 	<div id="results" ng-controller="ResultCtrl" >
-		<movie-list ng-hide='showNoResults' movieList="showtimeList"></movie-list>
-		<div ng-show='showNoResults' class='panel-group'>
+
+		<loader ng-show="showLoad"></loader>
+		<movie-list ng-show='showResults' movieList="showtimeList"></movie-list>
+		<div ng-show='showNoResults' class='no-results'>
 			No Results		
 		</div>
-		<div ng-show='showLoad' class='panel-group'>
-			Load in progress		
-		</div>
-		<div ng-show='showError' class='panel-group'>
+		<div ng-show='showError' class='error-results'>
 			Error	
 		</div>
-	</div>
-	<!-- Single button -->
-	<!--
-	<select class="form-control search-field" id="day-picker" ng-model='dayPicker'>
-		<option ng-repeat="day in days" value="{{day.value}}" >{{day.day}}</option>	  
-	</select>
-
-	<button type="button" ng-click='search()' id="search-btn" class="btn btn-primary btn-lg search-field">Rechercher</button>
-	-->
-
-	<div ng-show="showError" class="alert alert-danger search-field">{{errorText}}</div>
+	</div>	
 	
 </div>

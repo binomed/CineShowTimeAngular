@@ -1,0 +1,238 @@
+/*rgba(200,200,200,1)*/
+/*#eee*/
+/* line 22, ../scss/loader.scss */
+.spinner-square {
+  position: absolute;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-top-width: 0;
+  width: calc(200px / 2);
+  height: calc(200px / 2);
+  z-index: 600;
+}
+
+/* line 33, ../scss/loader.scss */
+.square1 {
+  left: 0;
+  border-left-width: 0;
+}
+
+/* line 38, ../scss/loader.scss */
+.square2 {
+  right: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+/* line 44, ../scss/loader.scss */
+.square3 {
+  bottom: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 0;
+}
+
+/* line 51, ../scss/loader.scss */
+.circle1, .circle2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  z-index: 600;
+}
+
+/* line 61, ../scss/loader.scss */
+.circle1 {
+  width: calc(200px - 5px);
+  height: calc(200px - 5px);
+  margin-top: calc((200px - 5px) / -2);
+  margin-left: calc((200px - 5px) / -2);
+  border-radius: calc((200px - 5px) / 2);
+}
+
+/* line 69, ../scss/loader.scss */
+.circle2 {
+  width: calc(200px - 30px);
+  height: calc(200px - 30px);
+  margin-top: calc((200px - 30px) / -2);
+  margin-left: calc((200px - 30px) / -2);
+  border-radius: calc((200px - 30px) / 2);
+}
+
+/* line 80, ../scss/loader.scss */
+.spinner-text {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  top: 0;
+  left: 0;
+  line-height: 200px;
+  text-align: center;
+  color: black;
+  z-index: 600;
+  font-weight: 600;
+  font-size: 90px;
+  text-shadow: 0 0 5px #fff;
+}
+
+/* line 96, ../scss/loader.scss */
+.spinner-text.text1 {
+  opacity: 0;
+  animation: text-show 3s infinite 0s;
+}
+
+@keyframes text-show {
+  /* line 102, ../scss/loader.scss */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 103, ../scss/loader.scss */
+  50% {
+    opacity: 0;
+  }
+
+  /* line 104, ../scss/loader.scss */
+  100% {
+    opacity: 0;
+  }
+}
+
+/* line 96, ../scss/loader.scss */
+.spinner-text.text2 {
+  opacity: 0;
+  animation: text-show 3s infinite 1s;
+}
+
+@keyframes text-show {
+  /* line 102, ../scss/loader.scss */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 103, ../scss/loader.scss */
+  50% {
+    opacity: 0;
+  }
+
+  /* line 104, ../scss/loader.scss */
+  100% {
+    opacity: 0;
+  }
+}
+
+/* line 96, ../scss/loader.scss */
+.spinner-text.text3 {
+  opacity: 0;
+  animation: text-show 3s infinite 2s;
+}
+
+@keyframes text-show {
+  /* line 102, ../scss/loader.scss */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 103, ../scss/loader.scss */
+  50% {
+    opacity: 0;
+  }
+
+  /* line 104, ../scss/loader.scss */
+  100% {
+    opacity: 0;
+  }
+}
+
+/* line 114, ../scss/loader.scss */
+.wrapper {
+  position: relative;
+  margin: 40px auto;
+  background: #c8c8c8;
+}
+
+/* line 122, ../scss/loader.scss */
+.wrapper, .wrapper * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 124, ../scss/loader.scss */
+.wrapper {
+  width: 200px;
+  height: 200px;
+}
+
+/* line 129, ../scss/loader.scss */
+.wrapper .pie {
+  width: 50%;
+  height: 100%;
+  transform-origin: 100% 50%;
+  position: absolute;
+  background: #6d6d6d;
+  border: 5px solid rgba(0,0,0,0.5);
+}
+
+/* line 138, ../scss/loader.scss */
+.wrapper .spinner {
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  z-index: 200;
+  border-right: none;
+  animation: rota 1s linear infinite;
+}
+
+/* line 147, ../scss/loader.scss */
+.wrapper:hover .spinner,
+.wrapper:hover .filler,
+.wrapper:hover .mask {
+  animation-play-state: running;
+}
+
+/* line 151, ../scss/loader.scss */
+.wrapper .filler {
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  left: 50%;
+  opacity: 0;
+  z-index: 100;
+  animation: opa 1s steps(1, end) infinite reverse;
+  border-left: none;
+}
+
+/* line 160, ../scss/loader.scss */
+.wrapper .mask {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  background: inherit;
+  opacity: 1;
+  z-index: 300;
+  animation: opa 1s steps(1, end) infinite;
+}
+
+@keyframes rota {
+  /* line 171, ../scss/loader.scss */
+  0% {
+    transform: rotate(0deg);
+  }
+
+  /* line 172, ../scss/loader.scss */
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes opa {
+  /* line 176, ../scss/loader.scss */
+  0% {
+    opacity: 1;
+  }
+
+  /* line 177, ../scss/loader.scss */
+  50%, 100% {
+    opacity: 0;
+  }
+}

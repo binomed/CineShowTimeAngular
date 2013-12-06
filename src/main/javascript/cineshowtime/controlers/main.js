@@ -10,7 +10,7 @@ cst.controller('CstCtrl',
 		$scope.validCityClass = '';
 		$scope.validMovieClass =  '';
 		$scope.errorText = '';
-		$scope.showError = false;
+		$scope.showError = false;	
 
 		/*
 		* Scope Methods

@@ -13,6 +13,10 @@ components.directive('movieResult', ['ModelFactory', '$rootScope','$location'
         $location.path('movie');
       }
       
+      $scope.hourFilter = function(showtime){
+        return showtime.showtime > new Date().getTime();
+      }
+
     }
   };
   return directiveDefinitionObject;
