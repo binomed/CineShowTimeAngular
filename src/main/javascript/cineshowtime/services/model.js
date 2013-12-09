@@ -15,6 +15,7 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 	var PROTOCOL = "http://";
 	var PORT = ":80";
 	var PATH_NEAR = "/showtime/near?";
+	var PATH_MOVIE = "/imdb?";
 
 	/*
 	* Model
@@ -22,6 +23,8 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 	var request = {};
 	var requestAsk = false;
 	var results = {};
+	var movieMap = {};
+	var first = true;
 
 	var setRequest = function(requestToSet){
 		request = requestToSet;
@@ -39,6 +42,19 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 		return results;
 	}
 
+	var setMovies = function(movies){
+		movieMap = movies;
+	}
+
+	var updateMovie = function(movie){
+		movie.load = true;
+		movieMap[movie.id] = movie;
+	}
+
+	var getMovie = function(movieId){
+		return movieMap[movieId];
+	}
+
 	/*
 	* Use for mapping
 	*/
@@ -54,7 +70,7 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 			baseUrl = "http://localhost:80/search.json&";
 		} 
 		return baseUrl
-			+"place="+request.cityName
+			+"place="+encodeURIComponent(request.cityName)
 			+"&day="+request.day
 			+"&lang=fr"
 			+"&curenttime="+(new Date().getTime())
@@ -62,6 +78,23 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 			+"&oe=UTF-8"
 			+"&ie=UTF-8"
 			+"&countryCode=FR"
+			+"&output=json";
+	} 
+
+	var getUrlMovie = function(mid){
+		var baseUrl = PROTOCOL+HOST+PORT+PATH_MOVIE;
+		if (localMode){
+			baseUrl = "http://localhost:80/search.json&";
+		} 
+		return baseUrl
+			+"place="+encodeURIComponent(request.cityName)
+			+"&mid="+mid
+			+"&moviename="+movieMap[mid].englishMovieName
+			+"&moviecurlangname="+movieMap[mid].movieName
+			+"&lang=fr"
+			+"&oe=UTF-8"
+			+"&ie=UTF-8"
+			+"&trailer=true"
 			+"&output=json";
 	} 
 
@@ -89,8 +122,14 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 		requestAsk : requestAsk,
 		setResults : setResults,
 		getResults : getResults,
+		setMovies : setMovies,
+		getMovie : getMovie,
+		updateMovie : updateMovie,
 		// Apis 
 		getUrlNear : getUrlNear,
-		getDays : getDays
+		getUrlMovie : getUrlMovie,
+		getDays : getDays,
+
+		first : first
 	};
 }]);

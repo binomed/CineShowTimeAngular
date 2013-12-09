@@ -29,7 +29,6 @@ cst.controller('ResultCtrl',
 				var theater = $scope.results[0];
 				$scope.showtimeList = theater.showtimes;
 				$rootScope.$broadcast('showtimeListEvt', theater.showtimes);
-
 			}
 		});
 

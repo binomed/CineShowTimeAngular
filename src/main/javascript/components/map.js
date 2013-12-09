@@ -26,6 +26,9 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
         //https://github.com/smeijer/L.GeoSearch/wiki
         // http://open.mapquestapi.com/nominatim/
         //http://stackoverflow.com/questions/17726177/can-i-use-openstreetmap-nominatim-reverse-geolocation-api-in-a-commercial-app
+        var map = null;
+        
+        var geocoder = null;
       
         function initMap(){
 
@@ -41,7 +44,8 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            var map = new google.maps.Map(mapDivElt, mapOptions);
+            geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(mapDivElt, mapOptions);            
             console.log("mapInit");
               
             $scope.$watch('zoom', function (newValue) {
@@ -115,6 +119,53 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
                 lng: snapshot.lng
             };
         };
+
+         $rootScope.$on('proceedRequestEvt', function(evt, results){            
+            geocoder.geocode({
+                address : model.getRequest().cityName
+            }, function(results, status){
+                if (status === google.maps.GeocoderStatus.OK){
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(11);
+                    var marker = new google.maps.Marker({
+                        map : map,
+                        position : results[0].geometry.location
+                    });
+                }else{
+                    console.log('Geocoder ko : '+status);        
+                }
+            });
+        });
+
+        $rootScope.$on('endLoadServiceEvent', function(evt, theaterResults){
+            var geocoder = new google.maps.Geocoder();
+            for(var thIdx = 0 ; thIdx < theaterResults.length; thIdx++){
+                var theater = theaterResults[thIdx];
+                if(theater.place && theater.place.searchQuery){                    
+
+                    geocoder.geocode({
+                        address : decodeURIComponent(theater.place.searchQuery)
+                    }, function(results, status){
+                        if (status === google.maps.GeocoderStatus.OK){
+                            var marker = new google.maps.Marker({
+                                map : map,
+                                position : results[0].geometry.location, 
+                                icon : '../assets/images/marker_theater.png'
+                            });
+                            var infowindow = new google.maps.InfoWindow();
+                            infowindow.setContent(decodeURIComponent(theater.theaterName));
+                            google.maps.event.addListener(marker, 'click', function() {
+                                infowindow.open(map,marker);
+                            });
+                        }else{
+                            console.log('Geocoder ko : '+status);        
+                        }
+                    });
+                }else{
+                    console.log('no place found for : '+theater.theaterName);
+                }
+            }
+        });
       
     }
   };

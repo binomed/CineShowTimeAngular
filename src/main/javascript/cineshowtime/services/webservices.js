@@ -12,7 +12,7 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 		    url: model.getUrlNear(),
 		    method: "GET"
 		}).success(function(data, status, headers, config) {
-			console.log('Sucess with Angular : '+data);
+			console.log('Sucess with Angular for showtimes : '+data);
 			var results = [];
 			if (data){
 				for(var thIdx = 0; thIdx < data.theaterList.length; thIdx++){
@@ -30,6 +30,7 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 					}
 					results.push(theater);
 				}
+				model.setMovies(data.mapMovies);
 				model.requestAsk = false;
 			}
 			model.setResults(results);
@@ -41,8 +42,24 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 		});
 	}
 
+	function getMovie(movie){
+		$http({
+		    url: model.getUrlMovie(movie.id),
+		    method: "GET"
+		}).success(function(data, status, headers, config) {
+			console.log('Sucess with Angular for movie : '+data);
+			model.updateMovie(data);
+			$rootScope.$broadcast('endLoadServiceMovieEvent', data);
+		}).error(function(data, status, headers, config) {
+			$rootScope.$broadcast('errorLoadServiceMovieEvent', data);
+			console.log('Error with Angular : '+data);
+			
+		});
+	}
+
 	return{
 		//Apis
-		nearService : nearService
+		nearService : nearService,
+		getMovie : getMovie
 	};
 }]);
