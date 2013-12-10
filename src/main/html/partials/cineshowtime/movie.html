@@ -1,22 +1,38 @@
 <div id="movie">
 	<ul class="nav nav-tabs">
-	  <li>Description</li>
-	  <li>Showtimes</li>
-	  <li>Reviews</li>
+	  <li class='{{activePane1}}' ng-click='paneActive(0)'>Description</li>
+	  <li class='{{activePane2}}' ng-click='paneActive(1)'>Showtimes</li>
+	  <li class='{{activePane3}}' ng-click='paneActive(2)'>Reviews</li>
 	</ul>	
 	<div class='movie-carousel' sliding-page>
 	    <ul>
 	        <li class="movie-desc movie-pane">
-	        	<img src="{{movie.imgUrl}}" class="movie-poster"/>
-	        	<h3>{{movie.movieName}}</h3>
-	        	<br>Note : {{movie.rate}} / 10 <br>
-	        	<strong>Duration : </strong>{{movie.time}}
-	        	<strong>Director(s) : </strong>{{movie.directorList}}
-	        	<strong>Actors(s) : </strong>{{movie.actorList}}
-	        	<strong>Duration : </strong>{{movie.time}}
+	        	<img src="{{movie.urlImg}}" class="movie-poster"/>
+	        	<div class='movie-title'>{{movie.movieName}}</div>
+	        	<div ng-show='movie.rate'><br>Note : {{movie.rate}} / 10 <br></div>
+	        	<div ng-show='movie.movieTime'><strong>Duration : </strong>{{movie.movieTime | date:'shortTime'}}</div>
+	        	<div ng-show='movie.directorList'><strong>Director(s) : </strong><span ng-repeat='director in movie.directorList | limitTo:3 '>{{director}}, </span>...</div>
+	        	<div ng-show='movie.actorList'><strong>Actors(s) : </strong><span ng-repeat='actor in movie.actorList | limitTo:3 '>{{actor}}, </span>...</div>
+	        	<div ng-show='movie.style'><strong>Kind : </strong>{{movie.style}}</div>
+	        	<div ng-show='movie.year'><strong>Year : </strong>{{movie.year}}</div>
+	        	<br>
+	        	<div ng-show='movie.youtubeVideos' class='movie-trailers'>
+	        		<hr>
+	        		<div ng-repeat='trailer in movie.youtubeVideos'>
+	        			<img src="{{trailer.urlImg}}" class="movie-trailer-poster"/>
+	        			<div>{{trailer.videoName}}</div>
+	        		</div>
+	        	</div>
+	        	<br>
+	        	<div ng-show='movie.description' class='movie-desc'>
+	        		<hr>
+	        		{{movie.description}}
+	        	</div>
 	        </li>
 	        <li class="movie-showtimes movie-pane">
-	        	<div ng-repeat="showtime in showtimes"></div>
+	        	<div ng-repeat="showtime in showtimes">
+	        		{{showtime.showtime | date:'shortTime'}}
+	        	</div>
 	        </li>
 	        <li class="movie-reviews movie-pane"><h2>Movie Reviews</h2></li>
 	    </ul>

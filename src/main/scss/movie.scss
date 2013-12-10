@@ -13,10 +13,16 @@ div#movie{
 	height: 100%;
 
 
-	div.nav-tabs{
+	.nav-tabs{
 		li{
 			width: 33%;
 			height: $height-movie-tab;
+			text-align: center;
+			border-right: solid thin black;
+		}
+
+		li.active{
+			background-color: $light-grey-color;
 		}
 	}
 
@@ -29,6 +35,7 @@ div#movie{
 		ul{
 			padding: 0;
 			margin: 0;
+			list-style: none;
 
 			li{
 				position: relative;
@@ -40,7 +47,7 @@ div#movie{
 			.movie-desc{
 				 
 				.movie-poster{
-					height: 100px;
+					height: 200px;
 					float:left;
 				}
 
@@ -55,7 +62,7 @@ div#movie{
 	}
 
 	div.movie-carousel.animate{
-		@include single-transition(all, 3s, ease, 0s);
+		@include single-transition(all, 0.5s, ease, 0s);
 	}
 
 

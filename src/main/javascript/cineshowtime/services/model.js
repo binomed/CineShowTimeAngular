@@ -25,6 +25,8 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 	var results = {};
 	var movieMap = {};
 	var first = true;
+	var currentTheaterId = null;
+	var currentResult = null;
 
 	var setRequest = function(requestToSet){
 		request = requestToSet;
@@ -47,13 +49,32 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 	}
 
 	var updateMovie = function(movie){
+		var oldMovie = movieMap[movie.id];
 		movie.load = true;
+		movie.movieTime = oldMovie.movieTime;
 		movieMap[movie.id] = movie;
 	}
 
 	var getMovie = function(movieId){
 		return movieMap[movieId];
 	}
+
+	var setCurrentTheater = function(theaterId){
+		currentTheaterId = theaterId;
+	}
+
+	var getCurrentTheater = function(){
+		return currentTheaterId;
+	}
+
+	var setResults = function(results){
+		currentResult = results;
+	}
+
+	var getResults = function(){
+		return currentResult;
+	}
+
 
 	/*
 	* Use for mapping
@@ -125,6 +146,10 @@ cst.factory('ModelFactory',['$rootScope', '$http',function($rootScope, $http){
 		setMovies : setMovies,
 		getMovie : getMovie,
 		updateMovie : updateMovie,
+		setCurrentTheater : setCurrentTheater,
+		getCurrentTheater : getCurrentTheater,
+		setResults : setResults,
+		getResults : getResults,
 		// Apis 
 		getUrlNear : getUrlNear,
 		getUrlMovie : getUrlMovie,

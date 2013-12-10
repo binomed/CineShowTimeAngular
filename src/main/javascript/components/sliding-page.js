@@ -47,9 +47,20 @@ components.directive('slidingPage', ['ModelFactory', '$rootScope','$location'
           }
       }
 
-      var nextPane = function() { return showPane(current_pane+1, true); };
-      var prevPane = function() { return showPane(current_pane-1, true); };
+      var nextPane = function() { 
+        $rootScope.$broadcast('newPaneIndex', current_pane+1);
+        return showPane(current_pane+1, true); 
+      };
+      var prevPane = function() { 
+        $rootScope.$broadcast('newPaneIndex', current_pane-1);
+        return showPane(current_pane-1, true); 
+      };
       var lastX = 0;
+
+      $rootScope.$on('newPaneClick', function(evt, index){
+        current_pane = index;
+        return showPane(current_pane-1, true); 
+      });
 
 
 

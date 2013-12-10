@@ -27,6 +27,7 @@ cst.controller('ResultCtrl',
 			$scope.showResults = !$scope.showNoResults;
 			if ($scope.results.length > 0){
 				var theater = $scope.results[0];
+				model.setCurrentTheater(theater.id);
 				$scope.showtimeList = theater.showtimes;
 				$rootScope.$broadcast('showtimeListEvt', theater.showtimes);
 			}
@@ -43,6 +44,7 @@ cst.controller('ResultCtrl',
 			for (var i = 0; i < $scope.results.length; i++){
 				var theater = $scope.results[i];
 				if (theater.id === theaterId){
+					model.setCurrentTheater(theater.id);
 					$scope.showtimeList = theater.showtimes;
 					$rootScope.$broadcast('showtimeListEvt', theater.showtimes);
 				}
