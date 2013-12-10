@@ -1,5 +1,5 @@
-components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location'
-  ,function (model, $rootScope,$timeout,$location) {
+components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope', '$timeout','$location'
+  ,function (model, geoService, $rootScope,$timeout,$location) {
    var directiveDefinitionObject = {
     templateUrl: 'partials/components/map.html',
     replace: true,
@@ -10,6 +10,7 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
+      var useGoogleMaps = google != null;
       var mapDivElt = iElement.find('div')[0];
       var markers = [];
       var windows = [];
@@ -33,7 +34,7 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
         var geocoder = null;
 
         function initMap(){
-            if (google){
+            if (useGoogleMaps){
                 initGoogleMap();
             }else {
                 initLeafletMap();
@@ -41,20 +42,7 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
         }
       
         initMap();
-        /*
-        if (CST.initMaps){
-            initMap();
-        }else{
-            CST.registerInit(function(init){
-                if (!init){
-                    console.log('CallBack but not init ! ');
-                }else{
-                    initMap();
-                }
-            });
-            console.log('Maps Not Init');
-        }
-        */
+   
         function clearMarkers(){
             for (var i=0;i < markers.length; i++){
                 var marker = markers[i];
@@ -74,30 +62,48 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
         $rootScope.$on('proceedRequestEvt', function(evt, results){            
             clearMarkers();
             windows = [];
-            geocoder.geocode({
-                address : model.getRequest().cityName
-            }, function(results, status){
-                if (status === google.maps.GeocoderStatus.OK){
-                    map.setCenter(results[0].geometry.location);
-                    map.setZoom(11);
-                    var marker = new google.maps.Marker({
-                        map : map,
-                        position : results[0].geometry.location
-                    });
-                    markers.push(marker);
-                }else{
-                    console.log('Geocoder ko : '+status);        
-                }
-            });
+            locateAddress(model.getRequest().cityName);
+            
         });
 
         $rootScope.$on('endLoadServiceEvent', function(evt, theaterResults){
             var geocoder = new google.maps.Geocoder();
             for(var thIdx = 0 ; thIdx < theaterResults.length; thIdx++){
                 var theater = theaterResults[thIdx];
-                geocodeMapsMethod(theater);
+                if (useGoogleMaps){
+                    geocodeGoogleMapsMethod(theater);
+                }else{
+                    geocodeLeafLetMethod(theater);
+
+                }
             }
         });
+
+        $scope.$watch('zoom', function (newValue) {
+            if (useGoogleMaps){
+                map.setZoom(parseInt(newValue));
+            }
+        });
+
+        $scope.$watch('center', function (newValue) {
+            if(useGoogleMaps){
+                map.setCenter(new google.maps.LatLng(
+                    parseFloat(newValue.lat),
+                    parseFloat(newValue.lng))
+                );
+            }else{
+                map.setView([ parseFloat(newValue.lat),  parseFloat(newValue.lng)], 13);
+            }
+        }, true);
+
+        function locateAddress(address){
+           if (useGoogleMaps){
+                locateAddressGoogle(address);
+           }else{
+                locateAddressLeafLet(address);
+
+           }
+        }
 
 
         /*
@@ -114,9 +120,52 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
 
             L.tileLayer('http://{s}.tile.cloudmade.com/92de9d2696094ca08fc7db73b1aec4a1/997/256/{z}/{x}/{y}.png', {
             //L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                attribution: 'Map data, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
                 maxZoom: 18
             }).addTo(map);
+
+             map.on('popupopen', function(popup){
+                console.log('Open Popup : ');
+                console.log(popup);
+                if (popup.popup 
+                    && popup.popup._contentNode
+                    && popup.popup._contentNode.firstChild){
+                    $rootScope.$broadcast('clickTheaterEvt', popup.popup._contentNode.firstChild.id);
+                }
+            });
+        }
+
+         function locateAddressLeafLet(address){
+           geoService.geoSearch(address, function(data){
+                if (data){
+                    L.marker([data.lat, data.lon]).addTo(map);
+                    map.setView([data.lat, data.lon], 13);
+                }
+           });
+        }
+
+         function geocodeLeafLetMethod(theater){
+            if(theater.place && theater.place.searchQuery){                    
+                console.log('Proceed geocoding request : '+theater.theaterName+" : "+decodeURIComponent(theater.place.searchQuery));
+                geoService.geoSearch(decodeURIComponent(theater.place.searchQuery), function(data){
+                    if (data){
+
+                        console.log('Geocoding found request : '+theater.theaterName+" : "+data.display_name);
+                        var icon = L.icon({
+                            iconUrl : '../assets/images/marker_theater_red_black.png',
+                            iconSize: [32, 37],
+                            iconAnchor: [16, 36],
+                            popupAnchor: [-3, -30]
+                        });
+                       
+                        L.marker([data.lat, data.lon], {icon : icon})
+                            .addTo(map)
+                            .bindPopup("<div id='"+theater.id+"'>"+decodeURIComponent(theater.theaterName).split("+").join(" ")+"</div>");
+                    }
+                });                
+            }else{
+                console.log('no place found for : '+theater.theaterName);
+            }
         }
 
 
@@ -124,6 +173,24 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
         /*
         * Google Maps ! 
         */
+
+        function locateAddressGoogle(address){
+            geocoder.geocode({
+                address : model.getRequest().cityName
+            }, function(results, status){
+                if (status === google.maps.GeocoderStatus.OK){
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(11);
+                    var marker = new google.maps.Marker({
+                        map : map,
+                        position : results[0].geometry.location
+                    });
+                    markers.push(marker);
+                }else{
+                    console.log('Geocoder ko : '+status);        
+                }
+            });
+        }
 
         function initGoogleMap(){
 
@@ -172,7 +239,7 @@ components.directive('map', ['ModelFactory', '$rootScope', '$timeout','$location
         }
 
 
-        function geocodeMapsMethod(theater){
+        function geocodeGoogleMapsMethod(theater){
             if(theater.place && theater.place.searchQuery){                    
                 console.log('Proceed geocoding request : '+theater.theaterName+" : "+decodeURIComponent(theater.place.searchQuery));
                 geocoder.geocode({

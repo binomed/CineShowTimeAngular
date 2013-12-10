@@ -1,6 +1,6 @@
 cst.controller('CstCtrl',	
-	['$rootScope', '$scope', '$http', '$location' , 'ModelFactory', 'ServicesFactory',
-	function($rootScope, $scope, $http, $location, model, services) {
+	['$rootScope', '$scope', '$http', '$location' , 'ModelFactory', 'ServicesFactory', 'GeoServicesFactory',
+	function($rootScope, $scope, $http, $location, model, services, geoservices) {
 
 		$scope.cityName = '';
 		$scope.movieName = '';
@@ -17,6 +17,8 @@ cst.controller('CstCtrl',
 		/*
 		* Scope Methods
 		*/
+
+		//http://blog.revolunet.com/angular-for-mobile/#1
 
 		$scope.search = function(){
 
@@ -60,28 +62,44 @@ cst.controller('CstCtrl',
 
 		$scope.gpsSearch = function(){
 			navigator.geolocation.getCurrentPosition(function(position) {
-				var geocoder = new google.maps.Geocoder();
-				var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				geocoder.geocode({'latLng': latlng}, function(results, status) {
-				    if (status == google.maps.GeocoderStatus.OK) {
-				      if (results[1]) {
-				      	$scope.$apply(function(){
-					      	$scope.cityName = results[1].formatted_address;
-					    });
-				        /*map.setZoom(11);
-				        marker = new google.maps.Marker({
-				            position: latlng,
-				            map: map
-				        });
-				        infowindow.setContent(results[1].formatted_address);
-				        infowindow.open(map, marker);*/
-				      } else {
-				        alert('No results found');
-				      }
-				    } else {
-				      alert('Geocoder failed due to: ' + status);
-				    }
-				});
+				if (google){					
+					var geocoder = new google.maps.Geocoder();
+					var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+					geocoder.geocode({'latLng': latlng}, function(results, status) {
+					    if (status == google.maps.GeocoderStatus.OK) {
+					      if (results[1]) {
+					      	$scope.$apply(function(){
+						      	$scope.cityName = results[1].formatted_address;
+						    });
+					        /*map.setZoom(11);
+					        marker = new google.maps.Marker({
+					            position: latlng,
+					            map: map
+					        });
+					        infowindow.setContent(results[1].formatted_address);
+					        infowindow.open(map, marker);*/
+					      } else {
+					        alert('No results found');
+					      }
+					    } else {
+					      alert('Geocoder failed due to: ' + status);
+					    }
+					});
+				}else{
+					geoservices.reverseGeoLoc(position.coords.latitude, position.coords.longitude, function(results){
+						if (results && results.address){			
+							if (results.address.road){
+						    	$scope.cityName = results.address.road+", "+results.address.city;
+							}else if (results.address.pedestrian){
+								$scope.cityName = results.address.pedestrian+", "+results.address.city;
+							}else if (results.address.neighbourhood){
+								$scope.cityName = results.address.neighbourhood+", "+results.address.city;
+							}else{
+								$scope.cityName = results.address.city;
+							}				
+						}
+					});
+				}
 				$scope.$apply(function(){
 					$scope.map = { center: {lat: position.coords.latitude, lng: position.coords.longitude}, zoom: 12 };
 				});
