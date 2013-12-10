@@ -11,9 +11,10 @@
 .search-field {
   margin: 10px auto;
   width: 90%;
+  z-index: 300;
 }
 
-/* line 21, ../scss/search.scss */
+/* line 22, ../scss/search.scss */
 #day-picker {
   position: relative;
   margin-left: auto;
@@ -21,19 +22,19 @@
   width: 40%;
   display: block;
 }
-/* line 28, ../scss/search.scss */
+/* line 29, ../scss/search.scss */
 #day-picker .btn {
   width: 100%;
 }
 
-/* line 33, ../scss/search.scss */
+/* line 34, ../scss/search.scss */
 #search-btn {
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 
-/* line 39, ../scss/search.scss */
+/* line 40, ../scss/search.scss */
 #map-canvas {
   position: absolute;
   top: 0;
@@ -45,7 +46,7 @@
   border-bottom-color: black;
 }
 
-/* line 50, ../scss/search.scss */
+/* line 51, ../scss/search.scss */
 #results {
   position: absolute;
   top: 50%;
@@ -54,7 +55,7 @@
   height: 50%;
 }
 
-/* line 58, ../scss/search.scss */
+/* line 59, ../scss/search.scss */
 .movie-search-field {
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
@@ -62,9 +63,56 @@
   -o-transition: all 1s ease 0s;
   transition: all 1s ease 0s;
   opacity: 0;
+  -webkit-transform: translateY(-250px);
+  -moz-transform: translateY(-250px);
+  -ms-transform: translateY(-250px);
+  -o-transform: translateY(-250px);
+  transform: translateY(-250px);
 }
 
-/* line 63, ../scss/search.scss */
+/* line 65, ../scss/search.scss */
 .movie-search-field.show-movie-name {
   opacity: 1;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+/* line 70, ../scss/search.scss */
+.city-search-field {
+  -webkit-transition: all 1s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  transition: all 1s ease 0s;
+  opacity: 0;
+  -webkit-transform: translateY(-200px);
+  -moz-transform: translateY(-200px);
+  -ms-transform: translateY(-200px);
+  -o-transform: translateY(-200px);
+  transform: translateY(-200px);
+}
+
+/* line 76, ../scss/search.scss */
+.city-search-field.show-city-name {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+/* line 81, ../scss/search.scss */
+.input-group-addon.expand-search {
+  left: 50%;
+  padding: 0;
+  position: absolute;
+  margin-left: -25px;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
 }

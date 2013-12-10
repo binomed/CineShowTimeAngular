@@ -1,3 +1,24 @@
-<div>
-Movie Page ! 
+<div id="movie">
+	<ul class="nav nav-tabs">
+	  <li>Description</li>
+	  <li>Showtimes</li>
+	  <li>Reviews</li>
+	</ul>	
+	<div class='movie-carousel' sliding-page>
+	    <ul>
+	        <li class="movie-desc movie-pane">
+	        	<img src="{{movie.imgUrl}}" class="movie-poster"/>
+	        	<h3>{{movie.movieName}}</h3>
+	        	<br>Note : {{movie.rate}} / 10 <br>
+	        	<strong>Duration : </strong>{{movie.time}}
+	        	<strong>Director(s) : </strong>{{movie.directorList}}
+	        	<strong>Actors(s) : </strong>{{movie.actorList}}
+	        	<strong>Duration : </strong>{{movie.time}}
+	        </li>
+	        <li class="movie-showtimes movie-pane">
+	        	<div ng-repeat="showtime in showtimes"></div>
+	        </li>
+	        <li class="movie-reviews movie-pane"><h2>Movie Reviews</h2></li>
+	    </ul>
+    </div>
 </div>

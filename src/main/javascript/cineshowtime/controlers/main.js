@@ -7,6 +7,8 @@ cst.controller('CstCtrl',
 		$scope.days = model.getDays();
 		$scope.dayPicker = 0;
 		$scope.visibilityMovie = '';
+		$scope.visibilityCityName = 'show-city-name';
+		$scope.showBtnSearchExpand = false;
 		$scope.validCityClass = '';
 		$scope.validMovieClass =  '';
 		$scope.errorText = '';
@@ -43,7 +45,17 @@ cst.controller('CstCtrl',
 				day : $scope.dayPicker
 			});
 			model.requestAsk = true;
-			$rootScope.$broadcast('proceedRequestEvt');			
+			$rootScope.$broadcast('proceedRequestEvt');		
+
+			$scope.showBtnSearchExpand = true;	
+			$scope.visibilityMovie = '';
+			$scope.visibilityCityName = '';
+		}
+
+		$scope.expandSearch = function(){
+			$scope.showBtnSearchExpand = false;	
+			$scope.visibilityMovie = model.getRequest().movieName != '' ? 'show-movie-name' : '';
+			$scope.visibilityCityName = 'show-city-name';	
 		}
 
 		$scope.gpsSearch = function(){

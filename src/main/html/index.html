@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<title>CineShowTime</title>
 	<!-- build:css css/app.css -->
 	<!--tom-->
@@ -19,6 +19,9 @@
 	<!-- endbuild -->	
 	<script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDyIPjOPfFqVH4V5bkdBatTOiJLxnxvGuI&sensor=true"></script>
+
+    <link rel="stylesheet" href="../components/leaflet/leaflet.css" />
+	<script src="../components/leaflet/leaflet.js"></script>
 <!--
 	<script type="text/javascript" src="../javascript/load.js"></script>
 -->
@@ -39,6 +42,8 @@
 	<script src="../components/modernizr/modernizr.js"></script>
 	<script src="../components/jquery/jquery-1.10.2.min.js"></script>
 	<script src="../components/jquery-observer/jquery.server-observer.js"></script>
+	<script src="../components/hammer/jquery.hammer.min.js"></script>
+	<script src="../components/hammer/hammer.min.js"></script>
 	<script src="../components/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../components/angular-bootstrap/ui-bootstrap-tpls-0.6.0.min.js"></script>
 	<script src="../javascript/app.js"></script>
@@ -55,6 +60,7 @@
     <script src="../javascript/components/components.js"></script>
     <script src="../javascript/components/actionbar.js"></script>
     <script src="../javascript/components/sliding-menu.js"></script>
+    <script src="../javascript/components/sliding-page.js"></script>
     <script src="../javascript/components/map.js"></script>
     <script src="../javascript/components/movie-list.js"></script>
     <script src="../javascript/components/movie-result.js"></script>

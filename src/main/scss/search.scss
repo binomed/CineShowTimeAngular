@@ -14,6 +14,7 @@
 .search-field{
 	margin : 10px auto;
 	width: 90%;
+	z-index: 300;
 
 	
 }
@@ -58,8 +59,32 @@
 .movie-search-field{
 	@include single-transition(all, 1s, ease, 0s);
 	opacity: 0;	
+	@include translateY(-250px);
 }
 
 .movie-search-field.show-movie-name{
 	opacity: 1;	
+	@include translateY(0px);
+}
+
+.city-search-field{
+	@include single-transition(all, 1s, ease, 0s);
+	opacity: 0;	
+	@include translateY(-200px);
+}
+
+.city-search-field.show-city-name{
+	opacity: 1;	
+	@include translateY(0px);
+}
+
+.input-group-addon.expand-search{
+	left: 50%;
+	padding: 0;
+	position: absolute;
+	margin-left: -25px;
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
 }

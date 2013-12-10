@@ -39,6 +39,16 @@ cst.controller('ResultCtrl',
 			$scope.showResults = false;
 		});
 
+		$rootScope.$on('clickTheaterEvt', function(evt, theaterId){
+			for (var i = 0; i < $scope.results.length; i++){
+				var theater = $scope.results[i];
+				if (theater.id === theaterId){
+					$scope.showtimeList = theater.showtimes;
+					$rootScope.$broadcast('showtimeListEvt', theater.showtimes);
+				}
+			}
+		});
+
 
 		
 

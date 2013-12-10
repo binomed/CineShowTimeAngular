@@ -10,7 +10,7 @@ components.directive('movieResult', ['ModelFactory', 'ServicesFactory', '$rootSc
     link: function postLink($scope, iElement, iAttrs) { 
 
       $scope.openMovie = function(){
-        $location.path('movie');
+        $location.path('movie').search({mid : $scope.movie.id});
       }
       
       $scope.hourFilter = function(showtime){

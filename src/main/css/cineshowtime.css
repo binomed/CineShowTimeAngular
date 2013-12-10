@@ -12,9 +12,10 @@
 .search-field {
   margin: 10px auto;
   width: 90%;
+  z-index: 300;
 }
 
-/* line 21, ../scss/search.scss */
+/* line 22, ../scss/search.scss */
 #day-picker {
   position: relative;
   margin-left: auto;
@@ -22,19 +23,19 @@
   width: 40%;
   display: block;
 }
-/* line 28, ../scss/search.scss */
+/* line 29, ../scss/search.scss */
 #day-picker .btn {
   width: 100%;
 }
 
-/* line 33, ../scss/search.scss */
+/* line 34, ../scss/search.scss */
 #search-btn {
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 
-/* line 39, ../scss/search.scss */
+/* line 40, ../scss/search.scss */
 #map-canvas {
   position: absolute;
   top: 0;
@@ -46,7 +47,7 @@
   border-bottom-color: black;
 }
 
-/* line 50, ../scss/search.scss */
+/* line 51, ../scss/search.scss */
 #results {
   position: absolute;
   top: 50%;
@@ -55,7 +56,7 @@
   height: 50%;
 }
 
-/* line 58, ../scss/search.scss */
+/* line 59, ../scss/search.scss */
 .movie-search-field {
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
@@ -63,11 +64,58 @@
   -o-transition: all 1s ease 0s;
   transition: all 1s ease 0s;
   opacity: 0;
+  -webkit-transform: translateY(-250px);
+  -moz-transform: translateY(-250px);
+  -ms-transform: translateY(-250px);
+  -o-transform: translateY(-250px);
+  transform: translateY(-250px);
 }
 
-/* line 63, ../scss/search.scss */
+/* line 65, ../scss/search.scss */
 .movie-search-field.show-movie-name {
   opacity: 1;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+/* line 70, ../scss/search.scss */
+.city-search-field {
+  -webkit-transition: all 1s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  transition: all 1s ease 0s;
+  opacity: 0;
+  -webkit-transform: translateY(-200px);
+  -moz-transform: translateY(-200px);
+  -ms-transform: translateY(-200px);
+  -o-transform: translateY(-200px);
+  transform: translateY(-200px);
+}
+
+/* line 76, ../scss/search.scss */
+.city-search-field.show-city-name {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+/* line 81, ../scss/search.scss */
+.input-group-addon.expand-search {
+  left: 50%;
+  padding: 0;
+  position: absolute;
+  margin-left: -25px;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
 }
 
 /*Colors android*/
@@ -396,12 +444,64 @@
   }
 }
 
-/* line 10, ../scss/cineshowtime.scss */
+/*Colors android*/
+/* line 9, ../scss/movie.scss */
+div#movie {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+/* line 17, ../scss/movie.scss */
+div#movie div.nav-tabs li {
+  width: 33%;
+  height: 30px;
+}
+/* line 23, ../scss/movie.scss */
+div#movie div.movie-carousel {
+  position: relative;
+  top: 30px;
+  height: 100%;
+}
+/* line 29, ../scss/movie.scss */
+div#movie div.movie-carousel ul {
+  padding: 0;
+  margin: 0;
+}
+/* line 33, ../scss/movie.scss */
+div#movie div.movie-carousel ul li {
+  position: relative;
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+/* line 42, ../scss/movie.scss */
+div#movie div.movie-carousel ul .movie-desc .movie-poster {
+  height: 100px;
+  float: left;
+}
+/* line 48, ../scss/movie.scss */
+div#movie div.movie-carousel ul .movie-showtimes {
+  background: #4986e7;
+}
+/* line 51, ../scss/movie.scss */
+div#movie div.movie-carousel ul .movie-reviews {
+  background: #d06b64;
+}
+/* line 57, ../scss/movie.scss */
+div#movie div.movie-carousel.animate {
+  -webkit-transition: all 3s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: all 3s ease 0s;
+  -o-transition: all 3s ease 0s;
+  transition: all 3s ease 0s;
+}
+
+/* line 11, ../scss/cineshowtime.scss */
 html {
   height: 100%;
 }
 
-/* line 14, ../scss/cineshowtime.scss */
+/* line 15, ../scss/cineshowtime.scss */
 body {
   padding: 0;
   height: 100%;
@@ -409,28 +509,28 @@ body {
   font-size: 14px;
 }
 
-/* line 21, ../scss/cineshowtime.scss */
+/* line 22, ../scss/cineshowtime.scss */
 body.light {
-  background-color: #f3f3f3;
-  color: #444444;
+  background-color: white;
+  color: #40210d;
 }
 
-/* line 26, ../scss/cineshowtime.scss */
+/* line 27, ../scss/cineshowtime.scss */
 body.dark {
   background-color: black;
-  color: #cccccc;
+  color: #e5e5e5;
 }
 
-/* line 33, ../scss/cineshowtime.scss */
+/* line 34, ../scss/cineshowtime.scss */
 nav.navbar {
-  background-color: #cc0000;
+  background-color: #b81e03;
   height: 50px;
   line-height: 50px;
   /* unvisited link */
   /* visited link */
   /* mouse over link */
 }
-/* line 38, ../scss/cineshowtime.scss */
+/* line 39, ../scss/cineshowtime.scss */
 nav.navbar img {
   position: absolute;
   left: 5px;
@@ -439,43 +539,43 @@ nav.navbar img {
   height: 40px;
   margin-top: -20px;
 }
-/* line 47, ../scss/cineshowtime.scss */
+/* line 48, ../scss/cineshowtime.scss */
 nav.navbar a {
   position: absolute;
   left: 50px;
   top: 0;
 }
-/* line 53, ../scss/cineshowtime.scss */
-nav.navbar a:link {
-  color: #cccccc;
-}
 /* line 54, ../scss/cineshowtime.scss */
-nav.navbar a:visited {
-  color: #cccccc;
+nav.navbar a:link {
+  color: #e5e5e5;
 }
 /* line 55, ../scss/cineshowtime.scss */
-nav.navbar a:hover {
-  color: #cccccc;
+nav.navbar a:visited {
+  color: #e5e5e5;
 }
 /* line 56, ../scss/cineshowtime.scss */
-nav.navbar a:active {
-  color: #cccccc;
+nav.navbar a:hover {
+  color: #e5e5e5;
 }
-/* line 58, ../scss/cineshowtime.scss */
+/* line 57, ../scss/cineshowtime.scss */
+nav.navbar a:active {
+  color: #e5e5e5;
+}
+/* line 59, ../scss/cineshowtime.scss */
 nav.navbar #menu, nav.navbar #favBtn, nav.navbar #searchBtn {
   width: 50px;
   height: 50px;
   line-height: 50px;
   text-align: center;
-  color: #cccccc;
+  color: #e5e5e5;
 }
-/* line 66, ../scss/cineshowtime.scss */
+/* line 67, ../scss/cineshowtime.scss */
 nav.navbar #menu {
   border-left-width: 1px;
-  border-left-color: #cccccc;
+  border-left-color: #e5e5e5;
   border-left-style: solid;
 }
-/* line 72, ../scss/cineshowtime.scss */
+/* line 73, ../scss/cineshowtime.scss */
 nav.navbar #favBtn, nav.navbar #searchBtn {
   position: absolute;
   right: 50px;

@@ -1,8 +1,12 @@
 cst.controller('MovieCtrl',	
-	['$rootScope', '$scope', '$http', 'ModelFactory', 'ServicesFactory',
-	function($rootScope, $scope, $http, model, services) {
+	['$rootScope', '$scope', '$http', '$location', 'ModelFactory', 'ServicesFactory',
+	function($rootScope, $scope, $http, $location, model, services) {
 
-		
+		$scope.movieId = null;
+			
+		if ($location.search().mid){
+			$scope.movieId = $location.search().mid;
+		}
 
 		
 

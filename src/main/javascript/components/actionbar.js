@@ -9,22 +9,19 @@ components.directive('actionBar', ['ModelFactory', '$rootScope','$location'
     link: function postLink($scope, iElement, iAttrs) { 
 
       $scope.search = false;
-      $scope.fav = true;
+      $scope.fav = false;
+
 
       $scope.goToHome = function(){
         $rootScope.$broadcast('openMenuEvt');
       }
 
       $scope.goToSearch = function(){
-        $location.path('/main');
-        $scope.search = false;
-        $scope.fav = true;
+        $location.path('/main');        
       }
 
       $scope.goToFav = function(){
-        $location.path('/fav');
-        $scope.search = true;
-        $scope.fav = false;
+        $location.path('/fav');        
       }
 
       $scope.openMenu = function(){
