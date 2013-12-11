@@ -19,6 +19,7 @@ components.directive('slidingPage', ['ModelFactory', '$rootScope','$location'
        * show pane by index
        */
       var showPane = function(index, animate) {
+        console.log('ShowPane : '+index);
           // between the bounds
           index = Math.max(0, Math.min(index, pane_count-1));
           current_pane = index;
@@ -48,18 +49,18 @@ components.directive('slidingPage', ['ModelFactory', '$rootScope','$location'
       }
 
       var nextPane = function() { 
-        $rootScope.$broadcast('newPaneIndex', current_pane+1);
+        $rootScope.$emit('newPaneIndex', current_pane+1);
         return showPane(current_pane+1, true); 
       };
       var prevPane = function() { 
-        $rootScope.$broadcast('newPaneIndex', current_pane-1);
+        $rootScope.$emit('newPaneIndex', current_pane-1);
         return showPane(current_pane-1, true); 
       };
       var lastX = 0;
 
       $rootScope.$on('newPaneClick', function(evt, index){
         current_pane = index;
-        return showPane(current_pane-1, true); 
+        return showPane(current_pane, true); 
       });
 
 

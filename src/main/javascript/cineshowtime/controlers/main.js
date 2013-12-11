@@ -47,7 +47,7 @@ cst.controller('CstCtrl',
 				day : $scope.dayPicker
 			});
 			model.requestAsk = true;
-			$rootScope.$broadcast('proceedRequestEvt');		
+			$rootScope.$emit('proceedRequestEvt');		
 
 			$scope.showBtnSearchExpand = true;	
 			$scope.visibilityMovie = '';

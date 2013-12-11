@@ -15,7 +15,7 @@ cst.controller('MovieCtrl',
 
 			$scope.movie = model.getMovie($scope.movieId);
 			if (!$scope.movie){
-				$location.path('/main').search();
+				$location.path('/main').search({});
 				return;
 			}
 			var results = model.getResults();
@@ -31,15 +31,22 @@ cst.controller('MovieCtrl',
 			$location.path('/main');
 		}
 
+		function updateIndex(index){
+			$scope.activePane1 = index === 0 ? 'active' : '';
+			$scope.activePane2 = index === 1 ? 'active' : '';
+			$scope.activePane3 = index === 2 ? 'active' : '';
+		}
+
 		$scope.paneActive = function(index){
-			$rootScope.$broadcast('newPaneClick', index);
+			$rootScope.$emit('newPaneClick', index);
+			updateIndex(index);
 		}
 
 
 		$rootScope.$on('newPaneIndex', function(evt, index){
-			$scope.activePane1 = index === 0 ? 'active' : '';
-			$scope.activePane2 = index === 1 ? 'active' : '';
-			$scope.activePane3 = index === 2 ? 'active' : '';
+			$scope.$apply(function(){
+				updateIndex(index);
+			});
 		});
 		
 

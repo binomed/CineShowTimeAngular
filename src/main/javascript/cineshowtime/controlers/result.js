@@ -1,6 +1,6 @@
 cst.controller('ResultCtrl',	
-	['$rootScope', '$scope', '$http', 'ModelFactory', 'ServicesFactory',
-	function($rootScope, $scope, $http, model, services) {
+	['$rootScope', '$scope', '$timeout', 'ModelFactory', 'ServicesFactory',
+	function($rootScope, $scope, $timeout, model, services) {
 
 		$scope.results = [];
 		$scope.showtimeList = [];
@@ -9,6 +9,34 @@ cst.controller('ResultCtrl',
 		$scope.showError = false;
 		$scope.showNoResults = true;
 		$scope.showResults = true;
+
+		function loadResults(results){
+			$scope.results = results;
+			$scope.showLoad = false;
+			$scope.showNoResults = $scope.results.length === 0;
+			$scope.showResults = !$scope.showNoResults;
+			if ($scope.results.length > 0){
+				var theater = $scope.results[0];
+				model.setCurrentTheater(theater.id);
+				$scope.showtimeList = theater.showtimes;
+				$rootScope.$emit('showtimeListEvt', theater.showtimes);
+			}
+		}
+
+		if (model.getResults() && model.getResults().length > 0){
+			// We load previous results
+			$scope.showLoad = true;
+			$scope.showError = false;
+			$scope.showNoResults = false;
+			$scope.showResults = false;
+
+			$timeout(function(){
+				$rootScope.$emit('endLoadServiceEvent', model.getResults());
+				//loadResults(model.getResults());
+			}, 1000);
+			
+		}
+
 
 		$rootScope.$on('proceedRequestEvt', function(){
 			if (model.requestAsk){			
@@ -20,17 +48,9 @@ cst.controller('ResultCtrl',
 			}
 		});
 
+
 		$rootScope.$on('endLoadServiceEvent', function(evt, results){			
-			$scope.results = results;
-			$scope.showLoad = false;
-			$scope.showNoResults = $scope.results.length === 0;
-			$scope.showResults = !$scope.showNoResults;
-			if ($scope.results.length > 0){
-				var theater = $scope.results[0];
-				model.setCurrentTheater(theater.id);
-				$scope.showtimeList = theater.showtimes;
-				$rootScope.$broadcast('showtimeListEvt', theater.showtimes);
-			}
+			loadResults(results);
 		});
 
 		$rootScope.$on('errorLoadServiceEvent', function(evt, error){
@@ -46,12 +66,9 @@ cst.controller('ResultCtrl',
 				if (theater.id === theaterId){
 					model.setCurrentTheater(theater.id);
 					$scope.showtimeList = theater.showtimes;
-					$rootScope.$broadcast('showtimeListEvt', theater.showtimes);
+					$rootScope.$emit('showtimeListEvt', theater.showtimes);
 				}
 			}
 		});
-
-
-		
 
 }]);

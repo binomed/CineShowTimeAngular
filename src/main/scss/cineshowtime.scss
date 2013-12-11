@@ -7,6 +7,7 @@
 @import "movie-result";
 @import "loader";
 @import "movie";
+@import "animate";
 
 html{
 	height : 100%;	
@@ -35,6 +36,7 @@ nav.navbar{
 	background-color: $action-bar;
 	height: $action-bar-height;
 	line-height: $action-bar-height;
+	margin-bottom: 0;
 
 	img{
 		position: absolute;

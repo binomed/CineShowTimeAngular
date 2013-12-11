@@ -13,7 +13,7 @@ components.directive('actionBar', ['ModelFactory', '$rootScope','$location'
 
 
       $scope.goToHome = function(){
-        $rootScope.$broadcast('openMenuEvt');
+        $rootScope.$emit('openMenuEvt');
       }
 
       $scope.goToSearch = function(){

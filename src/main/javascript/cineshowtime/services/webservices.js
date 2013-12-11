@@ -25,8 +25,11 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 						var showtime = theater.movieMap[movieId];
 						var movie = data.mapMovies[movieId];
 						showtime.id = movieId;
-						movie.movieName = showtime.name = decodeURIComponent(movie.movieName).split('+').join(' ');
-						movie.englishMovieName = showtime.name = decodeURIComponent(movie.englishMovieName).split('+').join(' ');
+						if (!movie.decode){							
+							movie.movieName = decodeURIComponent(movie.movieName).split('+').join(' ');
+							movie.englishMovieName = decodeURIComponent(movie.englishMovieName).split('+').join(' ');
+							movie.decode = true;
+						}
 						showtime.name = movie.movieName;
 						showtime.imgSrc = '../assets/images/loading_preview.png';
 						theater.showtimes.push(showtime);
@@ -38,9 +41,9 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 				model.requestAsk = false;
 			}
 			model.setResults(results);
-			$rootScope.$broadcast('endLoadServiceEvent', results);
+			$rootScope.$emit('endLoadServiceEvent', results);
 		}).error(function(data, status, headers, config) {
-			$rootScope.$broadcast('errorLoadServiceEvent', data);
+			$rootScope.$emit('errorLoadServiceEvent', data);
 			console.log('Error with Angular : '+data);
 			
 		});
@@ -63,9 +66,9 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 				}
 			}
 			model.updateMovie(data);
-			$rootScope.$broadcast('endLoadServiceMovieEvent', data);
+			$rootScope.$emit('endLoadServiceMovieEvent', data);
 		}).error(function(data, status, headers, config) {
-			$rootScope.$broadcast('errorLoadServiceMovieEvent', data);
+			$rootScope.$emit('errorLoadServiceMovieEvent', data);
 			console.log('Error with Angular : '+data);
 			
 		});

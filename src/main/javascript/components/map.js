@@ -130,7 +130,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                 if (popup.popup 
                     && popup.popup._contentNode
                     && popup.popup._contentNode.firstChild){
-                    $rootScope.$broadcast('clickTheaterEvt', popup.popup._contentNode.firstChild.id);
+                    $rootScope.$emit('clickTheaterEvt', popup.popup._contentNode.firstChild.id);
                 }
             });
         }
@@ -144,25 +144,33 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
            });
         }
 
+        function placeLeafLetMarker(theater){
+            var icon = L.icon({
+                iconUrl : '../assets/images/marker_theater_red_black.png',
+                iconSize: [32, 37],
+                iconAnchor: [16, 36],
+                popupAnchor: [-3, -30]
+            });
+           
+            L.marker([theater.lat, theater.lon], {icon : icon})
+                .addTo(map)
+                .bindPopup("<div id='"+theater.id+"'>"+decodeURIComponent(theater.theaterName).split("+").join(" ")+"</div>");
+        }
+
          function geocodeLeafLetMethod(theater){
-            if(theater.place && theater.place.searchQuery){                    
+            if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                
                 console.log('Proceed geocoding request : '+theater.theaterName+" : "+decodeURIComponent(theater.place.searchQuery));
                 geoService.geoSearch(decodeURIComponent(theater.place.searchQuery), function(data){
                     if (data){
-
                         console.log('Geocoding found request : '+theater.theaterName+" : "+data.display_name);
-                        var icon = L.icon({
-                            iconUrl : '../assets/images/marker_theater_red_black.png',
-                            iconSize: [32, 37],
-                            iconAnchor: [16, 36],
-                            popupAnchor: [-3, -30]
-                        });
-                       
-                        L.marker([data.lat, data.lon], {icon : icon})
-                            .addTo(map)
-                            .bindPopup("<div id='"+theater.id+"'>"+decodeURIComponent(theater.theaterName).split("+").join(" ")+"</div>");
+                        theater.lat = data.lat;
+                        theater.lon = data.lon;
+                        placeLeafLetMarker(theater);                        
                     }
                 });                
+
+            }else if(theater.place && theater.place.searchQuery && theater.lat && theater.lon){ 
+                placeLeafLetMarker(theater);
             }else{
                 console.log('no place found for : '+theater.theaterName);
             }
@@ -238,33 +246,40 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
             console.log("endPlotMap");
         }
 
+        function placeGoogleMapsMarker(theater){
+            var marker = new google.maps.Marker({
+                map : map,
+                position : new google.maps.LatLng(theater.lat,theater.lon), 
+                icon : '../assets/images/marker_theater_red_black.png'
+            });
+            var infowindow = new google.maps.InfoWindow();
+            infowindow.setContent(decodeURIComponent(theater.theaterName).split("+").join(" "));
+            google.maps.event.addListener(marker, 'click', function() {
+                closeWindows();
+                infowindow.open(map,marker);
+                $rootScope.$emit('clickTheaterEvt', theater.id);
+            });
+            markers.push(marker);
+            windows.push(infowindow);
+        }
 
         function geocodeGoogleMapsMethod(theater){
-            if(theater.place && theater.place.searchQuery){                    
+            if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                    
                 console.log('Proceed geocoding request : '+theater.theaterName+" : "+decodeURIComponent(theater.place.searchQuery));
                 geocoder.geocode({
                     address : decodeURIComponent(theater.place.searchQuery)
                 }, function(results, status){
                     if (status === google.maps.GeocoderStatus.OK){
-                        console.log('Geocoding found request : '+theater.theaterName+" : "+results[0].formatted_address);
-                        var marker = new google.maps.Marker({
-                            map : map,
-                            position : results[0].geometry.location, 
-                            icon : '../assets/images/marker_theater_red_black.png'
-                        });
-                        var infowindow = new google.maps.InfoWindow();
-                        infowindow.setContent(decodeURIComponent(theater.theaterName).split("+").join(" "));
-                        google.maps.event.addListener(marker, 'click', function() {
-                            closeWindows();
-                            infowindow.open(map,marker);
-                            $rootScope.$broadcast('clickTheaterEvt', theater.id);
-                        });
-                        markers.push(marker);
-                        windows.push(infowindow);
+                       console.log('Geocoding found request : '+theater.theaterName+" : "+results[0].formatted_address);
+                       theater.lat = results[0].geometry.location.lat();
+                       theater.lon = results[0].geometry.location.lng();
+                       placeGoogleMapsMarker(theater);
                     }else{
                         console.log('Geocoder ko : '+status);        
                     }
                 });
+            }else if (theater.place && theater.place.searchQuery && theater.lat && theater.lon){
+                placeGoogleMapsMarker(theater);
             }else{
                 console.log('no place found for : '+theater.theaterName);
             }

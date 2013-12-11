@@ -503,12 +503,85 @@ div#movie div.movie-carousel.animate {
   transition: all 0.5s ease 0s;
 }
 
-/* line 11, ../scss/cineshowtime.scss */
+/*Colors android*/
+/* line 7, ../scss/animate.scss */
+.view-animate.ng-enter, .view-animate.ng-leave {
+  -webkit-transition: all 0.3s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  display: block;
+  width: 100%;
+  border-left: 1px solid black;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+}
+
+/* line 22, ../scss/animate.scss */
+.rtl .view-animate.ng-enter {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+/* line 25, ../scss/animate.scss */
+.rtl .view-animate.ng-enter.ng-enter-active {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+
+/* line 28, ../scss/animate.scss */
+.rtl .view-animate.ng-leave.ng-leave-active {
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+/* line 32, ../scss/animate.scss */
+.ltr .view-animate.ng-enter {
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+/* line 35, ../scss/animate.scss */
+.ltr .view-animate.ng-enter.ng-enter-active {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+
+/* line 38, ../scss/animate.scss */
+.ltr .view-animate.ng-leave.ng-leave-active {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+/* line 12, ../scss/cineshowtime.scss */
 html {
   height: 100%;
 }
 
-/* line 15, ../scss/cineshowtime.scss */
+/* line 16, ../scss/cineshowtime.scss */
 body {
   padding: 0;
   height: 100%;
@@ -516,28 +589,29 @@ body {
   font-size: 14px;
 }
 
-/* line 22, ../scss/cineshowtime.scss */
+/* line 23, ../scss/cineshowtime.scss */
 body.light {
   background-color: white;
   color: #40210d;
 }
 
-/* line 27, ../scss/cineshowtime.scss */
+/* line 28, ../scss/cineshowtime.scss */
 body.dark {
   background-color: black;
   color: #e5e5e5;
 }
 
-/* line 34, ../scss/cineshowtime.scss */
+/* line 35, ../scss/cineshowtime.scss */
 nav.navbar {
   background-color: #b81e03;
   height: 50px;
   line-height: 50px;
+  margin-bottom: 0;
   /* unvisited link */
   /* visited link */
   /* mouse over link */
 }
-/* line 39, ../scss/cineshowtime.scss */
+/* line 41, ../scss/cineshowtime.scss */
 nav.navbar img {
   position: absolute;
   left: 5px;
@@ -546,29 +620,29 @@ nav.navbar img {
   height: 40px;
   margin-top: -20px;
 }
-/* line 48, ../scss/cineshowtime.scss */
+/* line 50, ../scss/cineshowtime.scss */
 nav.navbar a {
   position: absolute;
   left: 50px;
   top: 0;
 }
-/* line 54, ../scss/cineshowtime.scss */
+/* line 56, ../scss/cineshowtime.scss */
 nav.navbar a:link {
   color: #e5e5e5;
 }
-/* line 55, ../scss/cineshowtime.scss */
+/* line 57, ../scss/cineshowtime.scss */
 nav.navbar a:visited {
   color: #e5e5e5;
 }
-/* line 56, ../scss/cineshowtime.scss */
+/* line 58, ../scss/cineshowtime.scss */
 nav.navbar a:hover {
   color: #e5e5e5;
 }
-/* line 57, ../scss/cineshowtime.scss */
+/* line 59, ../scss/cineshowtime.scss */
 nav.navbar a:active {
   color: #e5e5e5;
 }
-/* line 59, ../scss/cineshowtime.scss */
+/* line 61, ../scss/cineshowtime.scss */
 nav.navbar #menu, nav.navbar #favBtn, nav.navbar #searchBtn {
   width: 50px;
   height: 50px;
@@ -576,13 +650,13 @@ nav.navbar #menu, nav.navbar #favBtn, nav.navbar #searchBtn {
   text-align: center;
   color: #e5e5e5;
 }
-/* line 67, ../scss/cineshowtime.scss */
+/* line 69, ../scss/cineshowtime.scss */
 nav.navbar #menu {
   border-left-width: 1px;
   border-left-color: #e5e5e5;
   border-left-style: solid;
 }
-/* line 73, ../scss/cineshowtime.scss */
+/* line 75, ../scss/cineshowtime.scss */
 nav.navbar #favBtn, nav.navbar #searchBtn {
   position: absolute;
   right: 50px;

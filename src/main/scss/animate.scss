@@ -1,0 +1,40 @@
+@charset "UTF-8";
+@import "compass";
+@import "compass/css3/transition";
+@import "color";
+@import "vars";
+
+.view-animate.ng-enter, .view-animate.ng-leave {
+  @include single-transition(all, 0.3s, ease, 0s);
+ 
+  display:block;
+  width:100%;
+  border-left:1px solid black;
+ 
+  position:absolute;
+  top:$action-bar-height;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:10px;
+}
+
+.rtl .view-animate.ng-enter {
+  @include translateX(100%);
+}
+.rtl .view-animate.ng-enter.ng-enter-active {
+  @include translateX(0);
+}
+.rtl .view-animate.ng-leave.ng-leave-active {
+  @include translateX(-100%);
+}
+
+.ltr .view-animate.ng-enter {
+  @include translateX(-100%);
+}
+.ltr .view-animate.ng-enter.ng-enter-active {
+  @include translateX(0);
+}
+.ltr .view-animate.ng-leave.ng-leave-active {
+  @include translateX(100%);
+}
