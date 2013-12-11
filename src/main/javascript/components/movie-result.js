@@ -24,14 +24,14 @@ components.directive('movieResult', ['ModelFactory', 'ServicesFactory', '$rootSc
       });
 
       
-      if (model.first){
+      //if (model.first){
 
         var movieModel = model.getMovie($scope.movie.id);
         if (!movieModel.load){
           services.getMovie($scope.movie);
         }
         model.first = false;
-      }
+      //}
       
 
     }

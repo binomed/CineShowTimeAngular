@@ -15,20 +15,45 @@
 .movie-result {
   /*width: calc(30% - 30px);
   width: -webkit-calc(30% - 30px);*/
+  position: relative;
   width: 120px;
   margin: 10px;
   height: -webkit-calc(100% - 20px);
   float: left;
   margin-right: 20px;
-  border-style: solid;
-  border-width: 1px;
+  border: thin solid;
 }
 /* line 28, ../scss/movie-result.scss */
-.movie-result .movie-title + .movie-showtime {
+.movie-result .movie-showtime:first-child {
   font-weight: 800;
 }
+/* line 32, ../scss/movie-result.scss */
+.movie-result .movie-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+/* line 40, ../scss/movie-result.scss */
+.movie-result .movie-title p {
+  max-height: 40px;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  overflow: hidden;
+}
+/* line 49, ../scss/movie-result.scss */
+.movie-result .movie-showtime-parent {
+  position: absolute;
+  background-color: white;
+  top: 50%;
+  width: 100%;
+  height: 50%;
+}
 
-/* line 33, ../scss/movie-result.scss */
+/* line 58, ../scss/movie-result.scss */
 .no-results {
   position: absolute;
   width: 200px;

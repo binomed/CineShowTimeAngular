@@ -1,54 +1,93 @@
 /*Colors android*/
 /* line 9, ../scss/movie.scss */
 div#movie {
+  position: relative;
   overflow: hidden;
   width: 100%;
   height: 100%;
 }
 /* line 17, ../scss/movie.scss */
+div#movie .nav-tabs {
+  height: 30px;
+}
+/* line 21, ../scss/movie.scss */
 div#movie .nav-tabs li {
+  position: absolute;
   width: 33%;
   height: 30px;
   text-align: center;
   border-right: solid thin black;
 }
-/* line 24, ../scss/movie.scss */
+/* line 29, ../scss/movie.scss */
+div#movie .nav-tabs li.desc {
+  left: 0;
+}
+/* line 33, ../scss/movie.scss */
+div#movie .nav-tabs li.showtime {
+  left: calc(33% + 1px);
+}
+/* line 37, ../scss/movie.scss */
+div#movie .nav-tabs li.reviews {
+  right: 0;
+}
+/* line 41, ../scss/movie.scss */
 div#movie .nav-tabs li.active {
   background-color: #e5e5e5;
 }
-/* line 29, ../scss/movie.scss */
+/* line 46, ../scss/movie.scss */
 div#movie div.movie-carousel {
-  position: relative;
+  position: absolute;
   top: 30px;
-  height: 100%;
+  bottom: 0;
 }
-/* line 35, ../scss/movie.scss */
+/* line 52, ../scss/movie.scss */
 div#movie div.movie-carousel ul {
   padding: 0;
   margin: 0;
   list-style: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
-/* line 40, ../scss/movie.scss */
+/* line 62, ../scss/movie.scss */
 div#movie div.movie-carousel ul li {
-  position: relative;
-  float: left;
+  position: absolute;
   padding: 0;
   margin: 0;
+  overflow: auto;
 }
-/* line 49, ../scss/movie.scss */
+/* line 69, ../scss/movie.scss */
+div#movie div.movie-carousel ul .movie-desc {
+  left: 0;
+}
+/* line 73, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc .movie-poster {
-  height: 200px;
+  margin: 10px;
+  height: 160px;
   float: left;
 }
-/* line 55, ../scss/movie.scss */
+/* line 79, ../scss/movie.scss */
+div#movie div.movie-carousel ul .movie-desc .movie-title {
+  font-weight: 800;
+  margin-top: 20px;
+}
+/* line 85, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-showtimes {
   background: #4986e7;
+  left: calc(100% / 3);
+  bottom: 0;
+  top: 0;
 }
-/* line 58, ../scss/movie.scss */
+/* line 92, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-reviews {
   background: #d06b64;
+  left: calc(100% * (2 / 3));
+  bottom: 0;
+  top: 0;
 }
-/* line 64, ../scss/movie.scss */
+/* line 101, ../scss/movie.scss */
 div#movie div.movie-carousel.animate {
   -webkit-transition: all 0.5s ease;
   -webkit-transition-delay: 0s;

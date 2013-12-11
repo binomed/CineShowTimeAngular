@@ -1,6 +1,8 @@
 <div class="movie-result" ng-click='openMovie()'>
 	<img class='movie-resut-img' width="100%"  src='{{movie.imgSrc}}'>
-	<div class="movie-title"><strong>{{movie.name}}</strong></div>
-	<div class="movie-showtime" ng-repeat='showtime in movie | filter:hourFilter | limitTo:3 '>{{showtime.format24}}</div>
+	<div class="movie-title"><p><strong>{{movie.name}}</strong></p></div>
+	<div class="movie-showtime-parent">
+		<div class="movie-showtime" ng-repeat='showtime in movie | filter:hourFilter | limitTo:3 '>{{showtime.format24}}</div>
+	</div>
 		
 </div>

@@ -9,7 +9,7 @@
   background-color: rgba(0, 0, 0, 0.75);
   color: white;
   font-size: 25px;
-  z-index: 20;
+  z-index: 500;
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
   -moz-transition: all 1s ease 0s;

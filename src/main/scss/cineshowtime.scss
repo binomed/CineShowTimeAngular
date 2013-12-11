@@ -30,6 +30,12 @@ body.dark{
 	color : $dark-color-text;
 }
 
+#content{
+	position: absolute;
+	top: $action-bar-height;
+	bottom: 0;
+	width: 100%;
+}
 
 
 nav.navbar{
@@ -38,9 +44,15 @@ nav.navbar{
 	line-height: $action-bar-height;
 	margin-bottom: 0;
 
+	.sliding-menu-icon{
+		font-size: 25px;
+		line-height: $action-bar-height;
+		color: $dark-color-text;
+	}
+
 	img{
 		position: absolute;
-		left: 5px;
+		left: 10px;
 		top: 50%;
 		width: 40px;
 		height: 40px;
