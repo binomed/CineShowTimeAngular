@@ -10,7 +10,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
-      var useGoogleMaps = google != null;
+      var useGoogleMaps = google != undefined;
       var mapDivElt = iElement.find('div')[0];
       var markers = [];
       var windows = [];
