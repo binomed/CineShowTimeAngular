@@ -1,5 +1,7 @@
 <div class="movie-result" ng-click='openMovie()'>
-	<img class='movie-resut-img' width="100%"  src='{{movie.imgSrc}}'>
+	<!--<img class='movie-resut-img' height="100%" width="100%" ng-hide='imgLoad'  src='../assets/images/loading_preview.png'>
+	<img class='movie-resut-img' height="100%"  width="100%" ng-show='imgLoad'>-->
+	<image-loader classType='movie-result-img' urlSrc='urlToLoad.url'></image-loader>
 	<div class="movie-title"><p><strong>{{movie.name}}</strong></p></div>
 	<div class="movie-showtime-parent">
 		<div class="movie-showtime" ng-repeat='showtime in movie | filter:hourFilter | limitTo:3 '>{{showtime.format24}}</div>

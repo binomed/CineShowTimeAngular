@@ -9,6 +9,11 @@ components.directive('movieResult', ['ModelFactory', 'ServicesFactory', '$rootSc
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
+      $scope.imgLoad = false;
+      $scope.urlToLoad = {url : null};
+
+      var imgLoad = iElement.find('img')[1];
+
       $scope.openMovie = function(){
         $location.path('movie').search({mid : $scope.movie.id});
       }
@@ -20,8 +25,30 @@ components.directive('movieResult', ['ModelFactory', 'ServicesFactory', '$rootSc
       $rootScope.$on('endLoadServiceMovieEvent', function(evt, movie){
         if ($scope.movie.id === movie.id){
           $scope.movie.imgSrc = movie.urlImg;
+          $scope.urlToLoad = {url : movie.urlImg};
+          /*
+          preloadImg(movie.urlImg, function(){
+            $scope.$apply(function(){
+              $scope.imgLoad = true;
+            });
+          })*/
         }
       });
+
+      function preloadImg(url, callback){
+        imgLoad.onload = function(){
+          callback();
+        };
+
+
+        imgLoad.onerror = function(e){
+          console.log('Error loading image : '+url+'; error : '+e);
+          imgLoad.src = '../assets/images/NoPosterAvailable.jpg';
+        }
+
+        imgLoad.src = url;
+        
+      }
 
       
       //if (model.first){

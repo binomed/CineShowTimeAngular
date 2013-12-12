@@ -62,21 +62,7 @@ cst.controller('CstCtrl',
 
 		$scope.gpsSearch = function(){
 			navigator.geolocation.getCurrentPosition(function(position) {
-				if (!google){					
-					geoservices.reverseGeoLoc(position.coords.latitude, position.coords.longitude, function(results){
-						if (results && results.address){			
-							if (results.address.road){
-						    	$scope.cityName = results.address.road+", "+results.address.city;
-							}else if (results.address.pedestrian){
-								$scope.cityName = results.address.pedestrian+", "+results.address.city;
-							}else if (results.address.neighbourhood){
-								$scope.cityName = results.address.neighbourhood+", "+results.address.city;
-							}else{
-								$scope.cityName = results.address.city;
-							}				
-						}
-					});
-				}else{
+				if (typeof google === 'object' && typeof google.maps === 'object'){					
 					var geocoder = new google.maps.Geocoder();
 					var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 					geocoder.geocode({'latLng': latlng}, function(results, status) {
@@ -99,6 +85,20 @@ cst.controller('CstCtrl',
 					      alert('Geocoder failed due to: ' + status);
 					    }
 					});					
+				}else{
+					geoservices.reverseGeoLoc(position.coords.latitude, position.coords.longitude, function(results){
+						if (results && results.address){			
+							if (results.address.road){
+						    	$scope.cityName = results.address.road+", "+results.address.city;
+							}else if (results.address.pedestrian){
+								$scope.cityName = results.address.pedestrian+", "+results.address.city;
+							}else if (results.address.neighbourhood){
+								$scope.cityName = results.address.neighbourhood+", "+results.address.city;
+							}else{
+								$scope.cityName = results.address.city;
+							}				
+						}
+					});
 				}
 				$scope.$apply(function(){
 					$scope.map = { center: {lat: position.coords.latitude, lng: position.coords.longitude}, zoom: 12 };

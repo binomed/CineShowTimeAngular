@@ -31,7 +31,7 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 							movie.decode = true;
 						}
 						showtime.name = movie.movieName;
-						showtime.imgSrc = '../assets/images/loading_preview.png';
+						showtime.urlImg = '../assets/images/loading_preview.png';
 						theater.showtimes.push(showtime);
 					}
 					results.push(theater);
