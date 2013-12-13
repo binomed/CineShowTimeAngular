@@ -11,6 +11,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
     link: function postLink($scope, iElement, iAttrs) { 
 
       var useGoogleMaps = typeof google === 'object' && typeof google.maps === 'object';      
+      //useGoogleMaps = false;
       var mapDivElt = iElement.find('div')[0];
       var markers = [];
       var windows = [];
@@ -45,7 +46,11 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         function clearMarkers(){
             for (var i=0;i < markers.length; i++){
                 var marker = markers[i];
-                marker.setMap(null);
+                if (useGoogleMaps){
+                    marker.setMap(null);
+                }else{
+                    map.removeLayer(marker);
+                }
             }
             markers = [];
         }
@@ -68,15 +73,13 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         $rootScope.$on('endLoadServiceEvent', function(evt, theaterResults){            
             for(var thIdx = 0 ; thIdx < theaterResults.length; thIdx++){
                 var theater = theaterResults[thIdx];
-                    if (useGoogleMaps){
-                        setTimeout(function(theaterToUse) {
-                            geocodeGoogleMapsMethod(theaterToUse);
-                        }, 500 * thIdx, theater);
-                    }else{
-                        setTimeout(function(theaterToUse) {
-                            geocodeLeafLetMethod(theaterToUse);
-                        }, 1000 * thIdx, theater);
-                    }
+                    setTimeout(function(theaterToUse, indexTheater) {
+                        if (useGoogleMaps){
+                            geocodeGoogleMapsMethod(theaterToUse, indexTheater);
+                        }else{
+                            geocodeLeafLetMethod(theaterToUse, indexTheater);
+                        }
+                    }, 500 * thIdx, theater, thIdx);
 
             }
         });
@@ -155,19 +158,22 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
          function locateAddressLeafLet(address){
            geoService.geoSearch(address, function(data){
                 if (data){
-                    L.marker([data.lat, data.lon]).addTo(map);
+                    var marker = new L.marker([data.lat, data.lon]);
+                    map.addLayer(marker);                    
                     map.setView([data.lat, data.lon], 13);
+                    markers.push(marker);
                 }
            });
         }
 
         function placeLeafLetMarker(theater){
-            L.marker([theater.lat, theater.lon], {icon : getLeafLetIcon()})
-                .addTo(map)
-                .bindPopup("<div id='"+theater.id+"'>"+decodeURIComponent(theater.theaterName).split("+").join(" ")+"</div>");
+            var marker = new L.marker([theater.lat, theater.lon], {icon : getLeafLetIcon()});
+            marker.bindPopup("<div id='"+theater.id+"'>"+theater.theaterName+"</div>");
+            map.addLayer(marker);
+            markers.push(marker);
         }
 
-         function geocodeLeafLetMethod(theater){
+         function geocodeLeafLetMethod(theater, index){
             if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                
                 console.log('Proceed geocoding request : '+theater.theaterName+" : "+theater.place.searchQuery);
                 geoService.geoSearch(theater.place.searchQuery, function(data){
@@ -227,17 +233,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
             geocoder = new google.maps.Geocoder();
             map = new google.maps.Map(mapDivElt, mapOptions);            
             console.log("mapInit");
-              
-            $scope.$watch('zoom', function (newValue) {
-                map.setZoom(parseInt(newValue));
-            });
-
-            $scope.$watch('center', function (newValue) {
-                map.setCenter(new google.maps.LatLng(
-                    parseFloat(newValue.lat),
-                    parseFloat(newValue.lng))
-                );
-            }, true);
+          
             google.maps.event.addListener(map, 'zoom_changed', function () {
                 $timeout(function () {
                     $scope.zoom = map.getZoom();
@@ -256,7 +252,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
             console.log("endPlotMap");
         }
 
-        function placeGoogleMapsMarker(theater){
+        function placeGoogleMapsMarker(theater, index){
             var marker = new google.maps.Marker({
                 map : map,
                 position : new google.maps.LatLng(theater.lat,theater.lon), 
@@ -267,13 +263,20 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
             google.maps.event.addListener(marker, 'click', function() {
                 closeWindows();
                 infowindow.open(map,marker);
+                map.setCenter(marker.getPosition());
                 $rootScope.$emit('clickTheaterEvt', theater.id);
+
             });
             markers.push(marker);
             windows.push(infowindow);
+
+            if (index === 0){
+                infowindow.open(map,marker);
+                map.setCenter(new google.maps.LatLng(theater.lat,theater.lon));
+            }
         }
 
-        function geocodeGoogleMapsMethod(theater){
+        function geocodeGoogleMapsMethod(theater, index){
             if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                    
                 console.log('Proceed geocoding request : '+theater.theaterName+" : "+theater.place.searchQuery);
                 geocoder.geocode({
@@ -283,7 +286,8 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                        console.log('Geocoding found request : '+theater.theaterName+" : "+results[0].formatted_address);
                        theater.lat = results[0].geometry.location.lat();
                        theater.lon = results[0].geometry.location.lng();
-                       placeGoogleMapsMarker(theater);
+                       placeGoogleMapsMarker(theater, index);
+                       
                     }else{
                         console.log('Geocoder ko : '+status);        
                     }

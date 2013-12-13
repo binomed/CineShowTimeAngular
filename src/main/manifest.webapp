@@ -5,9 +5,11 @@
     "description": "Movie Showtime Application",
     "launch_path": "/html/index.html",
     "icons": {
-        "16": "/assets/images/icon_ldpi.png",
-        "48": "/assets/images/icon_mdpi.png",
-        "128": "/assets/images/icon_xhdpi.png"
+        "32": "/assets/images/icon_32.png",
+        "48": "/assets/images/icon_48.png",
+        "96": "/assets/images/icon_96.png",
+        "128": "/assets/images/icon_128.png",
+        "512": "/assets/images/icon_512.png"
     },
     "developer": {
         "name": "jefBinomed",

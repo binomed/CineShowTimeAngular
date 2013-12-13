@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "compass";
 @import "compass/css3/transition";
+@import "compass/css3/text-shadow";
 @import "color";
 @import "vars";
 
@@ -25,6 +26,7 @@ div#movie{
 			height: $height-movie-tab;
 			text-align: center;
 			border-right: solid thin black;
+			background-color: $light-grey-color
 		}
 
 		li.desc{
@@ -82,17 +84,21 @@ div#movie{
 
 				.movie-title{
 					font-weight: 800;
-					margin-top: 20px;
+					margin-top: 10px;
+					@include text-shadow(rgba(0,0,0,0.5) 1px 1px 5px);
+					font-size: 17px;
 				}
 
 				hr{
-					color: $text-color;
-					margin-top: 5px;
-					border-top-width: 3px;
+					/*color: $text-color;*/
+					margin-top: 3px;
+					border-top-width: 2px;
+					border-top-color: $text-color;
 				}
 
 				.movie-section{
 					text-transform: uppercase;
+					@include text-shadow(rgba(0,0,0,0.5) 0px 0px 5px);
 				}
 
 				.movie-trailer-list{

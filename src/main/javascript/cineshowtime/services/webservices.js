@@ -29,7 +29,7 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 						for( var shMovIdx = 0; shMovIdx < showtime.length; shMovIdx++){
 							var showtimeMovie = showtime[shMovIdx];
 							if (showtimeMovie.lang != ''){
-								showtimeMovie.lang = decodeURIComponent(showtimeMovie.lang);
+								showtimeMovie.lang = decodeURIComponent(showtimeMovie.lang).split('+').join(' ');
 							}
 						}
 						var movie = data.mapMovies[movieId];
