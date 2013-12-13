@@ -1,6 +1,6 @@
 cst.controller('ResultCtrl',	
-	['$rootScope', '$scope', '$timeout', 'ModelFactory', 'ServicesFactory',
-	function($rootScope, $scope, $timeout, model, services) {
+	['$rootScope', '$scope', '$timeout', 'ModelFactory', 'ServicesFactory', 'ChangeDataFactory',
+	function($rootScope, $scope, $timeout, model, services, changeData) {
 
 		$scope.results = [];
 		$scope.showtimeList = [];
@@ -11,7 +11,7 @@ cst.controller('ResultCtrl',
 		$scope.showResults = true;
 
 		function loadResults(results){
-			$scope.results = results;
+			$scope.results = changeData.filterShowtimes(results);
 			$scope.showLoad = false;
 			$scope.showNoResults = $scope.results.length === 0;
 			$scope.showResults = !$scope.showNoResults;
@@ -61,14 +61,24 @@ cst.controller('ResultCtrl',
 		});
 
 		$rootScope.$on('clickTheaterEvt', function(evt, theaterId){
+			$scope.showLoad = true;
+			$scope.showError = false;
+			$scope.showNoResults = false;
+			$scope.showResults = false;
+			$scope.showtimeList = [];
 			for (var i = 0; i < $scope.results.length; i++){
 				var theater = $scope.results[i];
 				if (theater.id === theaterId){
 					model.setCurrentTheater(theater.id);
 					$scope.showtimeList = theater.showtimes;
-					$rootScope.$emit('showtimeListEvt', theater.showtimes);
+					break;
+					//$rootScope.$emit('showtimeListEvt', theater.showtimes);
 				}
 			}
+			$scope.showLoad = false;
+			$scope.showError = false;
+			$scope.showNoResults = false;
+			$scope.showResults = true;
 		});
 
 }]);

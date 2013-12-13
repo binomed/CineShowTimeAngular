@@ -10,7 +10,8 @@ components.directive('movieResult', ['ModelFactory', 'ServicesFactory', '$rootSc
     link: function postLink($scope, iElement, iAttrs) { 
 
       $scope.imgLoad = false;
-      $scope.urlToLoad = {url : null};
+      $scope.urlToLoad = '';//{url : ''};
+      //$scope.urlToLoad = null;
 
       var imgLoad = iElement.find('img')[1];
 
@@ -19,13 +20,16 @@ components.directive('movieResult', ['ModelFactory', 'ServicesFactory', '$rootSc
       }
       
       $scope.hourFilter = function(showtime){
-        return showtime.showtime > new Date().getTime();
+        return !showtime.passed;
+        //return showtime.showtime > new Date().getTime();
       }
 
       $rootScope.$on('endLoadServiceMovieEvent', function(evt, movie){
         if ($scope.movie.id === movie.id){
           $scope.movie.imgSrc = movie.urlImg;
-          $scope.urlToLoad = {url : movie.urlImg};
+          //$scope.urlToLoad.url = movie.urlImg;
+          $scope.urlToLoad = movie.urlImg;
+          //$scope.urlToLoad = {url : movie.urlImg};
           /*
           preloadImg(movie.urlImg, function(){
             $scope.$apply(function(){

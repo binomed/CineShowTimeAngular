@@ -9,6 +9,7 @@ cst.controller('MovieCtrl',
 		$scope.activePane1 = 'active';
 		$scope.activePane2 = '';
 		$scope.activePane3 = '';
+		$scope.theater = {};
 			
 		if ($location.search().mid){
 			$scope.movieId = $location.search().mid;
@@ -23,6 +24,7 @@ cst.controller('MovieCtrl',
 			for (var i =0; i < results.length; i++){
 				var theater = results[i];
 				if (theater.id === currentTheaterId){
+					$scope.theater = theater;
 					$scope.showtimes = theater.movieMap[$scope.movieId];
 					break;
 				}

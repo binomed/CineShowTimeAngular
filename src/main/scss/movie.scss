@@ -8,6 +8,7 @@ $height-movie-tab : 30px;
 
 div#movie{
 
+	bakcground-color : $light-grey-color;
 	position: relative;
 	overflow: hidden;
 	width: 100%;
@@ -39,7 +40,7 @@ div#movie{
 		}
 
 		li.active{
-			background-color: $light-grey-color;
+			background-color: white; /*$light-grey-color;*/
 		}
 	}
 
@@ -54,6 +55,7 @@ div#movie{
 			margin: 0;
 			list-style: none;
 			position: absolute;
+			overflow-y: scroll;
 			top: 0;
 			bottom: 0; 
 			left: 0;
@@ -69,10 +71,12 @@ div#movie{
 			.movie-desc{
 
 				left: 0;
+				padding: 10px;
 				 
 				.movie-poster{
-					margin: 10px;
-					height: 160px;
+					margin-right: 10px;
+					height: 180px;
+					width: 120px;
 					float:left;
 				}
 
@@ -81,19 +85,95 @@ div#movie{
 					margin-top: 20px;
 				}
 
+				hr{
+					color: $text-color;
+					margin-top: 5px;
+					border-top-width: 3px;
+				}
+
+				.movie-section{
+					text-transform: uppercase;
+				}
+
+				.movie-trailer-list{
+					height: 100%;
+					width: 100%;
+					overflow-x: scroll;
+
+					.movie-trailer{
+						float: left;
+						width: 120px;
+						margin-right: 30px;
+						@include box-shadow(rgba(0,0,0,0.3) 0px 0px 30px);
+
+						.movie-trailer-name{
+							text-overflow : ellipsis;
+							max-width: 120px;
+							white-space: nowrap;
+							overflow: hidden;
+						}
+					}
+				}
+
+
+
 			}
+
+
+
 			.movie-showtimes{
-				 background: #4986e7;
 				 left: calc(100% / 3);
 				 bottom: 0;
 				 top:0;
 
+				 .theater{
+				 	padding: 10px;
+				 	font-size: 20px;
+				 	width: 100%;
+				 	text-align: center;
+				 	margin-bottom: 20px;
+				 	@include box-shadow(rgba(0,0,0,0.3) 0px 1px 5px);
+
+					.theater-place{
+						font-size: 17px;
+					}
+				 }
+
+				 .movie-showtime-parent{
+				 	padding: 10px;
+
+				 }
+
+				 .movie-showtime{
+				 	height: 50px;
+				 	font-size: 15px;
+				 	line-height: 20px;
+				 	margin-bottom: 5px;
+				 	padding-bottom: 5px;
+				 	border-bottom: thin solid black;
+				 }
+
+				 .movie-showtime:first-child{
+				 	font-weight: 800;
+				 }
+
 			}
 			.movie-reviews{
-				 background: #d06b64;
 				 left: calc(100% * (2 / 3));
 				 bottom: 0;
 				 top:0;
+				 padding:10px;
+
+				 .no-review{
+				 	position: absolute;
+					width: 100%;
+					left: 0;
+					text-align: center;
+					top: 50px;
+					font-size: 30px;
+					font-weight: 400;
+				 } 
+
 			}
 		}
 	}

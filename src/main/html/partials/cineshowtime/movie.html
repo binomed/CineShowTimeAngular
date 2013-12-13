@@ -7,34 +7,53 @@
 	<div class='movie-carousel' sliding-page>
 	    <ul>
 	        <li class="movie-desc movie-pane">
-	        	<img src="{{movie.urlImg}}" class="movie-poster"/>
+	        	<image-loader class-type='movie-poster' url='movie.urlImg'></image-loader>	        	
 	        	<div class='movie-title'>{{movie.movieName}}</div>
 	        	<div ng-show='movie.rate'><br>Note : {{movie.rate}} / 10 <br></div>
-	        	<div ng-show='movie.movieTime'><strong>Duration : </strong>{{movie.movieTime | date:'shortTime'}}</div>
+	        	<div ng-show='movie.movieTime'><strong>Duration : </strong>{{movie.movieTime | date:"H'h'mm"}}</div>
 	        	<div ng-show='movie.directorList'><strong>Director(s) : </strong><span ng-repeat='director in movie.directorList | limitTo:3 '>{{director}}, </span>...</div>
 	        	<div ng-show='movie.actorList'><strong>Actors(s) : </strong><span ng-repeat='actor in movie.actorList | limitTo:3 '>{{actor}}, </span>...</div>
 	        	<div ng-show='movie.style'><strong>Kind : </strong>{{movie.style}}</div>
 	        	<div ng-show='movie.year'><strong>Year : </strong>{{movie.year}}</div>
 	        	<br>
-	        	<div ng-show='movie.youtubeVideos' class='movie-trailers'>
+	        	<div ng-show='movie.youtubeVideos' class='movie-trailer-parent'>
+	        		<div class="movie-section"><strong>Trailers</strong></div>
 	        		<hr>
-	        		<div ng-repeat='trailer in movie.youtubeVideos'>
+
+	        		<movie-trailer-list movie="movie"></movie-trailer-list>
+	        		<!--<div ng-repeat='trailer in movie.youtubeVideos' class='movie-trailer'>
 	        			<img src="{{trailer.urlImg}}" class="movie-trailer-poster"/>
 	        			<div>{{trailer.videoName}}</div>
-	        		</div>
+	        		</div>-->
 	        	</div>
 	        	<br>
-	        	<div ng-show='movie.description' class='movie-desc'>
+	        	<div ng-show='movie.description' class='movie-resume-parent'>
+	        		<div class="movie-section"><strong>Resume</strong></div>
 	        		<hr>
-	        		{{movie.description}}
+	        		<div class="movie-resume">
+	        			{{movie.description}}
+	        		</div>
 	        	</div>
 	        </li>
 	        <li class="movie-showtimes movie-pane">
-	        	<div ng-repeat="showtime in showtimes">
-	        		{{showtime.showtime | date:'shortTime'}}
+	        	<div class='theater' ng-show='theater.theaterName'>
+	        		<strong>{{theater.theaterName}}</strong>	   <br> 
+	        		<span class="theater-place" ng-show="theater.place">{{theater.place.searchQuery}}</span>    		
+	        	</div>
+	        	<div class="movie-showtime-parent">
+		        	<div class="movie-showtime" ng-repeat="showtime in showtimes">	        		
+		        		<span ng-show="showtime.lang">{{showtime.lang}} : </span>{{showtime.showtime | date:'H:mm'}}<br>
+		        		End hour : {{showtime.showtime + movie.movieTime + 1000 * 60 * 20 | date:'H:mm'}}
+		        	</div>
 	        	</div>
 	        </li>
-	        <li class="movie-reviews movie-pane"><h2>Movie Reviews</h2></li>
+	        <li class="movie-reviews movie-pane">
+	        	<div ng-show='movie.reviews'>
+	        	</div>
+	        	<div class="no-review" ng-hide='movie.reviews'>
+	        		No reviews for this movie
+	        	</div>
+	        </li>
 	    </ul>
     </div>
 </div>

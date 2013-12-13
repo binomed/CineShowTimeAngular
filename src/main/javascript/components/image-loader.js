@@ -6,14 +6,14 @@ components.directive('imageLoader', ['ModelFactory', '$rootScope','$location'
     restrict: 'E',
     scope: {        
       classType : '@',
-      urlSrc : '=urlSrc'
+      url : '=url'
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
       $scope.imgLoad = false;
       var img = iElement.find('img')[1];
       
-      $scope.$watch('urlSrc', function(newValue){
+      $scope.$watch('url', function(newValue){
         if (newValue && newValue != ''){
           preloadImg(newValue, function(){
             $scope.$apply(function(){
@@ -21,7 +21,7 @@ components.directive('imageLoader', ['ModelFactory', '$rootScope','$location'
             });
           });
         }
-      });
+      },true);
 
 
       function preloadImg(url, callback){

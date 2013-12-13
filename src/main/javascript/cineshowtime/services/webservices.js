@@ -18,11 +18,20 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 				for(var thIdx = 0; thIdx < data.theaterList.length; thIdx++){
 					var theater = data.theaterList[thIdx];
 					theater.theaterName = decodeURIComponent(theater.theaterName).split('+').join(' '); 
+					if (theater.place && theater.place.searchQuery){
+						theater.place.searchQuery = decodeURIComponent(theater.place.searchQuery).split('+').join(' ');
+					}
 					var movieKeys = Object.keys(theater.movieMap);
 					theater.showtimes = [];
 					for(var shIdx =0; shIdx < movieKeys.length; shIdx++){
 						var movieId = movieKeys[shIdx];
 						var showtime = theater.movieMap[movieId];
+						for( var shMovIdx = 0; shMovIdx < showtime.length; shMovIdx++){
+							var showtimeMovie = showtime[shMovIdx];
+							if (showtimeMovie.lang != ''){
+								showtimeMovie.lang = decodeURIComponent(showtimeMovie.lang);
+							}
+						}
 						var movie = data.mapMovies[movieId];
 						showtime.id = movieId;
 						if (!movie.decode){							

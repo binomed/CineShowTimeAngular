@@ -7,8 +7,8 @@
   border-width: 1px;
   border-color: black;
   border-top-width: 0;
-  width: calc(200px / 2);
-  height: calc(200px / 2);
+  width: calc(170px / 2);
+  height: calc(170px / 2);
   z-index: 600;
 }
 
@@ -46,30 +46,30 @@
 
 /* line 61, ../scss/loader.scss */
 .circle1 {
-  width: calc(200px - 5px);
-  height: calc(200px - 5px);
-  margin-top: calc((200px - 5px) / -2);
-  margin-left: calc((200px - 5px) / -2);
-  border-radius: calc((200px - 5px) / 2);
+  width: calc(170px - 5px);
+  height: calc(170px - 5px);
+  margin-top: calc((170px - 5px) / -2);
+  margin-left: calc((170px - 5px) / -2);
+  border-radius: calc((170px - 5px) / 2);
 }
 
 /* line 69, ../scss/loader.scss */
 .circle2 {
-  width: calc(200px - 30px);
-  height: calc(200px - 30px);
-  margin-top: calc((200px - 30px) / -2);
-  margin-left: calc((200px - 30px) / -2);
-  border-radius: calc((200px - 30px) / 2);
+  width: calc(170px - 30px);
+  height: calc(170px - 30px);
+  margin-top: calc((170px - 30px) / -2);
+  margin-left: calc((170px - 30px) / -2);
+  border-radius: calc((170px - 30px) / 2);
 }
 
 /* line 80, ../scss/loader.scss */
 .spinner-text {
   position: absolute;
-  height: 200px;
-  width: 200px;
+  height: 170px;
+  width: 170px;
   top: 0;
   left: 0;
-  line-height: 200px;
+  line-height: 170px;
   text-align: center;
   color: black;
   z-index: 600;
@@ -150,7 +150,7 @@
 /* line 114, ../scss/loader.scss */
 .wrapper {
   position: relative;
-  margin: 40px auto;
+  margin: 10px auto;
   background: #c8c8c8;
 }
 
@@ -163,8 +163,8 @@
 
 /* line 124, ../scss/loader.scss */
 .wrapper {
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
 }
 
 /* line 129, ../scss/loader.scss */

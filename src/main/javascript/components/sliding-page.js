@@ -69,12 +69,12 @@ components.directive('slidingPage', ['ModelFactory', '$rootScope','$location'
           console.log(ev.type+" : ");
           console.log(ev);
           // disable browser scrolling
-          if (ev.gesture){
+          /*if (ev.gesture){
             ev.gesture.preventDefault();
           }else{
             ev.preventDefault();
 
-          }
+          }*/
 
           switch(ev.type) {
               case 'drag':

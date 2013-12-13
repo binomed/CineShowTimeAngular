@@ -29,8 +29,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         //https://github.com/smeijer/L.GeoSearch/wiki
         // http://open.mapquestapi.com/nominatim/
         //http://stackoverflow.com/questions/17726177/can-i-use-openstreetmap-nominatim-reverse-geolocation-api-in-a-commercial-app
-        var map = null;
-        
+        var map = null;        
         var geocoder = null;
 
         function initMap(){
@@ -66,16 +65,19 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
             
         });
 
-        $rootScope.$on('endLoadServiceEvent', function(evt, theaterResults){
-            var geocoder = new google.maps.Geocoder();
+        $rootScope.$on('endLoadServiceEvent', function(evt, theaterResults){            
             for(var thIdx = 0 ; thIdx < theaterResults.length; thIdx++){
                 var theater = theaterResults[thIdx];
-                if (useGoogleMaps){
-                    geocodeGoogleMapsMethod(theater);
-                }else{
-                    geocodeLeafLetMethod(theater);
+                    if (useGoogleMaps){
+                        setTimeout(function(theaterToUse) {
+                            geocodeGoogleMapsMethod(theaterToUse);
+                        }, 500 * thIdx, theater);
+                    }else{
+                        setTimeout(function(theaterToUse) {
+                            geocodeLeafLetMethod(theaterToUse);
+                        }, 1000 * thIdx, theater);
+                    }
 
-                }
             }
         });
 
@@ -109,6 +111,21 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         /*
         * Leaflet
         */
+
+        var leafLetIcon = null;
+        function getLeafLetIcon(){
+            if(!useGoogleMaps){
+
+              leafLetIcon = L.icon({
+                    iconUrl : '../assets/images/marker_theater_red_black.png',
+                    iconSize: [32, 37],
+                    iconAnchor: [16, 36],
+                    popupAnchor: [-3, -30]
+                });
+            } 
+            return leafLetIcon;
+        }
+
 
         function initLeafletMap(){
             map = L.map(mapDivElt, {zoomControl : false});
@@ -145,24 +162,17 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         }
 
         function placeLeafLetMarker(theater){
-            var icon = L.icon({
-                iconUrl : '../assets/images/marker_theater_red_black.png',
-                iconSize: [32, 37],
-                iconAnchor: [16, 36],
-                popupAnchor: [-3, -30]
-            });
-           
-            L.marker([theater.lat, theater.lon], {icon : icon})
+            L.marker([theater.lat, theater.lon], {icon : getLeafLetIcon()})
                 .addTo(map)
                 .bindPopup("<div id='"+theater.id+"'>"+decodeURIComponent(theater.theaterName).split("+").join(" ")+"</div>");
         }
 
          function geocodeLeafLetMethod(theater){
             if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                
-                console.log('Proceed geocoding request : '+theater.theaterName+" : "+decodeURIComponent(theater.place.searchQuery));
-                geoService.geoSearch(decodeURIComponent(theater.place.searchQuery), function(data){
+                console.log('Proceed geocoding request : '+theater.theaterName+" : "+theater.place.searchQuery);
+                geoService.geoSearch(theater.place.searchQuery, function(data){
                     if (data){
-                        console.log('Geocoding found request : '+theater.theaterName+" : "+data.display_name);
+                        console.log('Geocoding found request : '+theater.theaterName+" : "+data.display_name+" ("+data.lat+";"+data.lon+")");
                         theater.lat = data.lat;
                         theater.lon = data.lon;
                         placeLeafLetMarker(theater);                        
@@ -265,9 +275,9 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
 
         function geocodeGoogleMapsMethod(theater){
             if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                    
-                console.log('Proceed geocoding request : '+theater.theaterName+" : "+decodeURIComponent(theater.place.searchQuery));
+                console.log('Proceed geocoding request : '+theater.theaterName+" : "+theater.place.searchQuery);
                 geocoder.geocode({
-                    address : decodeURIComponent(theater.place.searchQuery)
+                    address : theater.place.searchQuery
                 }, function(results, status){
                     if (status === google.maps.GeocoderStatus.OK){
                        console.log('Geocoding found request : '+theater.theaterName+" : "+results[0].formatted_address);

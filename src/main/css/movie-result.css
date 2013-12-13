@@ -48,6 +48,11 @@
   overflow: hidden;
 }
 /* line 50, ../scss/movie-result.scss */
+.movie-result .movie-result-img {
+  height: 100%;
+  width: 100%;
+}
+/* line 55, ../scss/movie-result.scss */
 .movie-result .movie-showtime-parent {
   position: absolute;
   padding: 5px;
@@ -55,14 +60,14 @@
   bottom: 0;
   width: 100%;
 }
-/* line 57, ../scss/movie-result.scss */
+/* line 62, ../scss/movie-result.scss */
 .movie-result .movie-showtime-parent .movie-showtime {
   font-size: 10px;
   float: left;
   margin-right: 8px;
 }
 
-/* line 65, ../scss/movie-result.scss */
+/* line 70, ../scss/movie-result.scss */
 .no-results {
   position: absolute;
   width: 200px;
