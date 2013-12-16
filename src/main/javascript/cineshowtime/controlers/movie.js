@@ -13,7 +13,14 @@ cst.controller('MovieCtrl',
 			
 		if ($location.search().mid){
 			$scope.movieId = $location.search().mid;
+			loadMovie();
 
+			
+		}else{
+			$location.path('/main');
+		}
+
+		function loadMovie(){
 			$scope.movie = model.getMovie($scope.movieId);
 			if (!$scope.movie){
 				$location.path('/main').search({});
@@ -29,8 +36,6 @@ cst.controller('MovieCtrl',
 					break;
 				}
 			}
-		}else{
-			$location.path('/main');
 		}
 
 		function updateIndex(index){
@@ -49,6 +54,11 @@ cst.controller('MovieCtrl',
 			$scope.$apply(function(){
 				updateIndex(index);
 			});
+		});
+
+		$rootScope.$on('endLoadServiceMovieEvent', function(evt,movie){
+			$scope.id = movie.id;
+			loadMovie();
 		});
 		
 

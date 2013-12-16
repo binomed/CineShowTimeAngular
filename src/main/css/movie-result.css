@@ -55,7 +55,7 @@
 /* line 55, ../scss/movie-result.scss */
 .movie-result .movie-showtime-parent {
   position: absolute;
-  padding: 5px;
+  padding: 4px;
   background-color: white;
   bottom: 0;
   width: 100%;
@@ -64,10 +64,15 @@
 .movie-result .movie-showtime-parent .movie-showtime {
   font-size: 10px;
   float: left;
-  margin-right: 8px;
+  margin-right: 7px;
+}
+/* line 68, ../scss/movie-result.scss */
+.movie-result .movie-showtime-parent .movie-showtime-continue {
+  font-size: 10px;
+  float: left;
 }
 
-/* line 70, ../scss/movie-result.scss */
+/* line 75, ../scss/movie-result.scss */
 .no-results {
   position: absolute;
   width: 200px;

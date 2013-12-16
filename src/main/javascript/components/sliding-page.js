@@ -120,15 +120,8 @@ components.directive('slidingPage', ['ModelFactory', '$rootScope','$location'
       }
 
 
-      //container.hammer({drag_lock_to_axis: true}).on('release drag dragleft dragright swipeleft swiperight', handleHammer);
-      Hammer(container[0],{drag_lock_to_axis: true}).on('release drag dragend dragleft dragright swipeleft swiperight', handleHammer);
-      /*var hammertime = new Hammer(container[0], { drag_lock_to_axis: true });
-      $(container[0]).on("release dragleft dragright swipeleft swiperight", handleHammer);*/
-
-      /*$('.movie-desc h2').hammer().on('drag release dragleft dragright swipeleft swiperight', function(evt){
-        console.log("H2 log : "+evt.type);
-        evt.gesture.preventDefault();
-      });*/
+      //Hammer(container[0],{drag_lock_to_axis: true}).on('release drag dragend dragleft dragright swipeleft swiperight', handleHammer);
+     
 
      
     }

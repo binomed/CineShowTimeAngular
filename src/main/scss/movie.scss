@@ -5,7 +5,7 @@
 @import "color";
 @import "vars";
 
-$height-movie-tab : 30px;
+$height-movie-tab : 40px;
 
 div#movie{
 
@@ -24,13 +24,14 @@ div#movie{
 			position: absolute;
 			width: 33%;
 			height: $height-movie-tab;
+			line-height: $height-movie-tab;
 			text-align: center;
 			border-right: solid thin black;
 			background-color: $light-grey-color
 		}
 
 		li.desc{
-			left: 0;
+			left: 0;			
 		}
 
 		li.showtime{
@@ -74,6 +75,8 @@ div#movie{
 
 				left: 0;
 				padding: 10px;
+				height: 100%;
+				overflow: auto;
 				 
 				.movie-poster{
 					margin-right: 10px;
@@ -118,6 +121,11 @@ div#movie{
 							white-space: nowrap;
 							overflow: hidden;
 						}
+
+						.movie-trailer-poster{
+							width: 120px;
+							height: 90px;
+						}
 					}
 				}
 
@@ -131,6 +139,8 @@ div#movie{
 				 left: calc(100% / 3);
 				 bottom: 0;
 				 top:0;
+				 height: 100%;
+				 overflow: auto;
 
 				 .theater{
 				 	padding: 10px;
@@ -146,8 +156,7 @@ div#movie{
 				 }
 
 				 .movie-showtime-parent{
-				 	padding: 10px;
-
+				 	padding: 10px;				 	
 				 }
 
 				 .movie-showtime{

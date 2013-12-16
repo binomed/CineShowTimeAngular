@@ -21,6 +21,12 @@
 			<div ng-click='dayChoice()' class="input-group-addon"><i class="fa fa-calendar"></i></div>
 		</div>
 		<div ng-show="showError" class="alert alert-danger search-field">{{errorText}}</div>
+		<!--<div class='day-picker' ng-class='classDay'>-->
+	        <select class="form-control search-field day-picker" ng-model='dayPicker' ng-class='classDay'>
+	            <option ng-repeat="day in days" value="{{day.value}}" >{{day.day}}</option>          
+	        </select>
+		<!--</div>-->
+
 	</div>
 	<div id="results" ng-controller="ResultCtrl" >
 

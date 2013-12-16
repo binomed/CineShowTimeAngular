@@ -8,6 +8,7 @@ cst.controller('SearchCtrl',
 		$scope.dayPicker = 0;
 		$scope.visibilityMovie = '';
 		$scope.visibilityCityName = 'show-city-name';
+		$scope.classDay = 'hide-day-picker';
 		$scope.showBtnSearchExpand = false;
 		$scope.validCityClass = '';
 		$scope.validMovieClass =  '';
@@ -76,14 +77,7 @@ cst.controller('SearchCtrl',
 					      if (results[1]) {
 					      	$scope.$apply(function(){
 						      	$scope.cityName = results[1].formatted_address;
-						    });
-					        /*map.setZoom(11);
-					        marker = new google.maps.Marker({
-					            position: latlng,
-					            map: map
-					        });
-					        infowindow.setContent(results[1].formatted_address);
-					        infowindow.open(map, marker);*/
+						    });					       
 					      } else {
 					        alert('No results found');
 					      }
@@ -110,11 +104,13 @@ cst.controller('SearchCtrl',
 					$scope.map = { center: {lat: position.coords.latitude, lng: position.coords.longitude}, zoom: 12 };
 				});
 	          	console.log(position.coords.latitude + " " + position.coords.longitude);
-	          
-	          //document.getElementById('info').innerHTML = "";
 	      }, function(position) {
 	          alert("Failed to get your current location");
 	      });
+		}
+
+		$scope.dayChoice = function(){
+			$scope.classDay = '';
 		}
 
 		$scope.keyUp = function(event){
@@ -145,6 +141,10 @@ cst.controller('SearchCtrl',
 
 		$scope.$watch('cityName', function(){
 			$scope.visibilityMovie = ($scope.cityName != null && $scope.cityName.length > 0) ? 'show-movie-name' : '';
+		});
+
+		$scope.$watch('dayPicker', function(){
+			$scope.classDay = 'hide-day-picker';
 		});
 
 		$scope.$watch('unlocateTheater', function(){

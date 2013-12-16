@@ -64,6 +64,7 @@ cst.factory('ServicesFactory',['$rootScope', '$http', 'ModelFactory',function($r
 		    method: "GET"
 		}).success(function(data, status, headers, config) {
 			console.log('Sucess with Angular for movie : '+data);
+			data.id = movie.id;
 			data.movieName = decodeURIComponent(data.movieName).split('+').join(' ');
 			data.englishMovieName = decodeURIComponent(data.englishMovieName).split('+').join(' ');
 			data.description = decodeURIComponent(data.description).split('+').join(' ');

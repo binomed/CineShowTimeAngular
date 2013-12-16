@@ -54,7 +54,7 @@
 
 	.movie-showtime-parent{
 		position: absolute;
-		padding: 5px;
+		padding: 4px;
 		background-color: white;
 		bottom: 0;
 		width: 100%;
@@ -62,7 +62,12 @@
 		.movie-showtime{
 			font-size: 10px;
 			float: left;
-			margin-right: 8px;
+			margin-right: 7px;
+		}
+
+		.movie-showtime-continue{
+			font-size: 10px;
+			float: left;
 		}
 	}
 }

@@ -23,26 +23,42 @@
 }
 
 /* line 28, ../scss/search.scss */
-#day-picker {
-  position: relative;
+.search-field.day-picker {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
   display: block;
-}
-/* line 35, ../scss/search.scss */
-#day-picker .btn {
-  width: 100%;
+  -webkit-transition: all 1s ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  transition: all 1s ease 0s;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
 
-/* line 40, ../scss/search.scss */
+/* line 38, ../scss/search.scss */
+.search-field.day-picker.hide-day-picker {
+  opacity: 0;
+  -webkit-transform: translateY(-350px);
+  -moz-transform: translateY(-350px);
+  -ms-transform: translateY(-350px);
+  -o-transform: translateY(-350px);
+  transform: translateY(-350px);
+}
+
+/* line 43, ../scss/search.scss */
 #search-btn {
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 
-/* line 46, ../scss/search.scss */
+/* line 49, ../scss/search.scss */
 #map-canvas {
   position: absolute;
   top: 0;
@@ -54,7 +70,7 @@
   border-bottom-color: black;
 }
 
-/* line 57, ../scss/search.scss */
+/* line 60, ../scss/search.scss */
 #results {
   position: absolute;
   top: 50%;
@@ -63,7 +79,7 @@
   height: 50%;
 }
 
-/* line 65, ../scss/search.scss */
+/* line 68, ../scss/search.scss */
 .movie-search-field {
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
@@ -78,7 +94,7 @@
   transform: translateY(-250px);
 }
 
-/* line 71, ../scss/search.scss */
+/* line 74, ../scss/search.scss */
 .movie-search-field.show-movie-name {
   opacity: 1;
   -webkit-transform: translateY(0px);
@@ -88,7 +104,7 @@
   transform: translateY(0px);
 }
 
-/* line 76, ../scss/search.scss */
+/* line 79, ../scss/search.scss */
 .city-search-field {
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
@@ -103,7 +119,7 @@
   transform: translateY(-200px);
 }
 
-/* line 82, ../scss/search.scss */
+/* line 85, ../scss/search.scss */
 .city-search-field.show-city-name {
   opacity: 1;
   -webkit-transform: translateY(0px);
@@ -113,7 +129,7 @@
   transform: translateY(0px);
 }
 
-/* line 87, ../scss/search.scss */
+/* line 90, ../scss/search.scss */
 .input-group-addon.expand-search {
   left: 50%;
   padding: 0;
@@ -125,7 +141,7 @@
   text-align: center;
 }
 
-/* line 98, ../scss/search.scss */
+/* line 101, ../scss/search.scss */
 .theater-unlocate-indicator.input-group-addon {
   position: absolute;
   height: 30px;
@@ -135,7 +151,7 @@
   bottom: 35px;
 }
 
-/* line 107, ../scss/search.scss */
+/* line 110, ../scss/search.scss */
 .theater-unlocate-parent {
   position: absolute;
   height: 100px;
@@ -146,19 +162,19 @@
   overflow-y: auto;
   background-color: #e5e5e5;
 }
-/* line 117, ../scss/search.scss */
+/* line 120, ../scss/search.scss */
 .theater-unlocate-parent .theater-unlocate-title {
   font-size: 15px;
   text-align: center;
   border-bottom: 2px solid black;
 }
-/* line 122, ../scss/search.scss */
+/* line 125, ../scss/search.scss */
 .theater-unlocate-parent .theater-unlocate-title i {
   text-align: right;
   margin-right: 5px;
   margin-left: 20px;
 }
-/* line 129, ../scss/search.scss */
+/* line 132, ../scss/search.scss */
 .theater-unlocate-parent .theater-unlocate {
   border-bottom: thin solid black;
   height: 25px;
@@ -175,7 +191,7 @@
   background-color: rgba(0, 0, 0, 0.75);
   color: white;
   font-size: 25px;
-  z-index: 500;
+  z-index: 900;
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
   -moz-transition: all 1s ease 0s;
@@ -266,7 +282,7 @@
 /* line 55, ../scss/movie-result.scss */
 .movie-result .movie-showtime-parent {
   position: absolute;
-  padding: 5px;
+  padding: 4px;
   background-color: white;
   bottom: 0;
   width: 100%;
@@ -275,10 +291,15 @@
 .movie-result .movie-showtime-parent .movie-showtime {
   font-size: 10px;
   float: left;
-  margin-right: 8px;
+  margin-right: 7px;
+}
+/* line 68, ../scss/movie-result.scss */
+.movie-result .movie-showtime-parent .movie-showtime-continue {
+  font-size: 10px;
+  float: left;
 }
 
-/* line 70, ../scss/movie-result.scss */
+/* line 75, ../scss/movie-result.scss */
 .no-results {
   position: absolute;
   width: 200px;
@@ -540,41 +561,42 @@ div#movie {
 }
 /* line 19, ../scss/movie.scss */
 div#movie .nav-tabs {
-  height: 30px;
+  height: 40px;
 }
 /* line 23, ../scss/movie.scss */
 div#movie .nav-tabs li {
   position: absolute;
   width: 33%;
-  height: 30px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   border-right: solid thin black;
   background-color: #e5e5e5;
 }
-/* line 32, ../scss/movie.scss */
+/* line 33, ../scss/movie.scss */
 div#movie .nav-tabs li.desc {
   left: 0;
 }
-/* line 36, ../scss/movie.scss */
+/* line 37, ../scss/movie.scss */
 div#movie .nav-tabs li.showtime {
   left: calc(33% + 1px);
 }
-/* line 40, ../scss/movie.scss */
+/* line 41, ../scss/movie.scss */
 div#movie .nav-tabs li.reviews {
   right: 0;
 }
-/* line 44, ../scss/movie.scss */
+/* line 45, ../scss/movie.scss */
 div#movie .nav-tabs li.active {
   background-color: white;
   /*$light-grey-color;*/
 }
-/* line 49, ../scss/movie.scss */
+/* line 50, ../scss/movie.scss */
 div#movie div.movie-carousel {
   position: absolute;
-  top: 30px;
+  top: 40px;
   bottom: 0;
 }
-/* line 55, ../scss/movie.scss */
+/* line 56, ../scss/movie.scss */
 div#movie div.movie-carousel ul {
   padding: 0;
   margin: 0;
@@ -586,51 +608,53 @@ div#movie div.movie-carousel ul {
   left: 0;
   right: 0;
 }
-/* line 66, ../scss/movie.scss */
+/* line 67, ../scss/movie.scss */
 div#movie div.movie-carousel ul li {
   position: absolute;
   padding: 0;
   margin: 0;
   overflow: auto;
 }
-/* line 73, ../scss/movie.scss */
+/* line 74, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc {
   left: 0;
   padding: 10px;
+  height: 100%;
+  overflow: auto;
 }
-/* line 78, ../scss/movie.scss */
+/* line 81, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc .movie-poster {
   margin-right: 10px;
   height: 180px;
   width: 120px;
   float: left;
 }
-/* line 85, ../scss/movie.scss */
+/* line 88, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc .movie-title {
   font-weight: 800;
   margin-top: 10px;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 5px;
   font-size: 17px;
 }
-/* line 92, ../scss/movie.scss */
+/* line 95, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc hr {
   /*color: $text-color;*/
   margin-top: 3px;
   border-top-width: 2px;
   border-top-color: #40210d;
 }
-/* line 99, ../scss/movie.scss */
+/* line 102, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc .movie-section {
   text-transform: uppercase;
   text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
 }
-/* line 104, ../scss/movie.scss */
+/* line 107, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc .movie-trailer-list {
   height: 100%;
   width: 100%;
   overflow-x: scroll;
 }
-/* line 109, ../scss/movie.scss */
+/* line 112, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc .movie-trailer-list .movie-trailer {
   float: left;
   width: 120px;
@@ -639,20 +663,27 @@ div#movie div.movie-carousel ul .movie-desc .movie-trailer-list .movie-trailer {
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 30px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 30px;
 }
-/* line 115, ../scss/movie.scss */
+/* line 118, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-desc .movie-trailer-list .movie-trailer .movie-trailer-name {
   text-overflow: ellipsis;
   max-width: 120px;
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 130, ../scss/movie.scss */
+/* line 125, ../scss/movie.scss */
+div#movie div.movie-carousel ul .movie-desc .movie-trailer-list .movie-trailer .movie-trailer-poster {
+  width: 120px;
+  height: 90px;
+}
+/* line 138, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-showtimes {
   left: calc(100% / 3);
   bottom: 0;
   top: 0;
+  height: 100%;
+  overflow: auto;
 }
-/* line 135, ../scss/movie.scss */
+/* line 145, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-showtimes .theater {
   padding: 10px;
   font-size: 20px;
@@ -663,15 +694,15 @@ div#movie div.movie-carousel ul .movie-showtimes .theater {
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 5px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 5px;
 }
-/* line 143, ../scss/movie.scss */
+/* line 153, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-showtimes .theater .theater-place {
   font-size: 17px;
 }
-/* line 148, ../scss/movie.scss */
+/* line 158, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-showtimes .movie-showtime-parent {
   padding: 10px;
 }
-/* line 153, ../scss/movie.scss */
+/* line 162, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-showtimes .movie-showtime {
   height: 50px;
   font-size: 15px;
@@ -680,18 +711,18 @@ div#movie div.movie-carousel ul .movie-showtimes .movie-showtime {
   padding-bottom: 5px;
   border-bottom: thin solid black;
 }
-/* line 162, ../scss/movie.scss */
+/* line 171, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-showtimes .movie-showtime:first-child {
   font-weight: 800;
 }
-/* line 167, ../scss/movie.scss */
+/* line 176, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-reviews {
   left: calc(100% * (2 / 3));
   bottom: 0;
   top: 0;
   padding: 10px;
 }
-/* line 173, ../scss/movie.scss */
+/* line 182, ../scss/movie.scss */
 div#movie div.movie-carousel ul .movie-reviews .no-review {
   position: absolute;
   width: 100%;
@@ -701,7 +732,7 @@ div#movie div.movie-carousel ul .movie-reviews .no-review {
   font-size: 30px;
   font-weight: 400;
 }
-/* line 187, ../scss/movie.scss */
+/* line 196, ../scss/movie.scss */
 div#movie div.movie-carousel.animate {
   -webkit-transition: all 0.5s ease;
   -webkit-transition-delay: 0s;

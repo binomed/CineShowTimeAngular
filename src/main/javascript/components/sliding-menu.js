@@ -21,6 +21,12 @@ components.directive('slidingMenu', ['ModelFactory', '$rootScope','$location'
         $scope.hide = true;
         $scope.classType = 'away';
       }
+
+      $scope.about = function(){
+        $scope.hide = true;
+        $scope.classType = 'away';
+        $('#myModal').modal('show'); 
+      }
       
     }
   };

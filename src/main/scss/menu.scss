@@ -14,7 +14,7 @@
 	background-color: rgba(0,0,0,0.75);
 	color: white;
 	font-size: 25px;
-	z-index: 500;
+	z-index: 900;
 	@include single-transition(all, 1s, ease, 0s);
 
 	.menu-bg{

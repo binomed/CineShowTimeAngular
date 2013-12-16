@@ -11,20 +11,12 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
-      var useGoogleMaps = typeof google === 'object' && typeof google.maps === 'object';      
-      //useGoogleMaps = false;
-      var mapDivElt = iElement.find('div')[0];
-      var markers = [];
-      var windows = [];
-      /*navigator.geolocation.getCurrentPosition(function(position) {
-          console.log(position.coords.latitude + " " + position.coords.longitude);
-          plotMap(position.coords.latitude, position.coords.longitude);
-          //document.getElementById('info').innerHTML = "";
-      }, function(position) {
-          alert("Failed to get your current location");
-      });
-        */
-
+        var useGoogleMaps = typeof google === 'object' && typeof google.maps === 'object';      
+        //useGoogleMaps = false;
+        var mapDivElt = iElement.find('div')[0];
+        var markers = [];
+        var windows = [];
+      
         // Solution possible : https://groups.google.com/forum/#!searchin/mozilla.dev.b2g/google$20maps/mozilla.dev.b2g/56RBo2pBbL4/P1sl-IxnR0MJ
 
         // http://leafletjs.com/download.html
@@ -151,7 +143,9 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                 if (popup.popup 
                     && popup.popup._contentNode
                     && popup.popup._contentNode.firstChild){
-                    $rootScope.$emit('clickTheaterEvt', popup.popup._contentNode.firstChild.id);
+                    $rootScope.$apply(function(){
+                        $rootScope.$emit('clickTheaterEvt', popup.popup._contentNode.firstChild.id);
+                    });
                 }
             });
         }
@@ -167,11 +161,14 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
            });
         }
 
-        function placeLeafLetMarker(theater){
+        function placeLeafLetMarker(theater, index){
             var marker = new L.marker([theater.lat, theater.lon], {icon : getLeafLetIcon()});
             marker.bindPopup("<div id='"+theater.id+"'>"+theater.theaterName+"</div>");
             map.addLayer(marker);
             markers.push(marker);
+            if (index === 0){
+                marker.openPopup();
+            }
         }
 
          function geocodeLeafLetMethod(theater, index){
@@ -182,7 +179,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                         console.log('Geocoding found request : '+theater.theaterName+" : "+data.display_name+" ("+data.lat+";"+data.lon+")");
                         theater.lat = data.lat;
                         theater.lon = data.lon;
-                        placeLeafLetMarker(theater);                        
+                        placeLeafLetMarker(theater, index);                        
                     }else{
                         
                         theater.unlocate = true;
@@ -193,7 +190,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                 });                
 
             }else if(theater.place && theater.place.searchQuery && theater.lat && theater.lon && !theater.unlocate){ 
-                placeLeafLetMarker(theater);
+                placeLeafLetMarker(theater, index);
             }else{
                 $scope.unlocateTheater.push(theater);
                 console.log('no place found for : '+theater.theaterName);

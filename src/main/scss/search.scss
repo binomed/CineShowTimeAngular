@@ -25,16 +25,19 @@
 	
 }
 
-#day-picker{
-	position: relative;
+.search-field.day-picker{
 	margin-left: auto;
-	margin-right: auto;
-	width: 40%;
-	display: block;
+    margin-right: auto;
+    width: 40%;
+    display: block;
+	@include single-transition(all, 1s, ease, 0s);
+	opacity: 1;	
+	@include translateY(0);
+}
 
-	.btn{
-		width: 100%;
-	}
+.search-field.day-picker.hide-day-picker{
+	opacity: 0;	
+	@include translateY(-350px);
 }
 
 #search-btn{

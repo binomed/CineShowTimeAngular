@@ -33,6 +33,28 @@
 		<action-bar></action-bar>
 		<sliding-menu></sliding-menu>
 		<div id="content" ng-view class="view-animate"></div>	
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <img src='../assets/images/icon_48.png' class="center-block"/><br>
+		        <h4 class="modal-title" id="myModalLabel">CineShowTime 4.0.0Beta</h4>
+		      </div>
+		      <div class="modal-body text-center">
+		      	<strong>Developped by <a href='http://blog.binomed.fr' target='_blank'>Binomed</a><br><br>
+		        © 2013 / 2014 Binomed<br>
+		        Apache License 2.0<br>
+		        Results from Google Movies.
+		        </strong>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
     </div>
 
 	<!-- build:js javascript/app.js -->
