@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" standalone="no"?>
+<?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2012 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2013 by original authors @ fontello.com</metadata>
 <defs>
 <font id="fontello" horiz-adv-x="1000" >
 <font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
-<glyph glyph-name="chart-alt" unicode="&#xe808;" d="M885 688l0-521-833 0 0 156q0 38 23 65l209 261q26 33 68 38t76-20l128-95 145 181q28 34 70 39t76-23q39-30 39-81z m0-678q21 0 37-15t16-36-16-37-37-16l-833 0q-21 0-37 16t-16 37 16 36 37 15l833 0z" horiz-adv-x="938" />
-<glyph glyph-name="belowground-rail" unicode="&#xe800;" d="M50 775l275-150 275 150z m100-200l-150-100 0-500c0-25 25-50 50-50l550 0c25 0 50 25 50 50l0 500-150 100z m50-100l250 0 100-50 0-100-450 0 0 100z m-50-350c28 0 50-22 50-50s-22-50-50-50-50 22-50 50 22 50 50 50z m350 0c28 0 50-22 50-50s-22-50-50-50-50 22-50 50 22 50 50 50z" horiz-adv-x="650" />
+<glyph glyph-name="map" unicode="&#xe800;" d="m984 600q16-10 16-30l0-584q0-20-16-30q-8-6-16-6t-18 6l-216 136l-216-136q-18-10-34 0l-218 136l-216-136q-16-10-34 0q-16 10-16 30l0 584q0 20 16 30l234 146q18 10 34 0l216-136l218 136q16 10 32 0z m-750-450l0 506l-168-104l0-506z m234-104l0 506l-168 104l0-506z m234 104l0 506l-170-104l0-506z m232-104l0 506l-168 104l0-506z" horiz-adv-x="1000" />
+<glyph glyph-name="cinema" unicode="&#xe807;" d="m700 775l-112-33l54-148l108 31z m-181-52l-147-42l3-6l28-77l25-65l147 42z m-214-60l-130-38l56-148l130 37l-33 84z m-197-57l-108-31l50-150l113 33z m-58-181l0-450c0-28 22-50 50-50l650 0c28 0 50 22 50 50l0 450z m100-100l550 0l0-150l-550 0z" horiz-adv-x="800" />
 </font>
 </defs>
 </svg>

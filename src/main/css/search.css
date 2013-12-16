@@ -8,13 +8,20 @@
 }
 
 /* line 14, ../scss/search.scss */
+#search {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+}
+
+/* line 20, ../scss/search.scss */
 .search-field {
   margin: 10px auto;
   width: 90%;
   z-index: 300;
 }
 
-/* line 22, ../scss/search.scss */
+/* line 28, ../scss/search.scss */
 #day-picker {
   position: relative;
   margin-left: auto;
@@ -22,31 +29,31 @@
   width: 40%;
   display: block;
 }
-/* line 29, ../scss/search.scss */
+/* line 35, ../scss/search.scss */
 #day-picker .btn {
   width: 100%;
 }
 
-/* line 34, ../scss/search.scss */
+/* line 40, ../scss/search.scss */
 #search-btn {
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 
-/* line 40, ../scss/search.scss */
+/* line 46, ../scss/search.scss */
 #map-canvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 100%;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: black;
 }
 
-/* line 51, ../scss/search.scss */
+/* line 57, ../scss/search.scss */
 #results {
   position: absolute;
   top: 50%;
@@ -55,7 +62,7 @@
   height: 50%;
 }
 
-/* line 59, ../scss/search.scss */
+/* line 65, ../scss/search.scss */
 .movie-search-field {
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
@@ -70,7 +77,7 @@
   transform: translateY(-250px);
 }
 
-/* line 65, ../scss/search.scss */
+/* line 71, ../scss/search.scss */
 .movie-search-field.show-movie-name {
   opacity: 1;
   -webkit-transform: translateY(0px);
@@ -80,7 +87,7 @@
   transform: translateY(0px);
 }
 
-/* line 70, ../scss/search.scss */
+/* line 76, ../scss/search.scss */
 .city-search-field {
   -webkit-transition: all 1s ease;
   -webkit-transition-delay: 0s;
@@ -95,7 +102,7 @@
   transform: translateY(-200px);
 }
 
-/* line 76, ../scss/search.scss */
+/* line 82, ../scss/search.scss */
 .city-search-field.show-city-name {
   opacity: 1;
   -webkit-transform: translateY(0px);
@@ -105,7 +112,7 @@
   transform: translateY(0px);
 }
 
-/* line 81, ../scss/search.scss */
+/* line 87, ../scss/search.scss */
 .input-group-addon.expand-search {
   left: 50%;
   padding: 0;
@@ -115,4 +122,43 @@
   height: 30px;
   line-height: 30px;
   text-align: center;
+}
+
+/* line 98, ../scss/search.scss */
+.theater-unlocate-indicator.input-group-addon {
+  position: absolute;
+  height: 30px;
+  width: 40px;
+  right: 0;
+  bottom: 35px;
+  bottom: 35px;
+}
+
+/* line 107, ../scss/search.scss */
+.theater-unlocate-parent {
+  position: absolute;
+  height: 100px;
+  width: 200px;
+  right: 0;
+  bottom: 35px;
+  bottom: 35px;
+  overflow-y: auto;
+  background-color: #e5e5e5;
+}
+/* line 117, ../scss/search.scss */
+.theater-unlocate-parent .theater-unlocate-title {
+  font-size: 15px;
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+/* line 122, ../scss/search.scss */
+.theater-unlocate-parent .theater-unlocate-title i {
+  text-align: right;
+  margin-right: 5px;
+  margin-left: 20px;
+}
+/* line 129, ../scss/search.scss */
+.theater-unlocate-parent .theater-unlocate {
+  border-bottom: thin solid black;
+  height: 25px;
 }

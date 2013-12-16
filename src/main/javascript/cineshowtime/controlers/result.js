@@ -8,7 +8,7 @@ cst.controller('ResultCtrl',
 		$scope.showLoad = false;
 		$scope.showError = false;
 		$scope.showNoResults = true;
-		$scope.showResults = true;
+		$scope.showResults = true;		
 
 		function loadResults(results){
 			$scope.results = changeData.filterShowtimes(results);

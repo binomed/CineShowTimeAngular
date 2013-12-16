@@ -6,7 +6,8 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
     restrict: 'EA',
     scope: {        
       zoom: '=zoom',
-      center: '=center'
+      center: '=center',
+      unlocateTheater : '=unlocateTheater'
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
@@ -174,7 +175,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         }
 
          function geocodeLeafLetMethod(theater, index){
-            if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                
+            if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon && !theater.unlocate){                
                 console.log('Proceed geocoding request : '+theater.theaterName+" : "+theater.place.searchQuery);
                 geoService.geoSearch(theater.place.searchQuery, function(data){
                     if (data){
@@ -182,12 +183,19 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                         theater.lat = data.lat;
                         theater.lon = data.lon;
                         placeLeafLetMarker(theater);                        
+                    }else{
+                        
+                        theater.unlocate = true;
+                        $scope.unlocateTheater.push(theater);
+                        console.log('Geocoding ko : '+theater.theaterName);        
+                        
                     }
                 });                
 
-            }else if(theater.place && theater.place.searchQuery && theater.lat && theater.lon){ 
+            }else if(theater.place && theater.place.searchQuery && theater.lat && theater.lon && !theater.unlocate){ 
                 placeLeafLetMarker(theater);
             }else{
+                $scope.unlocateTheater.push(theater);
                 console.log('no place found for : '+theater.theaterName);
             }
         }
@@ -277,7 +285,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         }
 
         function geocodeGoogleMapsMethod(theater, index){
-            if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon){                    
+            if(theater.place && theater.place.searchQuery && !theater.lat && !theater.lon && !theater.unlocate){                    
                 console.log('Proceed geocoding request : '+theater.theaterName+" : "+theater.place.searchQuery);
                 geocoder.geocode({
                     address : theater.place.searchQuery
@@ -289,12 +297,17 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                        placeGoogleMapsMarker(theater, index);
                        
                     }else{
-                        console.log('Geocoder ko : '+status);        
+                        $scope.$apply(function(){
+                            theater.unlocate = true;
+                            $scope.unlocateTheater.push(theater);
+                            console.log('Geocoder ko : '+status);        
+                        });
                     }
                 });
-            }else if (theater.place && theater.place.searchQuery && theater.lat && theater.lon){
+            }else if (theater.place && theater.place.searchQuery && theater.lat && theater.lon && !theater.unlocate){
                 placeGoogleMapsMarker(theater);
             }else{
+                $scope.unlocateTheater.push(theater);
                 console.log('no place found for : '+theater.theaterName);
             }
         }

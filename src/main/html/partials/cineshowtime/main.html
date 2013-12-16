@@ -1,17 +1,27 @@
 <div id="main">
-	<map center="map.center" zoom="map.zoom"></map>
-	
-	<i ng-click='expandSearch()' class="fa fa-search search-icon input-group-addon expand-search" ng-show="showBtnSearchExpand"></i>	
-	<div class='input-group search-field city-search-field {{validCityClass}} {{visibilityCityName}}'>
-		<i ng-click='search()' class="fa fa-search search-icon input-group-addon"></i>
-		<input ng-keyup='keyUp($event)' placeholder='Ville...' type='text' id='city' ng-model='cityName' class="form-control"/>
-		<div ng-click='gpsSearch()' class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+	<div id="search" ng-controller="SearchCtrl">
+		<map center="map.center" zoom="map.zoom" unlocate-theater='unlocateTheater'></map>
+		<div ng-show='showUnlocateTheater'>
+			<div class='theater-unlocate-indicator input-group-addon' ng-click='openUnlocateTheaters()'>			
+				{{unlocateTheater.length}}&nbsp;<i class='icon-cinema'></i>
+			</div>
+			<div ng-show='showUnlocateTheaterList' class='theater-unlocate-parent'>
+				<div class="theater-unlocate-title">Unlocalized theaters <i class='fa fa-times' ng-click='hideTheaterUnlocated()'></i></div>
+				<div ng-repeat='theater in unlocateTheater' class='theater-unlocate' ng-click='openTheater(theater)'>{{theater.theaterName}}</div>
+			</div>
+		</div>
+		<i ng-click='expandSearch()' class="fa fa-search search-icon input-group-addon expand-search" ng-show="showBtnSearchExpand"></i>	
+		<div class='input-group search-field city-search-field {{validCityClass}} {{visibilityCityName}}'>
+			<i ng-click='search()' class="fa fa-search search-icon input-group-addon"></i>
+			<input ng-keyup='keyUp($event)' placeholder='Place (city, quarter)...' type='text' id='city' ng-model='cityName' class="form-control"/>
+			<div ng-click='gpsSearch()' class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+		</div>
+		<div class='input-group search-field movie-search-field {{validMovieClass}} {{visibilityMovie}}'>
+			<input placeholder='Movie...' type='text' id='movie' ng-model='movieName' class="form-control"/>
+			<div ng-click='dayChoice()' class="input-group-addon"><i class="fa fa-calendar"></i></div>
+		</div>
+		<div ng-show="showError" class="alert alert-danger search-field">{{errorText}}</div>
 	</div>
-	<div class='input-group search-field movie-search-field {{validMovieClass}} {{visibilityMovie}}'>
-		<input placeholder='Film...' type='text' id='movie' ng-model='movieName' class="form-control"/>
-		<div ng-click='dayChoice()' class="input-group-addon"><i class="fa fa-calendar"></i></div>
-	</div>
-	<div ng-show="showError" class="alert alert-danger search-field">{{errorText}}</div>
 	<div id="results" ng-controller="ResultCtrl" >
 
 		<loader ng-show="showLoad"></loader>
