@@ -13,7 +13,7 @@
 		<i ng-click='expandSearch()' class="fa fa-search search-icon input-group-addon expand-search" ng-show="showBtnSearchExpand"></i>	
 		<div class='input-group search-field city-search-field {{validCityClass}} {{visibilityCityName}}'>
 			<i ng-click='search()' class="fa fa-search search-icon input-group-addon"></i>
-			<input ng-keyup='keyUp($event)' placeholder='Place (city, quarter)...' type='text' id='city' ng-model='cityName' class="form-control"/>
+			<input ng-keyup='keyUp($event)' placeholder='Place (city, district)...' type='text' id='city' ng-model='cityName' class="form-control"/>
 			<div ng-click='gpsSearch()' class="input-group-addon"><i class="fa fa-map-marker"></i></div>
 		</div>
 		<div class='input-group search-field movie-search-field {{validMovieClass}} {{visibilityMovie}}'>
