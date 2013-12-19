@@ -11,7 +11,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
     },    
     link: function postLink($scope, iElement, iAttrs) { 
 
-        var useGoogleMaps = typeof google === 'object' && typeof google.maps === 'object';      
+        var useGoogleMaps = false;//typeof google === 'object' && typeof google.maps === 'object';      
         //useGoogleMaps = false;
         var mapDivElt = iElement.find('div')[0];
         var markers = [];
@@ -27,12 +27,21 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         var geocoder = null;
 
         function initMap(){
+            useGoogleMaps = typeof google === 'object' && typeof google.maps === 'object';      
             if (useGoogleMaps){
                 initGoogleMap();
             }else {
                 initLeafletMap();
             }
         }
+      
+
+        /*navigator.geolocation.getCurrentPosition(function(position){
+            initMap();
+
+        },function(position){
+            console.log('Fail to get location');
+        });*/ 
       
         initMap();
    
@@ -78,12 +87,18 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         });
 
         $scope.$watch('zoom', function (newValue) {
+            if (map == null){
+                return;
+            }
             if (useGoogleMaps){
                 map.setZoom(parseInt(newValue));
             }
         });
 
         $scope.$watch('center', function (newValue) {
+            if (map == null){
+                return;
+            }
             if(useGoogleMaps){
                 map.setCenter(new google.maps.LatLng(
                     parseFloat(newValue.lat),

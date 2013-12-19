@@ -13,3 +13,7 @@ app.config(['$routeProvider', function($routeProvider) {
     .otherwise({ redirectTo:  '/main' })
     ;
 }]);
+
+function initialisze(){
+	console.log('Maps init ! ');
+}

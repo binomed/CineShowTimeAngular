@@ -1,5 +1,5 @@
 {
-    "version": "4.0.0",
+    "version": "4.0.0beta",
     "type": "privileged",
     "name": "CineShowTime",
     "description": "Movie Showtime Application",
@@ -7,8 +7,11 @@
     "icons": {
         "32": "/assets/images/icon_32.png",
         "48": "/assets/images/icon_48.png",
+        "60": "/assets/images/icon_60.png",
+        "90": "/assets/images/icon_90.png",
         "96": "/assets/images/icon_96.png",
         "128": "/assets/images/icon_128.png",
+        "256": "/assets/images/icon_256.png",
         "512": "/assets/images/icon_512.png"
     },
     "developer": {

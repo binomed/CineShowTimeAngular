@@ -22,15 +22,16 @@ var CST = CST || function(){
 }();
 
 function initialize() {
-	
-	CST.setInit(google != null);   
+	console.log('CallBack init script ! ');
+	CST.setInit(typeof google === 'object' && typeof google.maps === 'object');   
 }
 
 function loadScript() {
+	console.log('Load Script ! ');
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = 
-      'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDyIPjOPfFqVH4V5bkdBatTOiJLxnxvGuI&sensor=true&callback=initialize';
+      'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&callback=initialize';
   document.body.appendChild(script);
 }
 
