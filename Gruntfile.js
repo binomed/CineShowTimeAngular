@@ -3,8 +3,15 @@ module.exports = function (grunt) {
   // Configuration du build
   grunt.initConfig({
 
-    // Parametrage
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    //// PARAMETERS FOR TASK
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
 
+    /*
+    * SOURCE
+    **/
     src: {
       html: 'src/main/html',
       res:  'src/main/assets',
@@ -20,39 +27,142 @@ module.exports = function (grunt) {
       test: ['src/test/javascript/**/*.js']
     },
     
+    /*
+    * TARGET
+    **/
     dest: {
-      root:       'src/main/webapp',
-      html: {
-        index:    'src/main/webapp/index.html',
-        partials: 'src/main/webapp/partials'
+      // Distant parameters
+      root: 'dist',
+      // Firefox Build
+      firefox: {
+        root:       'dist/firefox',
+        html:       'dist/firefox/html',
+        res:        'dist/firefox/assets',
+        css:        'dist/firefox/css',
+        js:         'dist/firefox/javascript'
       },
-      res:        'src/main/webapp/assets',
-      css:        'src/main/webapp/css',
-      js:         'src/main/webapp/javascript'
+      // Chrome Build
+      chrome: {
+        root:       'dist/chrome',
+        html: {
+          index:    'dist/chrome/index.html',
+          partials: 'dist/chrome/partials'
+        },
+        res:        'dist/chrome/assets',
+        css:        'dist/chrome/css',
+        js:         'dist/chrome/javascript'
+      },
+      // Standard Web Build
+      web: {
+        root:       'dist/web',
+        html: {
+          index:    'dist/web/index.html',
+          partials: 'dist/web/partials'
+        },
+        res:        'dist/web/assets',
+        css:        'dist/web/css',
+        js:         'dist/web/javascript'
+      }      
     },
 
-    // Configuration des taches
 
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    //// BUILD TASKS
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    /*
+    * CLEAN DIRECTORIES
+    **/
     clean: {
-      html:  ['<%= dest.html.index %>', '<%= dest.html.partials %>'],
-      res:   ['<%= dest.res %>'],
-      css:   ['<%= dest.css %>'],
-      js:    ['<%= dest.js %>']
+      all:      ['<%= dest.root %> '],
+      firefox:  ['<%= dest.firefox.root %>'],
+      chrome:   ['<%= dest.chrome.root %>'],
+      web:      ['<%= dest.web.root %>']      
     },
 
+    /*
+    * COPY FILES
+    **/
     copy: {
-      html: {
+      // Firefox Copies
+      firefox: {
         files: [
-          { expand: true, cwd: '<%= src.html %>', src: ['**'], dest: '<%= dest.root %>' }
+          { expand: true, cwd: '<%= src.html %>', src: ['**'], dest: '<%= dest.firefox.html %>' },
+          { expand: true, cwd: '<%= src.res %>', src: ['**'], dest: '<%= dest.firefox.res %>' }
+        ]
+      },// Chrome Copies
+      chrome: {
+        files: [
+          { expand: true, cwd: '<%= src.html %>', src: ['**'], dest: '<%= dest.chrome.root %>' },
+          { expand: true, cwd: '<%= src.res %>', src: ['**'], dest: '<%= dest.chrome.res %>' }
         ]
       },
-      res: {
+      // Standard Web Copies
+      web: {
         files: [
-          { expand: true, cwd: '<%= src.res %>', src: ['**'], dest: '<%= dest.res %>' }
-        ]
+          { expand: true, cwd: '<%= src.html %>', src: ['**'], dest: '<%= dest.chrome.root %>' },
+          { expand: true, cwd: '<%= src.res %>', src: ['**'], dest: '<%= dest.chrome.res %>' }
+        ]     
       }
     },
 
+    /* Config auto des taches concat, uglify et cssmin */
+    useminPrepare: {
+      firefox: {
+        html: '<%= dest.firefox.html.index %>',
+        options: {
+          dest: '<%= dest.firefox.root %>'
+        }
+      },
+      chrome: {
+        html: '<%= dest.chrome.html.index %>',
+        options: {
+          dest: '<%= dest.chrome.root %>'
+        }
+      },
+      web: {
+        html: '<%= dest.web.html.index %>',
+        options: {
+          dest: '<%= dest.web.root %>'
+        }
+      }
+    },
+
+    /* Usemin task */
+    usemin: {
+      firefox: {
+        html: ['<%= dest.firefox.html.index %>'],
+        options: {
+          dirs: ['<%= dest.firefox.root %>']
+        }
+
+      },
+      chrome: {
+        html: ['<%= dest.chrome.html.index %>'],
+        options: {
+          dirs: ['<%= dest.chrome.root %>']
+        }
+      },
+      web: {
+        html: ['<%= dest.web.html.index %>'],
+        options: {
+          dirs: ['<%= dest.web.root %>']
+        }
+      }
+    },
+
+
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    //// DEVELOPMENT TASKS
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+
+    /*
+    * Compass Task
+    */
     compass: {
       app: {
         options: {
@@ -63,21 +173,9 @@ module.exports = function (grunt) {
       }
     },
 
-    /* Config auto des taches concat, uglify et cssmin */
-    useminPrepare: {
-      html: '<%= dest.html.index %>',
-      options: {
-        dest: '<%= dest.root %>'
-      }
-    },
-
-    usemin: {
-      html: ['<%= dest.html.index %>'],
-      options: {
-        dirs: ['<%= dest.root %>']
-      }
-    },
-
+    /*
+    * JShint check
+    **/
     jshint: { 
       options: {
         jshintrc: '.jshintrc'
@@ -94,6 +192,10 @@ module.exports = function (grunt) {
       }
     },
 
+
+    /*
+    * CSSLint check
+    **/
     csslint: {
       options: {
         csslintrc: '.csslintrc'
@@ -111,6 +213,9 @@ module.exports = function (grunt) {
       }
     },
 
+    /*
+    * Tests
+    **/
     karma: {
       unit: {
         configFile : 'src/test/config/karma-unit.conf.js',
@@ -143,7 +248,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Configuration du watch : compilation sass/compass + livereload sur css et html
+    // Watch Configuration : compilation sass/compass + livereload 
 
     watch: {
       options: {
@@ -177,12 +282,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Déclaration des taches
-  grunt.registerTask('lint',    ['jshint:dev', 'compass', 'csslint:dev']);
-  grunt.registerTask('test',    ['lint', 'karma:unit', 'karma:e2e']);
-  grunt.registerTask('ic',      ['jshint:ic', 'compass', 'csslint:ic', 'karma:ic_unit', 'karma:ic_e2e']);
-  grunt.registerTask('dist',    ['compass', 'clean', 'copy:html', 'copy:res', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
-  grunt.registerTask('deploy',  ['sshexec:clean', 'sftp:recette']);
-  grunt.registerTask('release', ['ic', 'dist']);
-  grunt.registerTask('default', ['test', 'dist']);
+  grunt.registerTask('lint',        ['jshint:dev', 'compass', 'csslint:dev']);
+  grunt.registerTask('test',        ['lint', 'karma:unit', 'karma:e2e']);
+  grunt.registerTask('ic',          ['jshint:ic', 'compass', 'csslint:ic', 'karma:ic_unit', 'karma:ic_e2e']);
+  grunt.registerTask('dist_firefox',['compass', 'clean', 'copy:firefox:html', 'copy:firefox:res', 'useminPrepare:firefox', 'concat', 'uglify', 'cssmin', 'usemin:firefox']);
+  grunt.registerTask('dist_chrome', ['compass', 'clean', 'copy:chrome:html', 'copy:chrome:res', 'useminPrepare:chrome', 'concat', 'uglify', 'cssmin', 'usemin:chrome']);
+  grunt.registerTask('dist_web',    ['compass', 'clean', 'copy:web:html', 'copy:web:res', 'useminPrepare:web', 'concat', 'uglify', 'cssmin', 'usemin:web']);
+  grunt.registerTask('release',     ['ic', 'dist_firefox', 'dist_chrome', 'dist_web']);
+  grunt.registerTask('default',     ['test', 'dist_firefox', 'dist_chrome', 'dist_web']);
 
 };
