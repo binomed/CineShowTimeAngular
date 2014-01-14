@@ -1,0 +1,11 @@
+{
+  "name": "CineShowTimeAngular",
+  "directory": "src/main/bower_components",
+  "version": "4.0.0",
+  "dependencies": {
+    "jquery": "lastest",
+    "fastclick": "latest",
+    "prefix-free": "latest",
+    "angular-latest": "lastest"
+  }
+}
