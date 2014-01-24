@@ -8,18 +8,18 @@
 	<title>CineShowTime</title>
 	<link rel="icon" type="image/png" href="../assets/images/icon_32.png" />
 	<!-- build:css ../css/app.css -->
-	<!--cst-->
-	<link rel="stylesheet" href="../css/cineshowtime.css" />
+  	<link rel="stylesheet" type="text/css" href="../bower_components/angular/angular-csp.css" />  	
   	<!-- font-awesome -->
-  	<link rel="stylesheet" type="text/css" href="../components/angular/angular-csp.css" />  	
-  	<link rel="stylesheet" type="text/css" href="../components/font-awesome/css/font-awesome.min.css" />  	
-  	<link rel="stylesheet" href="../components/bootstrap/css/bootstrap-theme.min.css" />
-	<link rel="stylesheet" href="../components/bootstrap/css/bootstrap.min.css" />
-	<!--<link rel="stylesheet" href="../components/angular-snap/angular-snap.min.css" />-->
-  	<!-- fontello -->
-  	<link rel="stylesheet" type="text/css" href="../components/fontello/css/fontello.css" />  	
+  	<link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.min.css" />  	
+  	<!-- bootstrap -->
+  	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
   	<!-- leaflet -->
     <link rel="stylesheet" href="../components/leaflet/leaflet.css" />
+  	<!-- fontello -->
+  	<link rel="stylesheet" type="text/css" href="../components/fontello/css/fontello.css" />  	
+	<!--cst-->
+	<link rel="stylesheet" href="../css/cineshowtime.css" />
 	<!-- endbuild -->	
 	<script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDyIPjOPfFqVH4V5bkdBatTOiJLxnxvGuI&sensor=true"></script>
@@ -58,22 +58,19 @@
     </div>
 
 	<!-- build:js ../javascript/app.js -->
-	<script src="../components/fastclick/fastclick.js"></script>
-	<script src="../components/prefixfree/prefixfree.min.js"></script>
-	<script src="../components/angular/angular.js"></script>
-	<script src="../components/angular/angular-route.min.js"></script>
-	<script src="../components/angular/angular-animate.min.js"></script>
-	<!--<script src="../components/angular-snap/angular-snap.min.js"></script>-->
-	<script src="../components/modernizr/modernizr.js"></script>
-	<script src="../components/jquery/jquery-1.10.2.min.js"></script>
-	<script src="../components/jquery-observer/jquery.server-observer.js"></script>
-	<script src="../components/hammer/jquery.hammer.min.js"></script>
-	<script src="../components/hammer/hammer.min.js"></script>
-	<script src="../components/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../bower_components/fastclick/lib/fastclick.js"></script>
+	<script src="../bower_components/prefix-free/prefixfree.min.js"></script>
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-route/angular-route.min.js"></script>
+	<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="../bower_components/jquery/jquery.min.js"></script>
+	<script src="../bower_components/jquery-hammerjs/jquery.hammer.min.js"></script>
+	<script src="../bower_components/hammerjs/hammer.min.js"></script>
+	<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../components/leaflet/leaflet.js"></script>
-	<!--<script src="../components/angular-bootstrap/ui-bootstrap-tpls-0.6.0.min.js"></script>-->
+	<script src="../components/jquery-observer/jquery.server-observer.js"></script>
+	<script src="../components/modernizr/modernizr.js"></script>
 	<script src="../javascript/app.js"></script>
-	<!--<script src="../javascript/load.js"></script>-->
 	<!-- cst Modele -->
 	<script src="../javascript/cineshowtime/cineshowtime.js"></script>	
 	<script src="../javascript/cineshowtime/services/model.js"></script>	

@@ -18,7 +18,11 @@ module.exports = function (grunt) {
         index: 'src/main/html/index.html'
       },
       res:  'src/main/assets',
-      comp: 'src/main/components',
+      comp: {
+        components: 'src/main/components',
+        bower :     'src/main/bower_components',
+        fonts :     'src/main/bower_components/font-awesome/fonts'
+      },
       js:   {
         all: 'src/main/javascript/**/*.js',
         dir: 'src/main/javascript'
@@ -50,7 +54,11 @@ module.exports = function (grunt) {
           all:      'dist/firefox/html',
           index:    'dist/firefox/html/index.html' 
         },      
-        comp:       'dist/firefox/components',
+        comp: {
+          components: 'dist/firefox/components',
+          bower:      'dist/firefox/bower_components',
+          fonts :     'dist/firefox/fonts'
+        },     
         res:        'dist/firefox/assets',
         css:        'dist/firefox/css',
         js:         'dist/firefox/javascript',
@@ -64,7 +72,11 @@ module.exports = function (grunt) {
           index:    'dist/chrome/html/index.html' 
         },
         res:        'dist/chrome/assets',
-        comp:       'dist/chrome/components',
+        comp: {
+          components: 'dist/chrome/components',
+          bower:      'dist/chrome/bower_components',
+          fonts :     'dist/chrome/fonts'
+        },     
         css:        'dist/chrome/css',
         js:         'dist/chrome/javascript'
       },
@@ -76,7 +88,11 @@ module.exports = function (grunt) {
           index:    'dist/web/html/index.html' 
         },
         res:        'dist/web/assets',
-        comp:       'dist/web/components',
+        comp: {
+          components: 'dist/web/components',
+          bower:      'dist/web/bower_components',
+          fonts :     'dist/web/fonts'
+        },     
         css:        'dist/web/css',
         js:         'dist/web/javascript',
         manifest:   'dist/web/cst_appcache.manifest'
@@ -109,10 +125,10 @@ module.exports = function (grunt) {
       firefox: {
         files: [
           { expand: true, cwd: '<%= src.html.dir %>', src: ['**'], dest: '<%= dest.firefox.html.all %>' },
-          //{ expand: true, cwd: '<%= src.js.dir %>', src: ['**'], dest: '<%= dest.firefox.js %>' },
-          //{ expand: true, cwd: '<%= src.css.dir %>', src: ['**'], dest: '<%= dest.firefox.css %>' },
           { expand: true, cwd: '<%= src.res %>', src: ['**'], dest: '<%= dest.firefox.res %>' },
-          { expand: true, cwd: '<%= src.comp %>', src: ['**'], dest: '<%= dest.firefox.comp %>' },
+          { expand: true, cwd: '<%= src.comp.components %>', src: ['**'], dest: '<%= dest.firefox.comp.components %>' },
+          { expand: true, cwd: '<%= src.comp.bower %>', src: ['**'], dest: '<%= dest.firefox.comp.bower %>' },
+          { expand: true, cwd: '<%= src.comp.fonts %>', src: ['**'], dest: '<%= dest.firefox.comp.fonts %>' },
           { src: '<%= src.manifest_firefox %>', dest: '<%= dest.firefox.manifest %>' }
         ]
       },// Chrome Copies
@@ -120,7 +136,9 @@ module.exports = function (grunt) {
         files: [
           { expand: true, cwd: '<%= src.html.dir %>', src: ['**'], dest: '<%= dest.chrome.html.all %>' },
           { expand: true, cwd: '<%= src.res %>', src: ['**'], dest: '<%= dest.chrome.res %>' },
-          { expand: true, cwd: '<%= src.comp %>', src: ['**'], dest: '<%= dest.chrome.comp %>' }
+          { expand: true, cwd: '<%= src.comp.components %>', src: ['**'], dest: '<%= dest.chrome.comp.components %>' },
+          { expand: true, cwd: '<%= src.comp.bower %>', src: ['**'], dest: '<%= dest.chrome.comp.bower %>' },
+          { expand: true, cwd: '<%= src.comp.fonts %>', src: ['**'], dest: '<%= dest.chrome.comp.fonts %>' }
         ]
       },
       // Standard Web Copies
@@ -128,7 +146,9 @@ module.exports = function (grunt) {
         files: [
           { expand: true, cwd: '<%= src.html.dir %>', src: ['**'], dest: '<%= dest.web.html.all %>' },
           { expand: true, cwd: '<%= src.res %>', src: ['**'], dest: '<%= dest.web.res %>' },
-          { expand: true, cwd: '<%= src.comp %>', src: ['**'], dest: '<%= dest.web.comp %>' },
+          { expand: true, cwd: '<%= src.comp.components %>', src: ['**'], dest: '<%= dest.web.comp.components %>' },
+          { expand: true, cwd: '<%= src.comp.bower %>', src: ['**'], dest: '<%= dest.web.comp.bower %>' },
+          { expand: true, cwd: '<%= src.comp.fonts %>', src: ['**'], dest: '<%= dest.web.comp.fonts %>' },
           { src: '<%= src.manifest_web %>', dest: '<%= dest.web.manifest %>' }
         ]     
       }
@@ -305,7 +325,7 @@ module.exports = function (grunt) {
   grunt.registerTask('dist_firefox',['compass', 'clean', 'copy:firefox', 'useminPrepare:firefox', 'concat', 'uglify', 'cssmin', 'usemin', 'clean:tmp']);
   grunt.registerTask('dist_chrome', ['compass', 'clean', 'copy:chrome', 'useminPrepare:chrome', 'concat', 'uglify', 'cssmin', 'usemin', 'clean:tmp']);
   grunt.registerTask('dist_web',    ['compass', 'clean', 'copy:web', 'useminPrepare:web', 'concat', 'uglify', 'cssmin', 'usemin', 'clean:tmp']);
-  grunt.registerTask('release',     ['ic', 'compass', 'clean', 'copy', 'useminPrepare', 'contact', 'uglify', 'cssmin', 'usemin', 'clean:tmp']);
-  grunt.registerTask('default',     ['test', 'dist_firefox', 'dist_chrome', 'dist_web']);
+  grunt.registerTask('release',     [/*'ic', */'compass', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'clean:tmp']);
+  grunt.registerTask('default',     ['test', 'release']);
 
 };

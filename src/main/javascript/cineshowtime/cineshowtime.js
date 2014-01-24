@@ -2,7 +2,7 @@
  * Un module fonctionnel...
  */
 var cst = angular.module('cst.main', ['cst.components'])
-.run(function($rootScope,$window){
+.run(['$rootScope', '$window', function($rootScope,$window){
     
 	 // publish current transition direction on rootScope
   $rootScope.direction = '';
@@ -20,5 +20,5 @@ var cst = angular.module('cst.main', ['cst.components'])
       $window.history.back();
     }
   });
-});
+}]);
 
