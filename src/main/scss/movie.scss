@@ -88,7 +88,6 @@ div#movie{
 				.movie-title{
 					font-weight: 800;
 					margin-top: 10px;
-					@include text-shadow(rgba(0,0,0,0.5) 1px 1px 5px);
 					font-size: 17px;
 				}
 
@@ -101,7 +100,6 @@ div#movie{
 
 				.movie-section{
 					text-transform: uppercase;
-					@include text-shadow(rgba(0,0,0,0.5) 0px 0px 5px);
 				}
 
 				.movie-trailer-list{
