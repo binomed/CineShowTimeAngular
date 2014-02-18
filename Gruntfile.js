@@ -3,6 +3,8 @@ module.exports = function (grunt) {
   // Configuration du build
   grunt.initConfig({
 
+    package: grunt.file.readJSON('package.json'),
+
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
     //// PARAMETERS FOR TASK
@@ -15,7 +17,8 @@ module.exports = function (grunt) {
     src: {
       html: {
         dir: 'src/main/html',
-        index: 'src/main/html/index.html'
+        index: 'src/main/html/index.html',
+        all : 'src/main/html/**/*.html'
       },
       res:  'src/main/assets',
       comp: {
@@ -284,6 +287,18 @@ module.exports = function (grunt) {
       }
     },
 
+
+    browser_sync:{
+      files: ['<%= src.css.all %>','<%= src.html.all %>','<%= src.js.all %>'],
+      options:{
+        server: {
+          baseDir: "./"
+        },
+        watchTask:true,
+        host:'127.0.0.1',
+        port:8080
+      }
+    },    
    
     // Watch Configuration : compilation sass/compass + livereload 
 
@@ -306,17 +321,7 @@ module.exports = function (grunt) {
   });
 
   // Chargement des plugins
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-contrib-csslint');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  require('load-grunt-tasks')(grunt);
 
   // Déclaration des taches
   grunt.registerTask('lint',        ['jshint:dev', 'compass', 'csslint:dev']);

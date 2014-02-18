@@ -279,12 +279,19 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
                 icon : '../assets/images/marker_theater_red_black.png'
             });
             var infowindow = new google.maps.InfoWindow();
-            infowindow.setContent(decodeURIComponent(theater.theaterName).split("+").join(" "));
+            infowindow.setContent("<div id='infoWindowPopup"+theater.id+"'>"+decodeURIComponent(theater.theaterName).split("+").join(" ")+"</div>");
             google.maps.event.addListener(marker, 'click', function() {
                 closeWindows();
-                infowindow.open(map,marker);
+                infowindow.open(map,marker);                
                 map.setCenter(marker.getPosition());
                 $rootScope.$emit('clickTheaterEvt', theater.id);
+                var popupDiv = document.querySelector('#infoWindowPopup'+theater.id);
+                popupDiv.removeEventListener('click');
+                popupDiv.addEventListener('click', function(){
+                    alert('click on theater !');
+                });                
+                console.log('popup present ? ');
+                console.log(popupDiv);
 
             });
             markers.push(marker);
