@@ -27,7 +27,7 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
         var geocoder = null;
 
         function initMap(){
-            useGoogleMaps = typeof google === 'object' && typeof google.maps === 'object';      
+            useGoogleMaps = false;//typeof google === 'object' && typeof google.maps === 'object';      
             if (useGoogleMaps){
                 initGoogleMap();
             }else {
@@ -139,16 +139,18 @@ components.directive('map', ['ModelFactory', 'GeoServicesFactory', '$rootScope',
 
 
         function initLeafletMap(){
-            map = L.map(mapDivElt, {zoomControl : false});
+            map = L.map(mapDivElt, {
+                zoomControl : false
+            });
             map.addControl(L.control.zoom({
                 position : 'bottomleft'
             }));
             map.locate({setView: true, maxZoom: 16,});//.setView([51.505, -0.09], 13);
             
 
-            L.tileLayer('http://{s}.tile.cloudmade.com/92de9d2696094ca08fc7db73b1aec4a1/997/256/{z}/{x}/{y}.png', {
+            L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
             //L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-                attribution: 'Map data, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                attribution: 'Map data, Imagery © <a href="http://www.mapquest.com">MapQuest</a>',
                 maxZoom: 18
             }).addTo(map);
 

@@ -21,8 +21,8 @@
   margin: 10px;
   float: left;
   margin-right: 20px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 40px;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 40px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 40px;
   box-shadow: rgba(0, 0, 0, 0.3) 0 0 40px;
 }
 /* line 28, ../scss/movie-result.scss */

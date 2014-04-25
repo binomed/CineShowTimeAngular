@@ -10,10 +10,10 @@
   color: white;
   font-size: 25px;
   z-index: 900;
-  -webkit-transition: all 1s ease;
-  -webkit-transition-delay: 0s;
   -moz-transition: all 1s ease 0s;
   -o-transition: all 1s ease 0s;
+  -webkit-transition: all 1s ease;
+  -webkit-transition-delay: 0s;
   transition: all 1s ease 0s;
 }
 /* line 20, ../scss/menu.scss */

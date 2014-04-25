@@ -100,7 +100,6 @@
     opacity: 0;
   }
 }
-
 /* line 96, ../scss/loader.scss */
 .spinner-text.text2 {
   opacity: 0;
@@ -123,7 +122,6 @@
     opacity: 0;
   }
 }
-
 /* line 96, ../scss/loader.scss */
 .spinner-text.text3 {
   opacity: 0;
@@ -146,7 +144,6 @@
     opacity: 0;
   }
 }
-
 /* line 114, ../scss/loader.scss */
 .wrapper {
   position: relative;
@@ -156,8 +153,8 @@
 
 /* line 122, ../scss/loader.scss */
 .wrapper, .wrapper * {
-  -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -185,7 +182,7 @@
   animation: rota 1s linear infinite;
 }
 
-/* line 147, ../scss/loader.scss */
+/* line 145, ../scss/loader.scss */
 .wrapper:hover .spinner,
 .wrapper:hover .filler,
 .wrapper:hover .mask {
@@ -224,7 +221,6 @@
     transform: rotate(360deg);
   }
 }
-
 @keyframes opa {
   /* line 176, ../scss/loader.scss */
   0% {
